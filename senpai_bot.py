@@ -94,9 +94,7 @@ async def creditz(ctx):
     await ctx.send('**No one but me, lozer!**')
 
 
-@tasks.loop(seconds=20)
-async def change_status():
-    await client.change_presence(activity=discord.Game(choice(status)))
+
 
     
 switchpresence.start()    
