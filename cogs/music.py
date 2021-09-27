@@ -1,9 +1,56 @@
 import discord
-from discord.ext import commands
-from discord import utils
-import youtube_dl
-import os
+from discord.ext import commands, tasks
 from discord.voice_client import VoiceClient
+import youtube_dl
+import asyncio
+from random import choice
+from discord.ext import commands
+from discord.utils import get
+from discord import FFmpegPCMAudio
+from youtube_dl import YoutubeDL
+
+youtube_dl.utils.bug_reports_message = lambda: ''
+
+ytdl_format_options = {
+    'format': 'bestaudio/best',
+    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
+    'restrictfilenames': True,
+    'noplaylist': True,
+    'nocheckcertificate': True,
+    'ignoreerrors': False,
+    'logtostderr': False,
+    'quiet': True,
+    'no_warnings': True,
+    'default_search': 'auto',
+    'source_address': '0.0.0.0' # bind to ipv4 since ipv6 addresses cause issues sometimes
+}
+
+ffmpeg_options = {
+    'options': '-vn'
+}
+
+ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
+
+class YTDLSource(discord.PCMVolumeTransformer):
+    def __init__(self, source, *, data, volume=0.5):
+        super().__init__(source, volume)
+
+        self.data = data
+
+        self.title = data.get('title')
+        self.url = data.get('url')
+
+    @classmethod
+    async def from_url(cls, url, *, loop=None, stream=False):
+        loop = loop or asyncio.get_event_loop()
+        data = await loop.run_in_executor(None, lambda: ytdl.extract_info(url, download=not stream))
+
+        if 'entries' in data:
+            # take first item from a playlist
+            data = data['entries'][0]
+
+        filename = data['url'] if stream else ytdl.prepare_filename(data)
+        return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
 class Music(commands.Cog):
@@ -12,37 +59,20 @@ class Music(commands.Cog):
         self.senpai_id = 888414036662833164
 
     @commands.command()
-    async def play(self,ctx, url : str): 
-        song_there = os.path.isfile("song.mp3")
-        try:
-             if song_there:
-                 os.remove("song.mp3")
-        except PermissionError:
-            await ctx.send("Wait for the current playing music to end or use the 'stop' command")
-            return
-
-        voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='testing senpai bot')
-        await voiceChannel.connect()
-        voice = discord.utils.get(commands.voice_clients, guild=ctx.guild)
+    async def play(ctx, url):
         
+        channel = ctx.message.author.voice.channel
 
-            
-        
+        await channel.connect()
 
-        ydl_opts = {
-           'format': 'bestaudio/best',
-            'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-           }],
-    }
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
-        for file in os.listdir("./"):
-            if file.endswith(".mp3"):
-                os.rename(file, "song.mp3")
-        voice.play(discord.FFmpegPCMAudio("song.mp3"))
+        server = ctx.message.guild
+        voice_channel = server.voice_client
+
+        async with ctx.typing():
+             player = await YTDLSource.from_url(url, loop=commands.loop)
+             voice_channel.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+
+        await ctx.send('**Now playing:** {}'.format(player.title))
 
 
     @commands.command()
@@ -74,7 +104,7 @@ class Music(commands.Cog):
 
     @commands.command()
     async def stop(self,ctx):
-       voice = discord.utils.get(commands.voice_clients, guild=ctx.guild)
+       voice = discord.utils.get(commands.voice_commands, guild=ctx.guild)
        voice.stop()
 
 
