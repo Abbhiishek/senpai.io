@@ -5,38 +5,37 @@ import asyncio
 
 gemb = discord.Embed(title="GAMES", color=0x2e69f2)
 gemb.add_field(
-    name=" **TRUTH OR DARE**",
-    value="`senpai help tod`",
+    name="🌚 **TRUTH OR DARE**",
+    value="`senpai help td`",
     inline=True
 )
 gemb.add_field(
-    name=" **LOTTERY**",
+    name="🎰 **LOTTERY**",
     value="`senpai help lotto`",
     inline=True
 )
 
 gemb.add_field(
-    name=" **HIGHLOW**",
+    name="🤔 **HIGHLOW**",
     value="`senpai highlow`",
     inline=True
 )
 gemb.add_field(
-    name=" **UNSCRAMBLE**",
+    name="✍ **UNSCRAMBLE**",
     value="`senpai uns`",
     inline=True
 )
+
 gemb.add_field(
-    name=" **RIDDLE**",
-    value="`senpai riddle`",
+    name="🙌 **RPS**",
+    value="`kana rps`",
     inline=True
 )
 
-avemb = discord.Embed(title=" **AVATAR**", description="**Command**: `av`, `avatar`, `pfp`\n`senpai av @user` Sends avatar of mentioned person. If no one is mentioned senpai sends your avatar.\n\n`senpai av @user1 @user2` Sends the merged pfp of two users (matching pfp uwu).\n\n**ENLARGE USER BANNER**\n**Command**: `bnr`, `banner`, `bn`\n`senpai bnr @user` Sends banner of mentioned person. If no one is mentioned senpai sends your banner by default.", color=0x2e69f2)
-
-aboutemb = discord.Embed(title="I GUESS YOU NEEDED FOR HELP !!", description="BOT CREATOR: [**ABHISHEK KUSHWAHA**](https://github.com/Abbhiishek) `Abbhishek#2959`",color=0x2e69f2)
+aboutemb = discord.Embed(title="I GUESS YOU ASKED FOR HELP !!", description="BOT CREATOR:\n [**ABHISHEK KUSHWAHA**](https://github.com/Abbhiishek)\n `Abbhishek#2959`",color=0x2e69f2)
 aboutemb.add_field(
     name=" **PREFIX**", 
-    value=f"Send `senpai prefix`", 
+    value=f"senpai ; s. ; S.", 
     inline=True
 )
 aboutemb.add_field(
@@ -55,9 +54,14 @@ aboutemb.add_field(
     value=f"[Click here](https://github.com/Abbhiishek/senpai.io/blob/main/README.md)",
     inline=True
 )
+aboutemb.add_field(
+    name=" **CUSTOM HELP**",
+    value="IN WHICH EVER TOPIC YOU NEED HELP \n JUST TYPE IT WITH HELP KEYWORD \n LIKE FOR GAMES <senpai help games>",
+    inline=True
+)
 
 
-h = discord.Embed(
+actionemb = discord.Embed(
             title="ACTIONS",
             description="**AVAILABLE ACTIONS**\n`pat`, `hug   `, `cuddle  `, `kiss  `, `bonk  `, `kill  `, `punch  `, `highfive  `, `feed  `, `nom  `, `slap  `, `pout  `, `smug  `, `tickle  `, `poke  `, `blush  `.",
             color=0x2e69f2
@@ -110,94 +114,11 @@ class Help(commands.Cog):
     async def help(self, ctx, *, topic=None):
         senpai = self.client.get_user(self.senpai_id)
         if topic == None:
-            try:
-                msg = await ctx.send("Use this embed for help regarding any commands. ",embed=aboutemb,
-                    components=[
-                        Select(placeholder="Select", options=[
-                        SelectOption(label="General", value="general",  default=True),
-                        SelectOption(label="Games", value="games"),
-                        SelectOption(label="Avatar & Banner", value="avatar"),
-                        SelectOption(label="Actions", value="actions"),
-                        SelectOption(label="Responses", value="responses"),
-
-                        ]
-                        )
-                    ]
-                )
-                try:
-                    while True:
-                        def check(interaction):
-                            return interaction.user==ctx.author and interaction.channel == ctx.channel
-                        interaction = await self.client.wait_for("select_option",check=check, timeout=40)
-                        print(interaction.values[0])
-                        response = interaction.values[0]
-                        if response.lower() == "general":
-                            await interaction.respond(type=7, embed=generalemb, components=[
-                            Select(placeholder="Select", options=[
-                            SelectOption(label="General", value="general",  default=True),
-                            SelectOption(label="Games", value="games"), 
-                            SelectOption(label="Avatar & Banner", value="avatar & banner"),
-                            SelectOption(label="Actions", value="actions"),
-                            SelectOption(label="Responses", value="responses"),
-                            ])])
-                        elif response.lower() == "games":
-                            await interaction.respond(type=7, embed=gemb, components=[
-                            Select(placeholder="Select", options=[
-                            SelectOption(label="General", value="general" ),
-                            SelectOption(label="Games", value="games", default=True), 
-                            SelectOption(label="Avatar & Banner", value="avatar & banner"),
-                            SelectOption(label="Actions", value="actions"),                                                       
-                            SelectOption(label="Responses", value="responses")
-                            ])])
-                        elif response.lower() == "avatar & banner":
-                            await interaction.respond(type=7,content="Join senpai's Server for fun emotes and cool events discord.gg/7CYP8pKzDB", embed=avemb, components=[
-                            Select(placeholder="Select", options=[
-                            SelectOption(label="General", value="general" ,default=True), 
-                            SelectOption(label="Games", value="games"), 
-                            SelectOption(label="Avatar & Banner", value="avatar & banner"),
-                            SelectOption(label="Actions", value="actions"),
-                            SelectOption(label="Responses", value="responses"),
-                            ])])
-                        elif response.lower() == "actions":
-                            await interaction.respond(type=7,content="Join senpai's Server for fun emotes and cool events discord.gg/7CYP8pKzDB", embed=h, components=[
-                            Select(placeholder="Select", options=[
-                            SelectOption(label="General", value="general"),
-                            SelectOption(label="Games", value="games"), 
-                            SelectOption(label="Avatar & Banner", value="avatar & banner"),
-                            SelectOption(label="Actions", value="actions"),                           
-                            SelectOption(label="Responses", value="responses"),
-                            ])])
-                        elif response.lower() == "responses":
-                            await interaction.respond(type=7,content="Join senpai's Server for fun emotes and cool events discord.gg/7CYP8pKzDB", embed=respemb, components=[
-                            Select(placeholder="Select", options=[
-                            SelectOption(label="General", value="general"), 
-                            SelectOption(label="Games", value="games"),
-                            SelectOption(label="Avatar & Banner", value="avatar & banner"),
-                            SelectOption(label="Actions", value="actions"),
-                            SelectOption(label="Responses", value="responses", default=True),
-                            ])])
-                        
-                except asyncio.TimeoutError:
-                    await msg.edit(components=[
-                            Select(placeholder="Select", options=[
-                            SelectOption(label="General", value="general"),
-                            SelectOption(label="Games", value="games", default=True), 
-                            SelectOption(label="Avatar & Banner", value="avatar & banner"),
-                            SelectOption(label="Actions", value="actions"),
-                            SelectOption(label="Responses", value="responses"),
-                            ], disabled = True)])            
-                
-            except Exception as e:
-                print(e)
-        elif topic.lower() == "bot":
-            emb = discord.Embed(title="MAKE ME BOT", description="Turn yourself into bot! To use send ~ \n`senpai bot (your message without brackets)` and senpai will delete your message and make your message be sent by bot with your name and pfp!\n**Permission Needed: Manage Webhooks**", color=0x2e69f2)
-            emb.set_footer(
-            text=f"senpai.io",
-            icon_url=senpai.avatar_url,
-            )
-            await ctx.send(embed=emb)
+            msg = await ctx.send("Use this embed for help regarding any commands. ",embed=aboutemb)
+                    
         
-        elif topic.lower() == "tod":
+        
+        elif topic.lower() == "td":
             emb = discord.Embed(title="TRUTH OR DARE", description="Start a game of truth or dare using senpai.io!\nFor truth send `senpai truth` and for dare send `senpai dare`.", color=0x2e69f2)
             emb.set_image(url="https://is1-ssl.mzstatic.com/image/thumb/Purple125/v4/af/71/bc/af71bca4-9c75-2ae3-5dca-490286d51284/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.jpeg/1200x630wa.png")
             emb.set_footer(
@@ -205,6 +126,7 @@ class Help(commands.Cog):
             icon_url=senpai.avatar_url,
             )
             await ctx.send(embed=emb)
+
         elif topic.lower() == "lotto":
             emb = discord.Embed(title="LOTTERY", description="Start a game of lattery using senpai.\nYou will have to send three random numbers between 0 to 5 with space in between like `senpai lottery 1 3 4`.", color=0x2e69f2)
             emb.set_footer(
@@ -212,13 +134,35 @@ class Help(commands.Cog):
             icon_url=senpai.avatar_url,
             )
             await ctx.send(embed=emb)
+
+        elif topic.lower() =="Games":
+            await ctx.send(embed=gemb)
+
+
+        elif topic.lower() =="Gereral commands":
+            await ctx.send(embed=generalemb)
+
+        elif topic.lower() =="Actions":
+            await ctx.send(embed=actionemb)
+
+
+        elif topic.lower() =="Responce":
+            await ctx.send(embed=respemb)
+         
         
         else:
             await ctx.send("senpai was not able to find help for this command..does this even exist?")
 
     @commands.command()
     async def source(self, ctx):
-        await ctx.send("https://github.com/AsheeshhSenpai/senpai-")
+        emb = discord.Embed(title="Source code!!", description="I[Click here](https://github.com/Abbhiishek/senpai.io)", color=0x2e69f2)
+        senpai = self.client.get_user(self.senpai_id)
+        emb.set_footer(
+            text=f"SENPAI.IO",
+            icon_url=senpai.avatar_url,
+        )
+        await ctx.send(embed=emb)
+        
         
     
 
