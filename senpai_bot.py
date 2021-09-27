@@ -80,7 +80,13 @@ async def status(self, ctx ):
 
 
 
-
+@clients.command()
+async def serverstats(self,ctx):
+         embed=discord.Embed(title=f"SERVER NAME  \n {ctx.guild.name}")
+         embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
+         embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
+         embed.set_thumbnail(url=clients.user.avatar_url)
+         await ctx.send(embed=embed)
 
     
 token = config("TOKEN")
