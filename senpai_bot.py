@@ -13,8 +13,6 @@ from discord.user import ClientUser
 import requests
 import asyncio
 from random import choice
-from discord.voice_client import VoiceClient
-import youtube_dl
 
 
 
