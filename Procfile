@@ -1,1 +1,1 @@
-worker: python kanna.py
+worker: python senpai.io.py
