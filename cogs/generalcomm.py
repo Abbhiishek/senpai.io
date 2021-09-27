@@ -1,33 +1,20 @@
-from operator import add
-from os import name
 import discord
-from discord import embeds
-from discord.audit_logs import _transform_verification_level
 from discord.colour import Color
-from discord.ext import commands
+from discord.ext import commands,tasks
 from discord.ext.commands.core import Command, command
 import random
 from random import choice
 from discord.user import User
 from discord.user import ClientUser
-import discord
-from discord.errors import ClientException
-from discord.ext import commands
-from discord.ext import tasks
 import os
+from discord.user import User
+from discord_components import DiscordComponents
 from discord.enums import UserFlags
 from discord.flags import Intents
 import random
-import json
 from discord.user import ClientUser
 import requests
 import asyncio
-from random import choice
-from discord.voice_client import VoiceClient
-
-
-intents = discord.Intents.default()
-intents.members = True
 
 class Generalcomm(commands.Cog):
     def __init__(self, commands):
@@ -53,7 +40,9 @@ class Generalcomm(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def server(self, ctx ):
+    async def status(self, ctx ):
+        intents = discord.Intents.default()
+        intents.members = True
         async with ctx.channel.typing():
             embed = discord.Embed(title="senpai.io", description="these are the config of senpai.io")
             embed.add_field(name="version" , value=" 1.01.02", inline=True)
@@ -64,6 +53,28 @@ class Generalcomm(commands.Cog):
 
             await ctx.send(embed=embed)
 
+    @commands.command()
+    async def serverstats(self,ctx):
+         embed=discord.Embed(title=f"SERVER NAME  \n {ctx.guild.name}")
+         embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
+         embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
+         embed.set_thumbnail(url=commands.user.avatar_url)
+         await ctx.send(embed=embed)
+
+    
+
+
+
+    @commands.command(name='hello',help='This command returns a random welcome message')
+    async def hello(self, ctx ):
+        responses = [
+            '***grumble*** Why did you wake me up? \n'
+            'Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
+            '**Wasssuup!**'
+        ]
+        await ctx.send(choice(responses))
+
+    
     @commands.command(name='greet',help='This command greet prople whom you had mention')
     async def greet(self, ctx, member: discord.Member):
         async with ctx.channel.typing():
@@ -82,25 +93,6 @@ class Generalcomm(commands.Cog):
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
 
-    @commands.command(name='hello',help='This command returns a random welcome message')
-    async def hello(self, ctx ):
-        responses = [
-            '***grumble*** Why did you wake me up?',
-            'Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
-            '**Wasssuup!**'
-        ]
-        await ctx.send(choice(responses))
-
-    @commands.command(name='die',
-                      help='This command returns a random last words')
-    async def die(self ,ctx):
-        responses = [
-            'why have you brought my short life to an end',
-            'i could have done so much more',
-            'i have a family, kill them instead'
-        ]
-        await ctx.send(choice(responses))
-
     @commands.command(name='credits', help='This command returns the credits')
     async def credits(self, ctx):
         await ctx.send('Made by <@752362202945683480>')
@@ -112,7 +104,41 @@ class Generalcomm(commands.Cog):
     async def creditz(self ,ctx):
         await ctx.send('**No one but me, lozer!**')
 
+    @commands.command(name='die',help='This command returns a random last words')
+    async def die(self ,ctx):
+        responses = [
+            'why have you brought my short life to an end',
+            'i could have done so much more',
+            'i have a family, kill them instead'
+        ]
+        await ctx.send(choice(responses))
 
+
+
+    @commands.command()
+    async def source(self, ctx):
+        emb = discord.Embed(title="Source code!!", description="I[Click here](https://github.com/Abbhiishek/senpai.io)", color=0x2e69f2)
+        senpai = self.client.get_user(self.senpai_id)
+        emb.set_footer(
+            text=f"SENPAI.IO",
+            icon_url=senpai.avatar_url,
+        )
+        await ctx.send(embed=emb)
+
+    @commands.command()
+    async def invite(self, ctx):
+        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?client_id=888414036662833164&permissions=3394560&scope=bot)", color=0x2e69f2)
+        senpai = self.client.get_user(self.senpai_id)
+        emb.set_footer(
+            text=f"SENPAI.IO",
+            icon_url=senpai.avatar_url,
+        )
+        await ctx.send(embed=emb)
+
+    @commands.command()
+    async def prefix(self, ctx):
+        await ctx.send("Prefixes for senpai are `s.`, `senpai ` and `S. `.")
+        
 def setup(commands):
     commands.add_cog(Generalcomm(commands))
     print(">>> gerneral commands load ho gaya !!!!!!!!!")

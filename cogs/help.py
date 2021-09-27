@@ -223,35 +223,9 @@ class Help(commands.Cog):
         else:
             await ctx.send("senpai was not able to find help for this command..does this even exist?")
 
-    @commands.command()
-    async def source(self, ctx):
-        emb = discord.Embed(title="Source code!!", description="I[Click here](https://github.com/Abbhiishek/senpai.io)", color=0x2e69f2)
-        senpai = self.client.get_user(self.senpai_id)
-        emb.set_footer(
-            text=f"SENPAI.IO",
-            icon_url=senpai.avatar_url,
-        )
-        await ctx.send(embed=emb)
-        
-        
     
-
-    @commands.command()
-    async def invite(self, ctx):
-        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?client_id=888414036662833164&permissions=3394560&scope=bot)", color=0x2e69f2)
-        senpai = self.client.get_user(self.senpai_id)
-        emb.set_footer(
-            text=f"SENPAI.IO",
-            icon_url=senpai.avatar_url,
-        )
-        await ctx.send(embed=emb)
-
-    @commands.command()
-    async def prefix(self, ctx):
-        await ctx.send("Prefixes for senpai are `s.`, `senpai ` and `S. `.")
 
  
 def setup(client):
     client.add_cog(Help(client))
     print(">> Help loaded")
-

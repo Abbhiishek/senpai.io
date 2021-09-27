@@ -7,6 +7,7 @@ import requests
 from discord import utils
 import asyncio
 from discord.user import User
+from random import choice
 
 simp_gifs = [
     "https://i.imgur.com/RlrlmmP.gif",
@@ -33,52 +34,17 @@ roast = [
     "Your face makes onions cry.",
 ]
 hug_gifs=[
-    "https://tenor.com/view/hugs-sending-virtual-hugs-loading-gif-8158818",
-    "https://tenor.com/view/mochi-peachcat-mochi-peachcat-hug-pat-gif-19092449",
-    "https://tenor.com/view/milk-and-mocha-bear-couple-line-hug-cant-breathe-gif-12687187",
-    "https://tenor.com/view/puuung-cute-hug-love-gif-13113601",
-    "https://tenor.com/view/filter-copy-intimate-hug-i-miss-you-so-much-happy-gif-12471813",
-    "https://tenor.com/view/milk-and-mocha-hug-cute-kawaii-love-gif-12535134",
-    "https://tenor.com/view/boo-hug-monsters-inc-sully-warmhug-gif-10592083",
-    "https://tenor.com/view/ghosthug-gif-7626784",
-    "https://tenor.com/view/puuung-puung-love-you-hug-comfort-gif-13883173",
-    "https://tenor.com/view/hug-kiss-cute-couple-lovers-gif-16384261",
-    "https://tenor.com/view/couple-anime-hug-cuddle-gif-11098325",
-    "https://tenor.com/view/i-love-you-dog-hugs-hugs-to-you-love-gif-16660134",
-    "https://tenor.com/view/hug-love-friends-gif-5369655",
-    "https://tenor.com/view/cuddle-love-hug-city-girlfriend-gif-5304752",
-    "https://tenor.com/view/true-love-hug-miss-you-everyday-always-love-you-running-hug-gif-5534958",
-    "https://tenor.com/view/big-hero6-baymax-feel-better-hug-hugging-gif-4782499",
-    "https://tenor.com/view/love-hug-couple-sweet-in-love-gif-14467951",
-    "https://tenor.com/view/sticker-hug-couple-love-hug-love-couple-gif-22965993",
-    "https://tenor.com/view/cuddle-love-you-cute-animated-gif-20050253",
-    "https://tenor.com/view/djnitish97-hug-cute-adorable-couple-gif-16758579",
-    "https://tenor.com/view/loved-feel-back-hug-hug-sweet-gif-15146871",
-    "https://tenor.com/view/hug-love-hugging-happy-to-see-you-gif-13992835",
-    "https://tenor.com/view/titanic-hug-love-hugging-gif-13992846",
-    "https://tenor.com/view/i-love-you-love-couple-jinzhan-charge-gif-17871760",
-    "https://tenor.com/view/penguin-penguin-hug-hug-cuddle-gif-20715886",
-    "https://tenor.com/view/miya-lili-sending-a-hug-attack-hug-hugging-gif-18925999",
-    "https://tenor.com/view/130718-hug-excited-gif-20156381",
-    "https://tenor.com/view/hug-yay-squeeze-bear-hug-hug-tight-gif-15085080",
-    "https://tenor.com/view/covid-hug-hugs-hugs-and-love-love-gif-18791768",
-    "https://tenor.com/view/hug-virtual-hug-hugs-sakiki-sakiki-comics-gif-21232378",
+    "https://c.tenor.com/5tkkWFegYvUAAAAd/hug-couple.gif",
+    
+    "https://c.tenor.com/MBWZf-CK98gAAAAj/hug-love.gif",
 ]
 kiss_gifs=[
     "https://tenor.com/view/love-wife-husband-yes-kiss-gif-17770873",
-    "https://tenor.com/view/hugs-love-kiss-couple-smack-gif-16758516",
-    "https://tenor.com/view/kiss-love-couple-kissing-gif-13992845",
-    "https://tenor.com/view/hugs-love-kiss-djnitish97-kisz-gif-16758518",
-    "https://tenor.com/view/kiss-dinner-love-dinner-date-spaghetti-gif-13992837",
-    "https://tenor.com/view/kiss-lip-kisses-love-heart-gif-13001030",
-    "https://tenor.com/view/milk-and-mocha-kiss-love-in-love-gif-11453877",
-    "https://tenor.com/view/love-you-my-princess-kiss-on-forehead-sweet-couple-awww-cute-gif-13627208",
-    "https://tenor.com/view/kiss-hot-kiss-mommy-give-kiss-mama-give-kiss-i-give-you-kiss-gif-13564834",
-    "https://tenor.com/view/waving-smiling-flying-kiss-gif-16345672",
-    "https://tenor.com/view/couples-i-love-you-in-love-sweet-cute-gif-17846522",
-    "https://tenor.com/view/cute-love-couple-kiss-heart-gif-17301621",
-    "https://tenor.com/view/%E0%A4%B6%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%A6%E0%A4%95%E0%A4%AA%E0%A5%82%E0%A4%B0-%E0%A4%95%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%B0%E0%A4%BE%E0%A4%86%E0%A4%A1%E0%A4%B5%E0%A4%BE%E0%A4%A3%E0%A5%80-%E0%A4%9A%E0%A5%81%E0%A4%AE%E0%A5%8D%E0%A4%AE%E0%A4%BE-%E0%A4%9A%E0%A5%81%E0%A4%AE%E0%A5%8D%E0%A4%AC%E0%A4%A8-%E0%A4%95%E0%A4%BF%E0%A4%B8-gif-14818249"
-    
+    "https://c.tenor.com/M0dI1g4vdr0AAAAj/love-wife.gif",
+    "https://c.tenor.com/YAVvwR_va6MAAAAj/kiss-love.gif",
+    "https://c.tenor.com/cZ4AykKErIYAAAAj/hugs-love.gif",
+    "https://c.tenor.com/fU2-2CgMonsAAAAj/kiss-dinner.gif"
+    "https://c.tenor.com/XMsFBHyi2WAAAAAd/love-you-my-princess-kiss-on-forehead.gif"
  ]
 class action(commands.Cog):
     def __init__(self, client):
@@ -310,9 +276,13 @@ class action(commands.Cog):
         emb.set_image(url=f"{random.choice(kiss_gifs)}")
         await ctx.send(embed=emb)
 
+    
+    
+    
+
 def setup(client):
     client.add_cog(action(client))
     print(">>> action load ho gaya !!!!!!!!!")
 
 
-#`pat`, `hug`, `cuddle`, `kiss`, `bonk`, `kill`, `punch`, `handhold`, `highfive`, `feed`, `nom`, `slap`, `pout`, `smug`, `tickle`, `poke`, `blush`
+#`pat`,  `cuddle`, `kiss`, `bonk`, `kill`, `punch`, `handhold`, `highfive`, `feed`, `nom`, `slap`, `pout`, `smug`, `tickle`, `poke`, `blush`
