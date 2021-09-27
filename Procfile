@@ -1,1 +1,1 @@
-worker: python senpai.io.py
+worker: python senpai_bot.py
