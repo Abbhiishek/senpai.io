@@ -64,7 +64,7 @@ async def on_ready():
                
 #do stuffs
 
-@clients.command()
+@client.command()
 async def status(self, ctx ):
         intents = discord.Intents.default()
         intents.members = True
@@ -80,7 +80,7 @@ async def status(self, ctx ):
 
 
 
-@clients.command()
+@client.command()
 async def serverstats(self,ctx):
          embed=discord.Embed(title=f"SERVER NAME  \n {ctx.guild.name}")
          embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
