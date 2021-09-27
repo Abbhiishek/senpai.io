@@ -38,33 +38,6 @@ class Generalcomm(commands.Cog):
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
-
-    @commands.command()
-    async def status(self, ctx ):
-        intents = discord.Intents.default()
-        intents.members = True
-        async with ctx.channel.typing():
-            embed = discord.Embed(title="senpai.io", description="these are the config of senpai.io")
-            embed.add_field(name="version" , value=" 1.01.02", inline=True)
-            embed.add_field(name="created by", value='<@752362202945683480>')
-            embed.add_field(name="Total servers", value=f"{len(commands.guilds)} Servers!",inline=True)
-            embed.add_field(name="Total User ", value= f"{len(commands.users)} Users!",inline=True)
-
-
-            await ctx.send(embed=embed)
-
-    @commands.command()
-    async def serverstats(self,ctx):
-         embed=discord.Embed(title=f"SERVER NAME  \n {ctx.guild.name}")
-         embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
-         embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
-         embed.set_thumbnail(url=commands.user.avatar_url)
-         await ctx.send(embed=embed)
-
-    
-
-
-
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
         responses = [
