@@ -24,7 +24,7 @@ import requests
 import asyncio
 from random import choice
 from discord.voice_client import VoiceClient
-import youtube_dl
+
 
 intents = discord.Intents.default()
 intents.members = True
