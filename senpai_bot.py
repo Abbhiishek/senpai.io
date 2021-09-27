@@ -65,7 +65,7 @@ async def on_ready():
 #do stuffs
 
 @client.command()
-async def status(self, ctx ):
+async def status(ctx ):
         intents = discord.Intents.default()
         intents.members = True
         async with ctx.channel.typing():
@@ -81,7 +81,7 @@ async def status(self, ctx ):
 
 
 @client.command()
-async def serverstats(self,ctx):
+async def serverstats(ctx):
          embed=discord.Embed(title=f"SERVER NAME  \n {ctx.guild.name}")
          embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
          embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
