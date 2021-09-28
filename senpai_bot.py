@@ -64,25 +64,6 @@ async def on_ready():
                
 #do stuffs
 
-@client.command()
-async def status(ctx):
-        async with ctx.channel.typing():
-            embed = discord.Embed(title="senpai.io", description="these are the config of senpai.io")
-            embed.add_field(name="version" , value=" 1.01.02", inline=True)
-            embed.add_field(name="created by", value='<@752362202945683480>')
-            embed.add_field(name="Total servers", value=f"{len(client.guilds)} Servers!",inline=True)
-            embed.add_field(name="Total User ", value= f"{len(client.users)} Users!",inline=True)
-            await ctx.send(embed=embed)
-
-
-
-@client.command()
-async def serverstats(ctx):
-         embed=discord.Embed(title=f"SERVER NAME  \n {ctx.guild.name}")
-         embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
-         embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
-         embed.set_thumbnail(url=client.user.avatar_url)
-         await ctx.send(embed=embed)
 
     
 token = config("TOKEN")
