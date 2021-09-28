@@ -62,8 +62,7 @@ class Generalcomm(commands.Cog):
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
         responses = [
-            '***grumble*** Why did you wake me up? \n
-            Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
+            '***grumble*** Why did you wake me up? \n Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
             '**Wasssuup!**'
         ]
         await ctx.send(choice(responses))
