@@ -41,10 +41,11 @@ class Generalcomm(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def status(self,ctx):
+    async def status(ctx):
             
             async with ctx.channel.typing():
-                embed = discord.Embed(title="senpai.io", description="These are the config of senpai.io")
+                embed = discord.Embed(title="senpai.io", description="These are the config of senpai.io",timestamp=datetime.utcnow(),
+                                  color=discord.Colour.red())
                 embed.add_field(name="version" , value=" 1.01.02", inline=True)
                 embed.add_field(name="created by", value='<@752362202945683480>')
                 embed.add_field(name="Total servers", value=f"{len(commands.guilds)} Servers!",inline=True)
@@ -53,12 +54,29 @@ class Generalcomm(commands.Cog):
 
                 await ctx.send(embed=embed)
     @commands.command()
-    async def serverstats(self, ctx):
-            embed=discord.Embed(title=f"server's name  \n {ctx.guild.name}")
-            embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
-            embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
+    async def serverstats(ctx):
+            embed = discord.Embed(title="INFORMATION OF THE SERVER!",
+                                  timestamp=datetime.utcnow(),
+                                  color=discord.Colour.red())
+            embed.set_image(url="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgfycat.com%2Fdiscover%2Fserver-gif-gifs&psig=AOvVaw3TEBld8VUAcEBtSbmDNuoH&ust=1632893724763000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjosqf5oPMCFQAAAAAdAAAAABAD")
+            embed.add_field(name="ID", value=ctx.guild.id, inline= True)
+            embed.add_field(name="OWNER", value=ctx.guild.owner, inline=True)
+            embed.add_field(name="REGION", value=ctx.guild.region, inline=True)
+            embed.add_field(name="MEMBERS", value=len(ctx.guild.members), inline=True)
+            embed.add_field(name="HUMANS", value=len(list(filter(lambda m: not m.bot ,ctx.guild.members))), inline=True)
+            embed.add_field(name="BOTS", value=len(list(filter(lambda m:  m.bot ,ctx.guild.members))), inline=True)
+            embed.add_field(name="BANNED MEMBERS", value=len(await ctx.guild.bans()), inline=True)
+            embed.add_field(name="TEXT CHANNELS", value=len(ctx.guild.text_channels), inline=True)
+            embed.add_field(name="VOICE CHANNELS", value=len(ctx.guild.voice_channels), inline=True)
+            embed.add_field(name="ROLES", value=len(ctx.guild.roles), inline=True)
+            embed.add_field(name="INVITES", value=len(await ctx.guild.invites()), inline=True)
+            embed.add_field(name="Created at", value=ctx.guild.created_at.strftime("%d/%m/%Y"), inline=False)
+            embed.add_field(name="\u200b", value="\u200b", inline=False)
             embed.set_thumbnail(url=ctx.guild.icon_url)
+            embed.set_footer(icon_url=ctx.author.avatar_url,
+                             text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
+
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
         responses = [
