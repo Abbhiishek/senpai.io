@@ -48,8 +48,8 @@ class Generalcomm(commands.Cog):
                                   color=discord.Colour.red())
                 embed.add_field(name="version" , value=" 1.01.02", inline=True)
                 embed.add_field(name="created by", value='<@752362202945683480>')
-                embed.add_field(name="Total servers", value=f"{len(commands.guilds)} Servers!",inline=True)
-                embed.add_field(name="Total User ", value= f"{len(commands.users)} Users!",inline=True)
+                embed.add_field(name="Total servers", value=f"{len(client.guilds)} Servers!",inline=True)
+                embed.add_field(name="Total User ", value= f"{len(client.users)} Users!",inline=True)
                 embed.set_thumbnail(url=discord.guild.avatar_url)
 
                 await ctx.send(embed=embed)
