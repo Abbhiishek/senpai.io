@@ -133,7 +133,7 @@ class Generalcomm(commands.Cog):
 
     @commands.command()
     async def invite(self, ctx):
-        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?commands_id=888414036662833164&permissions=3394560&scope=bot)", color=0x2e69f2)
+        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?client_id=888414036662833164&permissions=8&scope=bot)", color=0x2e69f2)
         senpai = self.commands.get_user(self.senpai_id)
         emb.set_footer(
             text=f"SENPAI.IO",
