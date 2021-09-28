@@ -8,7 +8,7 @@ import os
 import random
 import requests
 import asyncio
-from typing import optional
+
 
 class Generalcomm(commands.Cog):
     def __init__(self, commands):
@@ -21,22 +21,21 @@ class Generalcomm(commands.Cog):
             print("general commands  cogs loaded ........")
 
     @commands.command()
-    async def info(self, ctx, target:optional[Member]):
-        target = target or ctx.author
+    async def info(self, ctx, member:discord.Member):
         async with ctx.channel.typing():
 
             embed = discord.Embed(title="INFORMATION OF THE USER!",
-                                  description=target.mention,
+                                  description=member.mention,
                                   timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
-            embed.add_field(name="USER ID", value=target.id, inline=False)
-            embed.add_field(name="Bot?", value=target.bot, inline=False)
-            embed.add_field(name="Top Role", value=target.top_role.mention, inline=False)
-            embed.add_field(name="Created at", value=target.created_at.strftime("%d/%m/%Y"), inline=False)
-            embed.add_field(name="Joined at", value=target.joined_at.strftime("%d/%m/%Y"), inline=False)
-            embed.add_field(name="Boosted", value=bool(target.premium.since), inline=False)
+            embed.add_field(name="USER ID", value=member.id, inline=False)
+            embed.add_field(name="Bot?", value=member.bot, inline=False)
+            embed.add_field(name="Top Role", value=member.top_role.mention, inline=False)
+            embed.add_field(name="Created at", value=member.created_at.strftime("%d/%m/%Y"), inline=False)
+            embed.add_field(name="Joined at", value=member.joined_at.strftime("%d/%m/%Y"), inline=False)
+            embed.add_field(name="Boosted", value=bool(member.premium.since), inline=False)
 
-            embed.set_thumbnail(url=target.avatar_url)
+            embed.set_thumbnail(url=member.avatar_url)
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
