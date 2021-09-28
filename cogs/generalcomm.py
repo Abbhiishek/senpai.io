@@ -40,25 +40,13 @@ class Generalcomm(commands.Cog):
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
 
-    @commands.command()
-    async def status(self,ctx):
-            
-            async with ctx.channel.typing():
-                embed = discord.Embed(title="senpai.io", description="These are the config of senpai.io",timestamp=datetime.utcnow(),
-                                  color=discord.Colour.red())
-                embed.add_field(name="version" , value=" 1.01.02", inline=True)
-                embed.add_field(name="created by", value='<@752362202945683480>')
-                embed.add_field(name="Total servers", value=f"{len(client.guilds)} Servers!",inline=True)
-                embed.add_field(name="Total User ", value= f"{len(client.users)} Users!",inline=True)
-                embed.set_thumbnail(url=discord.guild.avatar_url)
-
-                await ctx.send(embed=embed)
+    
     @commands.command()
     async def serverstats(self,ctx):
             embed = discord.Embed(title="INFORMATION OF THE SERVER!",
                                   timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
-            embed.set_image(url="https://thumbs.gfycat.com/WastefulLeanJapanesebeetle-max-1mb.gif")
+            embed.set_image(url="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgfycat.com%2Fdiscover%2Fserver-gif-gifs&psig=AOvVaw3TEBld8VUAcEBtSbmDNuoH&ust=1632893724763000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjosqf5oPMCFQAAAAAdAAAAABAD")
             embed.add_field(name="ID", value=ctx.guild.id, inline= True)
             embed.add_field(name="OWNER", value=ctx.guild.owner, inline=True)
             embed.add_field(name="REGION", value=ctx.guild.region, inline=True)
@@ -77,11 +65,16 @@ class Generalcomm(commands.Cog):
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
 
+        
+        
+
+
 
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
         responses = [
-            '***grumble*** Why did you wake me up? \n Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
+            '***grumble*** Why did you wake me up? \n'
+            'Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
             '**Wasssuup!**'
         ]
         await ctx.send(choice(responses))
@@ -130,7 +123,7 @@ class Generalcomm(commands.Cog):
     @commands.command()
     async def source(self, ctx):
         emb = discord.Embed(title="Source code!!", description="I[Click here](https://github.com/Abbhiishek/senpai.io)", color=0x2e69f2)
-        senpai = self.client.get_user(self.senpai_id)
+        senpai = self.commands.get_user(self.senpai_id)
         emb.set_footer(
             text=f"SENPAI.IO",
             icon_url=senpai.avatar_url,
@@ -139,8 +132,8 @@ class Generalcomm(commands.Cog):
 
     @commands.command()
     async def invite(self, ctx):
-        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?client_id=888414036662833164&permissions=3394560&scope=bot)", color=0x2e69f2)
-        senpai = self.client.get_user(self.senpai_id)
+        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?commands_id=888414036662833164&permissions=3394560&scope=bot)", color=0x2e69f2)
+        senpai = self.commands.get_user(self.senpai_id)
         emb.set_footer(
             text=f"SENPAI.IO",
             icon_url=senpai.avatar_url,
@@ -150,7 +143,7 @@ class Generalcomm(commands.Cog):
     @commands.command()
     async def prefix(self, ctx):
         await ctx.send("Prefixes for senpai are `s.`, `senpai ` and `S. `.")
-        
+
 def setup(commands):
     commands.add_cog(Generalcomm(commands))
     print(">>> gerneral commands load ho gaya !!!!!!!!!")
