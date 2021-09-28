@@ -58,7 +58,7 @@ class Generalcomm(commands.Cog):
             embed = discord.Embed(title="INFORMATION OF THE SERVER!",
                                   timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
-            embed.set_image(url="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgfycat.com%2Fdiscover%2Fserver-gif-gifs&psig=AOvVaw3TEBld8VUAcEBtSbmDNuoH&ust=1632893724763000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjosqf5oPMCFQAAAAAdAAAAABAD")
+            embed.set_image(url="https://thumbs.gfycat.com/WastefulLeanJapanesebeetle-max-1mb.gif")
             embed.add_field(name="ID", value=ctx.guild.id, inline= True)
             embed.add_field(name="OWNER", value=ctx.guild.owner, inline=True)
             embed.add_field(name="REGION", value=ctx.guild.region, inline=True)
