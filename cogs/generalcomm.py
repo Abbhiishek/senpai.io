@@ -46,7 +46,7 @@ class Generalcomm(commands.Cog):
             embed = discord.Embed(title="INFORMATION OF THE SERVER!",
                                   timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
-            embed.set_image(url="https://tenor.com/bxpaf.gif")
+            embed.set_image(url="https://c.tenor.com/Zran7Kdqj9sAAAAS/rustydiscord.gif")
             embed.add_field(name="ID", value=ctx.guild.id, inline= True)
             embed.add_field(name="OWNER", value=ctx.guild.owner, inline=True)
             embed.add_field(name="REGION", value=ctx.guild.region, inline=True)
