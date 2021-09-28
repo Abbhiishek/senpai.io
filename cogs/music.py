@@ -31,12 +31,7 @@ class Music(commands.Cog):
         ctx.voice_client.stop()
         FFMPEG_OPTIONS = {'before_option': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','option':'-vn'}
         ydl_opts = {
-           'format': 'bestaudio/best',
-            'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-           }]}
+           'format': 'bestaudio/best'}
         vc = ctx.voice_client
 
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
@@ -55,6 +50,7 @@ class Music(commands.Cog):
     async def resume(self,ctx):
         await ctx.voice_client.resume()
         await ctx.send("Senpai Resumed The Player")
+
 
 
 def setup(client):
