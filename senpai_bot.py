@@ -74,7 +74,7 @@ async def status(ctx):
                 embed.add_field(name="created by", value='<@752362202945683480>',inline=True)
                 embed.add_field(name="Total servers", value=f"{len(client.guilds)} Servers!",inline=True)
                 embed.add_field(name="Total User ", value= f"{len(client.users)} Users!",inline=True)
-                embed.set_thumbnail(url=client.avatar_url)
+                
                 embed.set_image(url="https://c.tenor.com/RGhPDvXANBQAAAAd/discord.gif")
                 await ctx.send(embed=embed)
 
