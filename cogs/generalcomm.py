@@ -5,12 +5,7 @@ from discord.colour import Color
 from discord.ext import commands,tasks
 from random import choice
 import os
-from discord.user import User
-from discord_components import DiscordComponents
-from discord.enums import UserFlags
-from discord.flags import Intents
 import random
-from discord.user import commandsUser
 import requests
 import asyncio
 from typing import optional
