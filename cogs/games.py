@@ -50,7 +50,7 @@ class Games(commands.Cog):
             )
             GAMES_embed.add_field(
             name="🥰 **LOVE RATION**",
-            value="`kana loveratio`",
+            value="`senpai loveratio`",
             inline=True
             )
 
