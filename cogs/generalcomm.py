@@ -27,16 +27,44 @@ class Generalcomm(commands.Cog):
             print("general commands  cogs loaded ........")
 
     @commands.command()
-    async def info(self, ctx, member: discord.Member):
+    async def info(self, ctx, target:optional[Member]):
+        target = target or ctx.author
         async with ctx.channel.typing():
 
-            embed = discord.Embed(title=member.name,
-                                  description=member.mention,
+            embed = discord.Embed(title="INFORMATION OF THE USER!",
+                                  description=target.mention,
+                                  timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
-            embed.add_field(name="USER ID", value=member.id, inline=False)
-            embed.set_thumbnail(url=member.avatar_url)
+            embed.add_field(name="USER ID", value=target.id, inline=False)
+            embed.add_field(name="Bot?", value=target.bot, inline=False)
+            embed.add_field(name="Top Role", value=target.top_role.mention, inline=False)
+            embed.add_field(name="Created at", value=target.created_at.strftime("%d/%m/%Y"), inline=False)
+            embed.add_field(name="Joined at", value=target.joined_at.strftime("%d/%m/%Y"), inline=False)
+            embed.add_field(name="Boosted", value=bool(target.premium.since), inline=False)
+
+            embed.set_thumbnail(url=target.avatar_url)
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=f"Requested by {ctx.author.name}")
+            await ctx.send(embed=embed)
+
+    @commands.command()
+    async def status(ctx):
+            
+            async with ctx.channel.typing():
+                embed = discord.Embed(title="senpai.io", description="These are the config of senpai.io")
+                embed.add_field(name="version" , value=" 1.01.02", inline=True)
+                embed.add_field(name="created by", value='<@752362202945683480>')
+                embed.add_field(name="Total servers", value=f"{len(commands.guilds)} Servers!",inline=True)
+                embed.add_field(name="Total User ", value= f"{len(commands.users)} Users!",inline=True)
+                embed.set_thumbnail(url=discord.guild.avatar_url)
+
+                await ctx.send(embed=embed)
+    @commands.command()
+    async def serverstats(ctx):
+            embed=discord.Embed(title=f"server's name  \n {ctx.guild.name}")
+            embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
+            embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
+            embed.set_thumbnail(url=ctx.guild.icon_url)
             await ctx.send(embed=embed)
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
