@@ -28,7 +28,7 @@ class Music(commands.Cog):
 
     @commands.command()
     async def play(self , ctx ,url):
-        ctx.voice_client.stop()
+        
         FFMPEG_OPTIONS = {'before_option': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','option':'-vn'}
         ydl_opts = {
            'format': 'bestaudio/best'}
