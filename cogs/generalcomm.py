@@ -41,7 +41,7 @@ class Generalcomm(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def status(ctx):
+    async def status(self,ctx):
             
             async with ctx.channel.typing():
                 embed = discord.Embed(title="senpai.io", description="These are the config of senpai.io")
@@ -53,7 +53,7 @@ class Generalcomm(commands.Cog):
 
                 await ctx.send(embed=embed)
     @commands.command()
-    async def serverstats(ctx):
+    async def serverstats(self, ctx):
             embed=discord.Embed(title=f"server's name  \n {ctx.guild.name}")
             embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
             embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
@@ -62,8 +62,8 @@ class Generalcomm(commands.Cog):
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
         responses = [
-            '***grumble*** Why did you wake me up? \n'
-            'Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
+            '***grumble*** Why did you wake me up? \n
+            Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
             '**Wasssuup!**'
         ]
         await ctx.send(choice(responses))
