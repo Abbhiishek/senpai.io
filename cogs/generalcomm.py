@@ -41,7 +41,7 @@ class Generalcomm(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def status(ctx):
+    async def status(self,ctx):
             
             async with ctx.channel.typing():
                 embed = discord.Embed(title="senpai.io", description="These are the config of senpai.io",timestamp=datetime.utcnow(),
@@ -54,7 +54,7 @@ class Generalcomm(commands.Cog):
 
                 await ctx.send(embed=embed)
     @commands.command()
-    async def serverstats(ctx):
+    async def serverstats(self,ctx):
             embed = discord.Embed(title="INFORMATION OF THE SERVER!",
                                   timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
@@ -76,6 +76,7 @@ class Generalcomm(commands.Cog):
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
+
 
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
