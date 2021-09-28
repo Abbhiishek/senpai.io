@@ -128,7 +128,7 @@ class Generalcomm(commands.Cog):
             text=f"SENPAI.IO",
             icon_url=senpai.avatar_url,
         )
-        emb.set_image(url="https://c.tenor.com/emjY57vwVUAAAAAd/source-host.gif")
+        emb.set_image(url="https://c.tenor.com/06-DZth5z5wAAAAM/anime-want-the-source.gif")
         await ctx.send(embed=emb)
 
     @commands.command()
