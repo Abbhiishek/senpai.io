@@ -34,7 +34,7 @@ class Generalcomm(commands.Cog):
             embed.add_field(name="Created at", value=member.created_at.strftime("%d/%m/%Y"), inline=False)
             embed.add_field(name="Joined at", value=member.joined_at.strftime("%d/%m/%Y"), inline=False)
             
-
+            embed.set_image(url="https://c.tenor.com/0ctrlakU1OUAAAAS/information-glitch.gif")
             embed.set_thumbnail(url=member.avatar_url)
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=f"Requested by {ctx.author.name}")
@@ -128,6 +128,7 @@ class Generalcomm(commands.Cog):
             text=f"SENPAI.IO",
             icon_url=senpai.avatar_url,
         )
+        emb.set_image(url="https://c.tenor.com/emjY57vwVUAAAAAd/source-host.gif")
         await ctx.send(embed=emb)
 
     @commands.command()
@@ -138,6 +139,7 @@ class Generalcomm(commands.Cog):
             text=f"SENPAI.IO",
             icon_url=senpai.avatar_url,
         )
+        emb.set_image(url="https://c.tenor.com/9EJTjsOwL9cAAAAd/invitation-colorful.gif")
         await ctx.send(embed=emb)
 
     @commands.command()
