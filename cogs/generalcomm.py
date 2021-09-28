@@ -33,7 +33,7 @@ class Generalcomm(commands.Cog):
             embed.add_field(name="Top Role", value=member.top_role.mention, inline=False)
             embed.add_field(name="Created at", value=member.created_at.strftime("%d/%m/%Y"), inline=False)
             embed.add_field(name="Joined at", value=member.joined_at.strftime("%d/%m/%Y"), inline=False)
-            embed.add_field(name="Boosted", value=bool(member.premium.since), inline=False)
+            
 
             embed.set_thumbnail(url=member.avatar_url)
             embed.set_footer(icon_url=ctx.author.avatar_url,
