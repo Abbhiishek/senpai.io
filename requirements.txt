@@ -13,3 +13,4 @@ disputils
 pet-pet-gif
 youtube_dl
 PyNaCl
+ffmpeg
