@@ -13,7 +13,7 @@ import asyncio
 class Generalcomm(commands.Cog):
     def __init__(self, commands):
         self.commands = commands
-
+        self.senpai_id = 888414036662833164
     #EVENTS
     @commands.Cog.listener()
     async def on_ready(self):
