@@ -307,7 +307,7 @@ class Games(commands.Cog):
         bg.paste(pfp1, (37, 28), mask)
         bg.paste(pfp2, (752, 27), mask)
         bg.save('back.png')
-        temp=Image.open('./images/temp4.png')
+        temp=Image.open('./picture/temp4.png')
         im = Image.open('back.png').convert('RGBA')
         final=Image.alpha_composite(im, temp)
         final.save('final.png')
