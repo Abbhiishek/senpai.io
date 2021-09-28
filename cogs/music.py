@@ -1,77 +1,60 @@
 import discord
 from discord.ext import commands
-from discord import utils
+from discord.player import FFmpegAudio
 import youtube_dl
 import os
-from discord.voice_client import VoiceClient
+
 
 
 class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.senpai_id = 888414036662833164
+    @commands.command()
+    async def join (self , ctx):
+        if ctx.author.voice is None:
+            await ctx.send("You Are Not In Any Voice Channel!!!")
+        voice_channel=ctx.author.voice_channel
+        if ctx.voice_clients is None:
+            await voice_channel.connect()
+        else:
+            await ctx.voice_client.move_to(voice_channel)
 
     @commands.command()
-    async def play(self,ctx, url : str): 
-        song_there = os.path.isfile("song.mp3")
-        try:
-             if song_there:
-                 os.remove("song.mp3")
-        except PermissionError:
-            await ctx.send("Wait for the current playing music to end or use the 'stop' command")
-            return
+    async def disconnect(self,ctx):
+        await ctx.voice_client.disconnect()
+        await ctx.send("The bot is not connected to a voice channel.")
 
-        voiceChannel = discord.utils.get(ctx.guild.voice_channels, name='🎙General Cafe 🎙')
-        await voiceChannel.connect()
-        voice = discord.utils.get(commands.voice_clients, guild=ctx.guild)
 
+    @commands.command()
+    async def play(self , ctx ,url):
+        ctx.voice_client.stop()
+        FFMPEG_OPTIONS = {'before_option': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','option':'-vn'}
         ydl_opts = {
            'format': 'bestaudio/best',
             'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
-           }],
-    }
+           }]}
+        vc = ctx.voice_client
+
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
-        for file in os.listdir("./"):
-            if file.endswith(".mp3"):
-                os.rename(file, "song.mp3")
-        voice.play(discord.FFmpegPCMAudio("song.mp3"))
+            info = ydl.extract_info(url , download=False)
+            url2 = info['formats'][0]['url']
+            source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
+            vc.play(source)
 
 
     @commands.command()
-    async def leave(self,ctx):
-        voice = discord.utils.get(commands.voice_clients, guild=ctx.guild)
-        if voice.is_connected():
-            await voice.disconnect()
-        else:
-            await ctx.send("The bot is not connected to a voice channel.")
-
+    async def pause(self,ctx):
+        await ctx.voice_client.pause()
+        await ctx.send("Senpai Paused The Player")
 
     @commands.command()
-    async def pause(self ,ctx):
-        voice = discord.utils.get(commands.voice_clients, guild=ctx.guild)
-        if voice.is_playing():
-            voice.pause()
-        else:
-             await ctx.send("Currently no audio is playing.")
-
-
-    @commands.command()
-    async def resume(self, ctx):
-        voice = discord.utils.get(commands.voice_clients, guild=ctx.guild)
-        if voice.is_paused():
-            voice.resume()
-        else:
-            await ctx.send("The audio is not paused.")
-
-
-    @commands.command()
-    async def stop(self,ctx):
-       voice = discord.utils.get(commands.voice_clients, guild=ctx.guild)
-       voice.stop()
+    async def resume(self,ctx):
+        await ctx.voice_client.resume()
+        await ctx.send("Senpai Resumed The Player")
 
 
 def setup(client):
