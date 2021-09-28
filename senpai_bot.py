@@ -63,7 +63,7 @@ async def on_ready():
     print(">> Data loaded.")
                
 #do stuffs
-@clients.command()
+@client.command()
 async def status(ctx):
             
             async with ctx.channel.typing():
@@ -71,8 +71,8 @@ async def status(ctx):
                                   color=discord.Colour.red())
                 embed.add_field(name="version" , value=" 1.01.02", inline=True)
                 embed.add_field(name="created by", value='<@752362202945683480>',inline=True)
-                embed.add_field(name="Total servers", value=f"{len(clients.guilds)} Servers!",inline=True)
-                embed.add_field(name="Total User ", value= f"{len(clients.users)} Users!",inline=True)
+                embed.add_field(name="Total servers", value=f"{len(client.guilds)} Servers!",inline=True)
+                embed.add_field(name="Total User ", value= f"{len(client.users)} Users!",inline=True)
                 embed.set_thumbnail(url=discord.guild.avatar_url)
                 embed.set_image(url="https://c.tenor.com/RGhPDvXANBQAAAAd/discord.gif")
                 await ctx.send(embed=embed)
