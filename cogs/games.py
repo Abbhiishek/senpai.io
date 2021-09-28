@@ -28,7 +28,7 @@ class Games(commands.Cog):
             GAMES_embed = discord.Embed(title="GAMES", color=0x2e69f2)
             GAMES_embed.add_field(
                 name="🌚 **TRUTH OR DARE**",
-                    value="`senpai help tod`",
+                    value="`senpai help td`",
                 inline=True
             )
             GAMES_embed.add_field(
