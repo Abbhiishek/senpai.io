@@ -253,9 +253,9 @@ class Games(commands.Cog):
         msg=await ctx.send(embed=emb,
             components=[
                 [
-                Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071")),
-                Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522")),
-                Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"))
+                Button(style=ButtonStyle.blue, label="HIGH"),
+                Button(style=ButtonStyle.blue, label="JACKPOT!"),
+                Button(style=ButtonStyle.blue, label="LOW")
                 ],
             ],
         )
@@ -269,17 +269,17 @@ class Games(commands.Cog):
             await resp.respond(type=7, embed=embed,
                 components=[
                     [
-                    Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"), disabled=True),
-                    Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"), disabled=True),
-                    Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"), disabled=True)
+                    Button(style=ButtonStyle.blue, label="HIGH",  disabled=True),
+                    Button(style=ButtonStyle.blue, label="JACKPOT!",  disabled=True),
+                    Button(style=ButtonStyle.blue, label="LOW",  disabled=True)
                     ],
                 ],
             ) 
         except asyncio.TimeoutError:
             await msg.edit(components=[[
-                Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"), disabled=True),
-                Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"), disabled=True),
-                Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"), disabled=True)
+                Button(style=ButtonStyle.blue, label="HIGH", disabled=True),
+                Button(style=ButtonStyle.blue, label="JACKPOT!", disabled=True),
+                Button(style=ButtonStyle.blue, label="LOW", disabled=True)
                 ],],)
 
     
