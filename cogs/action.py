@@ -9,6 +9,59 @@ import asyncio
 from discord.user import User
 from random import choice
 
+
+slap_gifs = [
+    "https://c.tenor.com/6HwcYSSpszUAAAAC/hamsteak-hammy.gif",
+    "https://c.tenor.com/rJpHDhh3jDEAAAAd/slap-slapping.gif",
+    "https://c.tenor.com/Ws6Dm1ZW_vMAAAAC/girl-slap.gif",
+    "https://c.tenor.com/EfhPfbG0hnMAAAAC/slap-handa-seishuu.gif",
+    "https://c.tenor.com/cM-pYb791poAAAAC/back-slap-backhand.gif",
+    "https://c.tenor.com/L0U84S9YTrYAAAAC/pikachu-slap.gif",
+    "https://c.tenor.com/OYYTU-ShQTIAAAAd/slapping-wet-slap.gif",
+    "https://c.tenor.com/EzwsHlQgUo0AAAAC/slap-in-the-face-angry.gif",
+]
+
+smirk_gifs = [
+    "https://c.tenor.com/spYJzEXz8BsAAAAC/smirk-ryan-reynolds.gif",
+    "https://c.tenor.com/BEojRq5dfQsAAAAd/smile-evil-smile.gif",
+    "https://c.tenor.com/DsltXyB5fJQAAAAd/smirk-funny.gif",
+    "https://c.tenor.com/KNEnPw-KrekAAAAd/naughty-dog.gif",
+    "https://c.tenor.com/vYS9rGpnqiIAAAAC/smug-anime.gif",
+    "https://c.tenor.com/Z-HudBx1fJIAAAAd/bts-bangtan-boys.gif",
+    "https://c.tenor.com/H_f_Bf7scj4AAAAC/jyugo-nanbaka.gif",
+    "https://c.tenor.com/EqmQKDJghk4AAAAC/anime-pink-lips.gif",
+    "https://c.tenor.com/8utxYD5HDKgAAAAC/sasuke-grin.gif",
+    "https://c.tenor.com/sWgHS98drkgAAAAC/spongebob-evil-smile.gif",
+    ""
+]
+
+highfive_gifs =[
+    "https://c.tenor.com/mpCnVpX0xIYAAAAC/high-five-spongebob.gif",
+    "https://c.tenor.com/eCtm70W3J2QAAAAS/borat-high-five.gif",
+    "https://c.tenor.com/2oPrdhJpUpEAAAAS/kuzco-yzma.gif",
+    "https://c.tenor.com/ZfU8QUZXq30AAAAS/high-five.gif",
+    "https://c.tenor.com/Pfi1xdN7JvYAAAAS/cat-animated.gif",
+    "https://c.tenor.com/q6PnbtGXo5AAAAAS/tos-high-five.gif",
+    "https://c.tenor.com/UMADm-COXgcAAAAS/monday-high-five.gif",
+]
+
+punch_gifs =[
+    "https://c.tenor.com/wvCSg5-wYssAAAAS/nope-stupid.gif",
+    "https://c.tenor.com/_DOU2Mi1TG0AAAAS/dean-winchester-punch.gif",
+    "https://c.tenor.com/29hGOXF71nkAAAAS/grab-and-punch-grab-n-punch.gif",
+    "https://c.tenor.com/--80HfIQWT4AAAAS/punchy-one-punch-man.gif",
+    "https://c.tenor.com/25f3EArLzgcAAAAd/punch-in-the-face-joshua-buatsi.gif",
+    "https://c.tenor.com/rjR2Z67erfkAAAAS/death-saitama.gif",
+    "https://c.tenor.com/1PwavmgiEK0AAAAd/onepunchman-punch.gif",
+]
+
+poke_gifs = [ 
+    "https://c.tenor.com/G3JseGtZ31kAAAAd/h%C3%A1mster-susto.gif",
+    "https://c.tenor.com/QDNTqOInK5MAAAAC/anime-poke.gif",
+    "https://c.tenor.com/ubtPHkuWkGgAAAAC/baymax-big-hero6.gif",
+    "https://c.tenor.com/YbemOLXA_UIAAAAd/octopus-touch.gif"
+]
+
 simp_gifs = [
     "https://i.imgur.com/RlrlmmP.gif",
     "https://c.tenor.com/nOARJZENR9UAAAAS/anime-in-love.gif",
@@ -46,11 +99,23 @@ kiss_gifs=[
     "https://c.tenor.com/fU2-2CgMonsAAAAj/kiss-dinner.gif"
     "https://c.tenor.com/XMsFBHyi2WAAAAAd/love-you-my-princess-kiss-on-forehead.gif"
  ]
-class action(commands.Cog):
+class Action(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.senpai_id = 888414036662833164
+ 
+    @commands.command()
+    async def action(self, ctx):
+        async with ctx.channel.typing():
 
+            actionemb = discord.Embed(
+            title="ACTIONS",
+            description="**AVAILABLE ACTIONS**\n`hug   ` `kiss  `, `kill  `, `punch  `, `highfive  ` , `slap  `, `poke  `, `roast `,`smirk ` ",
+            color=0x2e69f2
+            )
+
+
+  
     @commands.command()
     async def dadjoke(self, ctx):
         dadjoke = [
@@ -276,12 +341,71 @@ class action(commands.Cog):
         emb.set_image(url=f"{random.choice(kiss_gifs)}")
         await ctx.send(embed=emb)
 
+    @commands.command()
+    async def poke(self, ctx, mem: discord.Member = None):
+        if mem == None:
+            mem = ctx.author
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} poked {mem.mention} <3\n\n*",
+            color=0x2e69f2)
+        emb.set_image(url=f"{random.choice(poke_gifs)}")
+        await ctx.send(embed=emb)
+
+        
+    @commands.command()
+    async def highfive(self, ctx, mem: discord.Member = None):
+        if mem == None:
+            mem = ctx.author
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} highfive {mem.mention} <3\n\n*",
+            color=0x2e69f2)
+        emb.set_image(url=f"{random.choice(highfive_gifs)}")
+        await ctx.send(embed=emb)
+
+    @commands.command()
+    async def punch(self, ctx, mem: discord.Member = None):
+        if mem == None:
+            mem = ctx.author
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} Punched {mem.mention} <3\n\n*",
+            color=0x2e69f2)
+        emb.set_image(url=f"{random.choice(punch_gifs)}")
+        await ctx.send(embed=emb)
+
+
+    @commands.command()
+    async def slap(self, ctx, mem: discord.Member = None):
+        if mem == None:
+            mem = ctx.author
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} Slaped {mem.mention} <3\n\n*",
+            color=0x2e69f2)
+        emb.set_image(url=f"{random.choice(slap_gifs)}")
+        await ctx.send(embed=emb)
+
+    @commands.command()
+    async def smirk(self, ctx, mem: discord.Member = None):
+        if mem == None:
+            mem = ctx.author
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} smirked {mem.mention} <3\n\n*",
+            color=0x2e69f2)
+        emb.set_image(url=f"{random.choice(smirk_gifs)}")
+        await ctx.send(embed=emb)
+
+
+
     
     
     
 
 def setup(client):
-    client.add_cog(action(client))
+    client.add_cog(Action(client))
     print(">>> action load ho gaya !!!!!!!!!")
 
 

@@ -3,34 +3,6 @@ from discord.ext import commands
 from discord_components import DiscordComponents, Button, Select, SelectOption
 import asyncio
 
-gemb = discord.Embed(title="GAMES", color=0x2e69f2)
-gemb.add_field(
-    name="🌚 **TRUTH OR DARE**",
-    value="`senpai help td`",
-    inline=True
-)
-gemb.add_field(
-    name="🎰 **LOTTERY**",
-    value="`senpai help lotto`",
-    inline=True
-)
-
-gemb.add_field(
-    name="🤔 **HIGHLOW**",
-    value="`senpai highlow`",
-    inline=True
-)
-gemb.add_field(
-    name="✍ **UNSCRAMBLE**",
-    value="`senpai uns`",
-    inline=True
-)
-
-gemb.add_field(
-    name="🙌 **RPS**",
-    value="`senpai rps`",
-    inline=True
-)
 
 aboutemb = discord.Embed(title="I GUESS YOU ASKED FOR HELP !!", description="BOT CREATOR:\n [**ABHISHEK KUSHWAHA**](https://github.com/Abbhiishek)\n `Abbhishek#2959`",color=0x2e69f2)
 aboutemb.add_field(
@@ -61,11 +33,7 @@ aboutemb.add_field(
 )
 
 
-actionemb = discord.Embed(
-            title="ACTIONS",
-            description="**AVAILABLE ACTIONS**\n`pat`, `hug   `, `cuddle  `, `kiss  `, `bonk  `, `kill  `, `punch  `, `highfive  `, `feed  `, `nom  `, `slap  `, `pout  `, `smug  `, `tickle  `, `poke  `, `blush  `.",
-            color=0x2e69f2
-            )
+
 generalemb = discord.Embed(title=" **Gerenal-commands**", color=0x2e69f2)
 generalemb.add_field(
     name=" WELCOME MESSAGE",
@@ -111,117 +79,28 @@ class Help(commands.Cog):
         self.senpai_id = 888414036662833164
 
     @commands.command()
-    async def help(self, ctx, *, topic=None):
+    async def help(self, ctx):
         senpai = self.client.get_user(self.senpai_id)
-        if topic == None:
-            msg = await ctx.send("Use this embed for help regarding any commands. ",embed=aboutemb)
-                    
+        await ctx.send("Use this embed for help regarding any commands. ",embed=aboutemb)
         
-        
-        elif topic.lower() == "td":
-            emb = discord.Embed(title="TRUTH OR DARE", description="Start a game of truth or dare using senpai.io!\nFor truth send `senpai truth` and for dare send `senpai dare`.", color=0x2e69f2)
-            emb.set_image(url="https://is1-ssl.mzstatic.com/image/thumb/Purple125/v4/af/71/bc/af71bca4-9c75-2ae3-5dca-490286d51284/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.jpeg/1200x630wa.png")
-            emb.set_footer(
-            text=f"senpai.io",
-            icon_url=senpai.avatar_url,
-            )
-            await ctx.send(embed=emb)
+    @commands.command()
+    async def help_games(self,ctx):
+        helpgamesemb=discord.Embed(title="HELP REGARDING GAMES",description=" For Games Help Type--\n senpai games" ,color=0x2e69f2)
+        await ctx.send(embed=helpgamesemb)
 
-        elif topic.lower() == "lotto":
-            emb = discord.Embed(title="LOTTERY", description="Start a game of lattery using senpai.\nYou will have to send three random numbers between 0 to 5 with space in between like `senpai lottery 1 3 4`.", color=0x2e69f2)
-            emb.set_footer(
-            text=f"senpai.io",
-            icon_url=senpai.avatar_url,
-            )
-            await ctx.send(embed=emb)
-
-        elif topic.lower() =="Games":
-            gemb = discord.Embed(title="GAMES", color=0x2e69f2)
-            gemb.add_field(
-                name="🌚 **TRUTH OR DARE**",
-                value="`senpai help td`",
-                inline=True
-            )
-            gemb.add_field(
-                name="🎰 **LOTTERY**",
-                value="`senpai help lotto`",
-                inline=True
-            )
-
-            gemb.add_field(
-                name="🤔 **HIGHLOW**",
-                value="`senpai highlow`",
-                inline=True
-            )
-            gemb.add_field(
-                name="✍ **UNSCRAMBLE**",
-                value="`senpai uns`",
-                inline=True
-            )
-
-            gemb.add_field(
-                name="🙌 **RPS**",
-                value="`senpai rps`",
-                inline=True
-            )
-            await ctx.send(embed=gemb)
-
-
-        elif topic.lower() =="Gereral commands":
-            generalemb = discord.Embed(title=" **Gerenal-commands**", color=0x2e69f2)
-            generalemb.add_field(
-                name=" WELCOME MESSAGE",
-                value="`senpai wsetup #nel` Setup a nel where senpai will welcome new members in your server!\n**It's an Admin/Mod only command**",
-                inline=False
-            )
-            generalemb.add_field(
-                name="SERVER",
-                value="`senpai server ` Shows the server stats !\n**It's an Admin/Mod only command \n need server insight permisssion**",
-                inline=False
-            )
-            generalemb.add_field(
-                name=" INFO",
-                value="`senpai info #nel` Setup a nel where senpai will welcome new members in your server!\n**It's an Admin/Mod only command**",
-                inline=False
-            )
-            generalemb.add_field(
-                name=" VERSION",
-                value="`senpai version`show the version of the bot!\n",
-                inline=False
-            )
-            generalemb.add_field(
-                name="STATUS",
-                value="`senpai status` shows the whole status of the bot!\n**It's an Admin/Mod only command**",
-                inline=False
-            )
-            await ctx.send(embed=generalemb)
-
-        elif topic.lower() =="Actions":
-            actionemb = discord.Embed(
-            title="ACTIONS",
-            description="**AVAILABLE ACTIONS**\n `hug   `, `cuddle  `, `kiss  `, `bonk  `, `kill  `, `punch  `, `highfive  `, `feed  `, `nom  `, `slap  `, `pout  `, `smug  `, `tickle  `, `poke  `, `blush  `.",
-            color=0x2e69f2
-            )
-            await ctx.send(embed=actionemb)
-
-
-        elif topic.lower() =="Responce":
-            respemb = discord.Embed(title="**RESPONSES**", color=0x2e69f2)
-            respemb.add_field(
-                name=" SIMP",
-                value="`senpai simp @user` senpai sends a pickup line for the mentioned person with a cute gif uwu.",
-                inline=True
-            )
-            respemb.add_field(
-                name=" ROAST",
-                value="`senpai roast @user` Roast anyone .",
-                inline=True
-            )
-            await ctx.send(embed=respemb)
-         
-        
-        else:
-            await ctx.send("senpai was not able to find help for this command..does this even exist?")
+    @commands.command()
+    async def help_actions(self,ctx):
+        helpactionsemb=discord.Embed(title="HELP REGARDING ACTION",description=" For Games Help Type--\n senpai actions" ,color=0x2e69f2)
+        await ctx.send(embed=helpactionsemb)
+    
+    @commands.command()
+    async def help_general(self,ctx):
+        helpgeneralemb=discord.Embed(title="HELP REGARDING GERENAL COMMANDS",description=" For Games Help Type--\n senpai general" ,color=0x2e69f2)
+        await ctx.send(embed=helpgeneralemb)
+    @commands.command()
+    async def help_music(self,ctx):
+        helpmusicemb=discord.Embed(title="HELP REGARDING MUSICS",description=" For Games Help Type--\n senpai music" ,color=0x2e69f2)
+        await ctx.send(embed=helpmusicemb)
 
     
 

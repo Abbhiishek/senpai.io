@@ -14,6 +14,55 @@ class Generalcomm(commands.Cog):
     def __init__(self, commands):
         self.commands = commands
         self.senpai_id = 888414036662833164
+     
+
+    @commands.command()
+    async def general(self, ctx):
+        async with ctx.channel.typing():
+            generalemb = discord.Embed(title=" **Gerenal-commands**", color=0x2e69f2)
+            generalemb.add_field(
+                name=" SOURCE",
+                value="`senpai source ` Bot send the source code!!",
+                inline=False
+            )
+            generalemb.add_field(
+                name="SERVER STATUS",
+                value="`senpai serverstats ` Shows the server stats !\n**It's an Admin/Mod only command \n need server insight permisssion**",
+                inline=False
+            )
+            generalemb.add_field(
+                name=" INFO",
+                value="`senpai info #nel` Setup a nel where senpai will welcome new members in your server!",
+                inline=False
+            )
+            generalemb.add_field(
+                name=" VERSION",
+                value="`senpai version`show the version of the bot!\n",
+                inline=False
+            )
+            generalemb.add_field(
+                name="STATUS",
+                value="`senpai status` shows the whole status of the bot!",
+                inline=False
+            )
+            generalemb.add_field(
+                name="GREET",
+                value="`senpai greet @mention` This command greet prople whom you had mention!",
+                inline=False
+            )
+            generalemb.add_field(
+                name="DIE",
+                value="`senpai die` This command returns a random last words!",
+                inline=False
+            )
+            generalemb.add_field(
+                name="CREDITS",
+                value="`senpai credits` shows credits!",
+                inline=False
+            )
+
+
+
     #EVENTS
     @commands.Cog.listener()
     async def on_ready(self):
@@ -33,8 +82,8 @@ class Generalcomm(commands.Cog):
             embed.add_field(name="Top Role", value=member.top_role.mention, inline=False)
             embed.add_field(name="Created at", value=member.created_at.strftime("%d/%m/%Y"), inline=False)
             embed.add_field(name="Joined at", value=member.joined_at.strftime("%d/%m/%Y"), inline=False)
-            
             embed.set_image(url="https://c.tenor.com/0ctrlakU1OUAAAAS/information-glitch.gif")
+
             embed.set_thumbnail(url=member.avatar_url)
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=f"Requested by {ctx.author.name}")
@@ -46,7 +95,7 @@ class Generalcomm(commands.Cog):
             embed = discord.Embed(title="INFORMATION OF THE SERVER!",
                                   timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
-            embed.set_image(url="https://c.tenor.com/Zran7Kdqj9sAAAAS/rustydiscord.gif")
+            embed.set_image(url="https://gfycat.com/uncomfortablecriminalchickadee")
             embed.add_field(name="ID", value=ctx.guild.id, inline= True)
             embed.add_field(name="OWNER", value=ctx.guild.owner, inline=True)
             embed.add_field(name="REGION", value=ctx.guild.region, inline=True)
@@ -64,11 +113,6 @@ class Generalcomm(commands.Cog):
             embed.set_footer(icon_url=ctx.author.avatar_url,
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
-
-        
-        
-
-
 
     @commands.command(name='hello',help='This command returns a random welcome message')
     async def hello(self, ctx ):
@@ -98,14 +142,13 @@ class Generalcomm(commands.Cog):
                              text=f"Requested by {ctx.author.name}")
             await ctx.send(embed=embed)
 
-    @commands.command(name='credits', help='This command returns the credits')
+    @commands.command(name='credits', help='credits')
     async def credits(self, ctx):
         await ctx.send('Made by <@752362202945683480>')
         await ctx.send(
             'Thanks to <@752362202945683480> for coming up with the idea')
 
-    @commands.command(name='creditz',
-                      help='This command returns the TRUE credits')
+    @commands.command(name='creditz',help='This command returns the TRUE credits')
     async def creditz(self ,ctx):
         await ctx.send('**No one but me, lozer!**')
 
@@ -128,23 +171,27 @@ class Generalcomm(commands.Cog):
             text=f"SENPAI.IO",
             icon_url=senpai.avatar_url,
         )
-        emb.set_image(url="https://c.tenor.com/06-DZth5z5wAAAAM/anime-want-the-source.gif")
+        emb.set_image(url="https://c.tenor.com/emjY57vwVUAAAAAd/source-host.gif")
         await ctx.send(embed=emb)
 
     @commands.command()
     async def invite(self, ctx):
-        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?client_id=888414036662833164&permissions=8&scope=bot)", color=0x2e69f2)
+        emb = discord.Embed(title="INVITE SENPAI.IO!!", description="Invite SENPAI  in your server uwu\n[Click here](https://discord.com/api/oauth2/authorize?commands_id=888414036662833164&permissions=3394560&scope=bot)", color=0x2e69f2)
         senpai = self.commands.get_user(self.senpai_id)
         emb.set_footer(
             text=f"SENPAI.IO",
             icon_url=senpai.avatar_url,
         )
-        emb.set_image(url="https://c.tenor.com/id5gCd06Z-gAAAAM/who-me-who-is-you.gif")
+        emb.set_image(url="https://c.tenor.com/9EJTjsOwL9cAAAAd/invitation-colorful.gif")
         await ctx.send(embed=emb)
 
     @commands.command()
     async def prefix(self, ctx):
         await ctx.send("Prefixes for senpai are `s.`, `senpai ` and `S. `.")
+
+    @commands.command()
+    async def version(self, ctx):
+        await ctx.send("Currently Senpai have v1.0")
 
 def setup(commands):
     commands.add_cog(Generalcomm(commands))

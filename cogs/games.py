@@ -22,18 +22,18 @@ class Games(commands.Cog):
 
     # COMMANDS
     @commands.command()
-    async def Games(self, ctx):
+    async def games(self, ctx):
         async with ctx.channel.typing():
 
             GAMES_embed = discord.Embed(title="GAMES", color=0x2e69f2)
             GAMES_embed.add_field(
                 name="🌚 **TRUTH OR DARE**",
-                    value="`senpai help td`",
+                    value="`senpai  tod`",
                 inline=True
             )
             GAMES_embed.add_field(
                 name="🎰 **LOTTERY**",
-                value="`senpai help lotto`",
+                value="`senpai  lotto`",
                 inline=True
             )
 
@@ -42,17 +42,18 @@ class Games(commands.Cog):
                 value="`senpai highlow`",
                 inline=True
             )
-            GAMES_embed.add_field(
-                name="✍ **UNSCRAMBLE**",
-                value="`senpai uns`",
-                inline=True
-            )
-
+            
             GAMES_embed.add_field(
                 name="🙌 **RPS**",
-                value="`kana rps`",
+                value="`senpai rps`",
                 inline=True
             )
+            GAMES_embed.add_field(
+            name="🥰 **LOVE RATION**",
+            value="`kana loveratio`",
+            inline=True
+            )
+
             GAMES_embed.set_footer(text=">>>>Games by senpai.io<<<<")
             await ctx.send(embed=GAMES_embed)
 
@@ -172,23 +173,23 @@ class Games(commands.Cog):
   
     @commands.command()
     async def rps(self, ctx):
-        def return_embed(kana, user):
+        def return_embed(senpai, user):
             cond = ""
-            if kana == user:
+            if senpai == user:
                 cond = "t"
             game = {"rock": "scissors", "scissors": "paper", "paper": "rock"}
-            if game[user] == kana:
+            if game[user] == senpai:
                 cond = "w"
-            elif game[user] != kana and kana != user:
+            elif game[user] != senpai and senpai != user:
                 cond = "l"
             if cond == "t":
                 emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description="**🙂 Oops, It's a draw..\nTry again :)**", color=0x2e69f2)
                 return emb
             elif cond == "w":
-                emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**😏 You won the game!\nI chose {kana} and you chose {user}!**", color=0x2e69f2)
+                emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**😏 You won the game!\nI chose {senpai} and you chose {user}!**", color=0x2e69f2)
                 return emb
             elif cond == "l":
-                emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**😞 You lost the game, Better luck next time..\nI chose {kana} and you chose {user}.**", color=0x2e69f2)
+                emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**😞 You lost the game, Better luck next time..\nI chose {senpai} and you chose {user}.**", color=0x2e69f2)
                 return emb
 
 
@@ -253,9 +254,9 @@ class Games(commands.Cog):
         msg=await ctx.send(embed=emb,
             components=[
                 [
-                Button(style=ButtonStyle.blue, label="HIGH"),
-                Button(style=ButtonStyle.blue, label="JACKPOT!"),
-                Button(style=ButtonStyle.blue, label="LOW")
+                Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071")),
+                Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522")),
+                Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"))
                 ],
             ],
         )
@@ -269,20 +270,65 @@ class Games(commands.Cog):
             await resp.respond(type=7, embed=embed,
                 components=[
                     [
-                    Button(style=ButtonStyle.blue, label="HIGH",  disabled=True),
-                    Button(style=ButtonStyle.blue, label="JACKPOT!",  disabled=True),
-                    Button(style=ButtonStyle.blue, label="LOW",  disabled=True)
+                    Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"), disabled=True),
+                    Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"), disabled=True),
+                    Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"), disabled=True)
                     ],
                 ],
             ) 
         except asyncio.TimeoutError:
             await msg.edit(components=[[
-                Button(style=ButtonStyle.blue, label="HIGH", disabled=True),
-                Button(style=ButtonStyle.blue, label="JACKPOT!", disabled=True),
-                Button(style=ButtonStyle.blue, label="LOW", disabled=True)
+                Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"), disabled=True),
+                Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"), disabled=True),
+                Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"), disabled=True)
                 ],],)
 
-    
+    @commands.command(aliases=['lr'])
+    async def loveratio(self, ctx, m1: discord.User = None, m2: discord.User = None):
+        if m1 == None:
+            m1 = ctx.author
+            m2 = ctx.author
+        elif m2 == None:
+            m2 = m1
+            m1 = ctx.author
+        asset1 = m1.avatar_url_as(format='png', size=512)
+        asset2 = m2.avatar_url_as(format='png', size=512)
+        await asset1.save('pfp1.png')
+        await asset2.save('pfp2.png')
+        pfp1=Image.open('pfp1.png')
+        pfp2=Image.open('pfp2.png')
+        pfp1=pfp1.resize((400, 400))
+        pfp2=pfp2.resize((400, 400))
+        mask=Image.new('L', (400, 400), 0)
+        mask_draw=ImageDraw.Draw(mask)
+        mask_draw.ellipse((0, 0, 400, 400), fill=255)
+        mask.save('mask.jpg')
+        bg=Image.new('RGBA', (1200, 500), (255, 0, 0, 0))
+        bg.paste(pfp1, (37, 28), mask)
+        bg.paste(pfp2, (752, 27), mask)
+        bg.save('back.png')
+        temp=Image.open('./images/temp4.png')
+        im = Image.open('back.png').convert('RGBA')
+        final=Image.alpha_composite(im, temp)
+        final.save('final.png')
+        love = random.randint(0, 101)
+        if love >= 0 and love <=15:
+            quote = "Not in this life.."
+        elif love > 15 and love <=25:
+            quote = "Looks impossible..but who knows?"
+        elif love > 25 and love <=50:
+            quote = "Maybe.."
+        elif love > 50 and love <=70:
+            quote = "Quite Possible.."
+        elif love > 70 and love <=90:
+            quote = "Should already be in this relationship!!"
+        elif love > 90 and love <= 101:
+            quote = "Fated partners uwu"
+        file=discord.File('final.png')
+        desc = f"{m1.mention} + {m2.mention} = {love}% of love <:kannawee:877036162122924072>\n**{quote}**"
+        await ctx.send(desc, file=file)   
+
+
 def setup(client):
     client.add_cog(Games(client))
     print(">>> games load ho gaya !!!!!!!!!")
