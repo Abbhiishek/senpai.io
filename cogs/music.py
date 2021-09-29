@@ -10,7 +10,7 @@ import DiscordUtils
 
 
 
-
+music = DiscordUtils.Music()
 class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -30,7 +30,7 @@ class Music(commands.Cog):
         await ctx.voice_client.disconnect()
         await ctx.send("The bot is not connected to a voice channel.")
 
-    music = DiscordUtils.Music()
+    
     @commands.command()
     async def play(self , ctx ,url):
         player = music.get_player(guild_id=ctx.guild.id)
@@ -38,7 +38,7 @@ class Music(commands.Cog):
             player = music.create_player(ctx, ffmpeg_error_betterfix=True)
         if not ctx.voice_client.is_playing():
             await player.queue(url , search= True)
-            song= await player.play()
+            song = await player.play()
             await ctx.send (f' I Have Started Playing --{song.name}')
         else:
             song= await player.queue(url, search =True)
