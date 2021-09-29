@@ -17,7 +17,7 @@ aboutemb.add_field(
 )
 aboutemb.add_field(
     name="**INVITE ME**",
-    value=f"[Click here](https://discord.com/api/oauth2/authorize?client_id=857835279259664403&permissions=138445974593&scope=bot%20applications.commands)",
+    value=f"[Click here](https://discord.com/api/oauth2/authorize?client_id=888414036662833164&permissions=536807996663&scope=bot%20applications.commands)",
     inline=True
 )
 
