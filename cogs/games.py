@@ -50,7 +50,7 @@ class Games(commands.Cog):
             )
             GAMES_embed.add_field(
             name="🥰 **LOVE RATION**",
-            value="`senpai loveratio`",
+            value="`kana loveratio`",
             inline=True
             )
 
@@ -325,7 +325,7 @@ class Games(commands.Cog):
         elif love > 90 and love <= 101:
             quote = "Fated partners uwu"
         file=discord.File('final.png')
-        desc = f"{m1.mention} + {m2.mention} = {love}% of love \n**{quote}**"
+        desc = f"{m1.mention} + {m2.mention} = {love}% of love <:kannawee:877036162122924072>\n**{quote}**"
         await ctx.send(desc, file=file)   
 
 
