@@ -1,9 +1,14 @@
 import discord
+from discord import player
 from discord.ext import commands
+from discord.ext.commands.core import command
 from discord.player import FFmpegAudio
 import youtube_dl
 import os
+import DiscordUtils
 
+
+music = DiscordUtils.Music()
 
 
 class Music(commands.Cog):
@@ -28,30 +33,53 @@ class Music(commands.Cog):
 
     @commands.command()
     async def play(self , ctx ,url):
-        
-        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options':'-vn'}
-        ydl_opts = {
-            'format': 'bestaudio/best'
-              }
-        vc = ctx.voice_client
+        player = music.get_player(guild_id=ctx.guild.id)
+        if not player :
+            player = music.create_player(ctx, ffmpeg_error_betterfix=True)
+        if not ctx.voice_client.is_playing():
+            await player.queue(url , search= True)
+            song= await player.play()
+            await ctx.send (f' I Have Started Playing --{song.name}')
+        else:
+            song= await player.queue(url, search =True)
+            await ctx.send(f"{','.join([song.name for song in player.current_queue()])}")
 
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url , download=False)
-            url2 = info['formats'][0]['url']
-            source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
-            vc.play(source)
+
+
+    @commands.command()
+    async def queue(self,ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.pause()
+        await ctx.send(f"Senpai Paused The song {song.name}")
+
 
 
     @commands.command()
     async def pause(self,ctx):
-        await ctx.voice_client.pause()
-        await ctx.send("Senpai Paused The Player")
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.pause()
+        await ctx.send(f"Senpai Paused The song {song.name}")
 
     @commands.command()
     async def resume(self,ctx):
-        await ctx.voice_client.resume()
-        await ctx.send("Senpai Resumed The Player")
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.resume()
+        await ctx.send(f"Senpai Resumed The song {song.name}")
 
+    @commands.command()
+    async def loop(self, ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song = await player.toggle_song_loop()
+        if song.is_looping:
+            return await ctx.send(f'{song.name} is looping ')
+        else:
+            return await ctx.send(f'{song.name} is not looping ')
+
+    @commands.command()
+    async def nowplaying(self , ctx):
+        player = music.get_player(guild_id=ctx.guild.id)
+        song= player.now_playing()
+        await ctx.send(song.name)
 
 
 def setup(client):
