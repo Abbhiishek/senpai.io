@@ -9,7 +9,7 @@ import os
 class Music(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.senpai_id = 888414036662833164
+        self.senpai_id = 892408470870057030
     @commands.command()
     async def join (self , ctx):
         if ctx.author.voice is None:
@@ -38,7 +38,7 @@ class Music(commands.Cog):
             info = ydl.extract_info(url , download=False)
             url2 = info['formats'][0]['url']
             source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
-            vc.play(source)
+        vc.play(source)
 
 
     @commands.command()
