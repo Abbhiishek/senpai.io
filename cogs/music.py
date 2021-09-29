@@ -38,7 +38,7 @@ class Music(commands.Cog):
             info = ydl.extract_info(url , download=False)
             url2 = info['formats'][0]['url']
             source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
-        vc.play(source)
+            vc.play(source)
 
 
     @commands.command()
