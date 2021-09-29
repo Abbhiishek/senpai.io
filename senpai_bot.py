@@ -1,21 +1,11 @@
 #importing databases we need for the projects
-import discord
-from discord.errors import ClientException
-from discord.ext import commands
-from discord.ext import tasks
 import os
-from decouple import config
-from discord.enums import UserFlags
-from discord.flags import Intents
-import random
-import json
-from datetime import datetime
-from discord.user import ClientUser
-import requests
+import discord
+from discord.ext import clients, tasks
+from discord_components import DiscordComponents
 import asyncio
-from random import choice
-
-
+import random
+from datetime import datetime
 
 #adding our client (our bot , i am using client as bot)
 #setting up Intents
@@ -25,10 +15,10 @@ intents.members = True
 
 #senpai variables
 senpai_id = 88841403666283316
-client = commands.Bot(command_prefix=commands.when_mentioned_or( '.', 'S.', 's.', 'senpai ','Senpai '), case_insensitive=True, intents=intents)
+client = clients.Bot(command_prefix=clients.when_mentioned_or( '.', 'S.', 's.', 'senpai ','Senpai '), case_insensitive=True, intents=intents)
 client.remove_command("help")
 
-print(">>>> The Master Is Logging To The Server... \n >>>Please wait for the connections to stablish...////////")
+print(">>>> The Master Is Logging To The Server... \n >>>Please wait for the connections to stablish...<<<<")
 
 #Loads all the cogs in the cogs folder 
 def load_cogs():
@@ -37,12 +27,14 @@ def load_cogs():
             client.load_extension(f"cogs.{file[:-3]}")
 
 @client.command()
-@commands.is_owner()
+@clients.is_owner()
 async def r(ctx):
   for file in os.listdir("./cogs"):
     if file.endswith(".py") and not file.startswith("_"):
       client.reload_extension(f"cogs.{file[:-3]}")
-  await ctx.send("```>> Senpai reloaded cogs```")
+      await ctx.send(">> Senpai reloaded cogs")
+    else:
+        await ctx.send("SOME ERROR OCCURED !")
 
  #creating a task that change the activity status of the bot every 5 seconds so that it show different information evry 5 second. 
 
@@ -64,6 +56,7 @@ async def on_ready():
     print(">> Data loaded.")
                
 #do stuffs
+
 @client.command()
 async def status(ctx):
             
@@ -74,14 +67,12 @@ async def status(ctx):
                 embed.add_field(name="created by", value='<@752362202945683480>',inline=True)
                 embed.add_field(name="Total servers", value=f"{len(client.guilds)} Servers!",inline=True)
                 embed.add_field(name="Total User ", value= f"{len(client.users)} Users!",inline=True)
-                embed.set_thumbnail(url=client.user.avatar_url)
+                
                 embed.set_image(url="https://c.tenor.com/RGhPDvXANBQAAAAd/discord.gif")
                 await ctx.send(embed=embed)
 
-    
-token = config("TOKEN")
 switchpresence.start()
-client.run(token)
+client.run('ODkyNDA4NDcwODcwMDU3MDMw.YVMeJw.iccZZVYS7-xVzqgQV84YNg8L-_s')
 #starting the loop for the switch_presence
 #rumming the client in the server
 
