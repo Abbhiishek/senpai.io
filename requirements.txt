@@ -12,5 +12,5 @@ anime-images-api
 disputils
 pet-pet-gif
 youtube_dl
-PyNaCl
+pynacl
 ffmpeg
