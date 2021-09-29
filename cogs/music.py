@@ -21,8 +21,8 @@ def set_str_len(s: str, length: int):
 
 class Music(commands.Cog):
 
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, client):
+        self.client = client
         self.music_queues = defaultdict(Queue)
 
     @commands.command()
@@ -30,7 +30,7 @@ class Music(commands.Cog):
         '''Adds a song to the queue either by YouTube URL or YouTube Search.'''
 
         music_queue = self.music_queues[ctx.guild]
-        voice = get(self.bot.voice_bots, guild=ctx.guild)
+        voice = get(self.client.voice_clients, guild=ctx.guild)
 
         try:
             channel = ctx.message.author.voice.channel
@@ -38,7 +38,7 @@ class Music(commands.Cog):
             await ctx.send('You\'re not connected to a voice channel.')
             return
 
-        if voice is not None and not self.bot_in_same_channel(ctx.message.author, ctx.guild):
+        if voice is not None and not self.client_in_same_channel(ctx.message.author, ctx.guild):
             await ctx.send('You\'re not in my voice channel.')
             return
 
@@ -64,10 +64,10 @@ class Music(commands.Cog):
     async def stop(self, ctx: commands.Context):
         '''Admin command that stops playback of music and clears out the music queue.'''
 
-        voice = get(self.bot.voice_bots, guild=ctx.guild)
+        voice = get(self.client.voice_clients, guild=ctx.guild)
         queue = self.music_queues.get(ctx.guild)
 
-        if self.bot_in_same_channel(ctx.message.author, ctx.guild):
+        if self.client_in_same_channel(ctx.message.author, ctx.guild):
             voice.stop()
             queue.clear()
             await ctx.send('Stopping playback')
@@ -79,10 +79,10 @@ class Music(commands.Cog):
     async def skip(self, ctx: commands.Context):
         '''Puts in your vote to skip the currently played song.'''
 
-        voice = get(self.bot.voice_bots, guild=ctx.guild)
+        voice = get(self.client.voice_clients, guild=ctx.guild)
         queue = self.music_queues.get(ctx.guild)
 
-        if not self.bot_in_same_channel(ctx.message.author, ctx.guild):
+        if not self.client_in_same_channel(ctx.message.author, ctx.guild):
             await ctx.send('You\'re not in a voice channel with me.')
             return
 
@@ -111,9 +111,9 @@ class Music(commands.Cog):
     async def fskip(self, ctx: commands.Context):
         '''Admin command that forces skipping of the currently playing song.'''
 
-        voice = get(self.bot.voice_bots, guild=ctx.guild)
+        voice = get(self.client.voice_clients, guild=ctx.guild)
 
-        if not self.bot_in_same_channel(ctx.message.author, ctx.guild):
+        if not self.client_in_same_channel(ctx.message.author, ctx.guild):
             await ctx.send('You\'re not in a voice channel with me.')
         elif voice is None or not voice.is_playing():
             await ctx.send('I\'m not playing a song right now.')
@@ -137,7 +137,7 @@ class Music(commands.Cog):
     async def remove(self, ctx: commands.Context, song_id: int = None):
         '''Removes the last song you requested from the queue, or a specific song if queue position specified.'''
 
-        if not self.bot_in_same_channel(ctx.message.author, ctx.guild):
+        if not self.client_in_same_channel(ctx.message.author, ctx.guild):
             await ctx.send('You\'re not in a voice channel with me.')
             return
 
@@ -171,7 +171,7 @@ class Music(commands.Cog):
 
         queue = self.music_queues.get(ctx.guild)
 
-        if not self.bot_in_same_channel(ctx.message.author, ctx.guild):
+        if not self.client_in_same_channel(ctx.message.author, ctx.guild):
             await ctx.send('You\'re not in a voice channel with me.')
             return
 
@@ -195,7 +195,7 @@ class Music(commands.Cog):
 
         queue = self.music_queues.get(ctx.guild)
 
-        if not self.bot_in_same_channel(ctx.message.author, ctx.guild):
+        if not self.client_in_same_channel(ctx.message.author, ctx.guild):
             await ctx.send('You\'re not in a voice channel with me.')
             return
 
@@ -235,7 +235,7 @@ class Music(commands.Cog):
 
         audio_dir = os.path.join('.', 'audio')
         audio_path = os.path.join(audio_dir, f'{guild.id}.mp3')
-        voice = get(self.bot.voice_bots, guild=guild)
+        voice = get(self.client.voice_clients, guild=guild)
 
         queue = self.music_queues.get(guild)
         ydl_opts = {
@@ -268,14 +268,14 @@ class Music(commands.Cog):
         queue.clear_skip_votes()
 
     async def wait_for_end_of_song(self, guild: discord.Guild):
-        voice = get(self.bot.voice_bots, guild=guild)
+        voice = get(self.client.voice_clients, guild=guild)
         while voice.is_playing():
             await asyncio.sleep(1)
 
     async def inactivity_disconnect(self, guild: discord.Guild):
-        '''If a song is not played for 5 minutes, automatically disconnects bot from server.'''
+        '''If a song is not played for 5 minutes, automatically disconnects client from server.'''
 
-        voice = get(self.bot.voice_bots, guild=guild)
+        voice = get(self.client.voice_clients, guild=guild)
         queue = self.music_queues.get(guild)
         last_song = queue.current_song
 
@@ -286,10 +286,10 @@ class Music(commands.Cog):
         if queue.current_song == last_song:
             await voice.disconnect()
 
-    def bot_in_same_channel(self, author: discord.Member, guild: discord.Guild):
-        '''Checks to see if a bot is in the same channel as the bot.'''
+    def client_in_same_channel(self, author: discord.Member, guild: discord.Guild):
+        '''Checks to see if a client is in the same channel as the client.'''
 
-        voice = get(self.bot.voice_bots, guild=guild)
+        voice = get(self.client.voice_clients, guild=guild)
 
         try:
             channel = author.voice.channel
@@ -299,6 +299,6 @@ class Music(commands.Cog):
         return voice is not None and voice.is_connected() and channel == voice.channel
 
 
-def setup(bot):
-    bot.add_cog(Music(bot))
+def setup(client):
+    client.add_cog(Music(client))
     print(">>> music load ho gaya hai load ho gaya !!!!!!!!!")
