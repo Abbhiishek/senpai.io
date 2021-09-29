@@ -11,7 +11,7 @@ class Music(commands.Cog):
         self.client = client
         self.senpai_id = 892408470870057030
     @commands.command()
-    async def join (self , ctx):
+    async def join(self , ctx):
         if ctx.author.voice is None:
             await ctx.send("You Are Not In Any Voice Channel!!!")
         voice_channel=ctx.author.voice.channel
