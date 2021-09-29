@@ -14,3 +14,4 @@ pet-pet-gif
 youtube_dl
 pynacl
 ffmpeg
+DiscordUtils
