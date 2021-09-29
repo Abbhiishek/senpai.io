@@ -71,8 +71,9 @@ async def status(ctx):
                 embed.set_image(url="https://c.tenor.com/RGhPDvXANBQAAAAd/discord.gif")
                 await ctx.send(embed=embed)
 
+token = config("TOKEN")
 switchpresence.start()
-client.run('ODkyNDA4NDcwODcwMDU3MDMw.YVMeJw.iccZZVYS7-xVzqgQV84YNg8L-_s')
+client.run(token)
 #starting the loop for the switch_presence
 #rumming the client in the server
 
