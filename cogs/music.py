@@ -40,6 +40,9 @@ class Music(commands.Cog):
             url2 = info['formats'][0]['url']
             source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
             vc.play(source)
+        playemb = discord.Embed(title="STARTED STREAMING MUSIC", color=discord.Colour.red())
+        playemb.set_image(url="https://c.tenor.com/txbF1y8frJQAAAAS/jake-heavy-metal-music-playing.gif")
+        await ctx.send(embed=playemb)
 
 
     @commands.command()
