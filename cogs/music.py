@@ -32,7 +32,6 @@ class Music(commands.Cog):
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options':'-vn'}
         ydl_opts = {
             'format': 'bestaudio/best'
-                'default_search': 'auto'
               }
         vc = ctx.voice_client
 
