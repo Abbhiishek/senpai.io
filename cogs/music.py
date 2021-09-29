@@ -8,7 +8,7 @@ import os
 import DiscordUtils
 
 
-music = DiscordUtils.Music()
+
 
 
 class Music(commands.Cog):
@@ -30,7 +30,7 @@ class Music(commands.Cog):
         await ctx.voice_client.disconnect()
         await ctx.send("The bot is not connected to a voice channel.")
 
-
+    music = DiscordUtils.Music()
     @commands.command()
     async def play(self , ctx ,url):
         player = music.get_player(guild_id=ctx.guild.id)
