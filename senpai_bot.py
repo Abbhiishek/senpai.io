@@ -1,11 +1,20 @@
 #importing databases we need for the projects
-import os
 import discord
-from discord.ext import clients, tasks
-from discord_components import DiscordComponents
-import asyncio
+from discord.errors import ClientException
+from discord.ext import commands
+from discord.ext import tasks
+import os
+from decouple import config
+from discord.enums import UserFlags
+from discord.flags import Intents
 import random
+import json
 from datetime import datetime
+from discord.user import ClientUser
+import requests
+import asyncio
+from random import choice
+
 
 #adding our client (our bot , i am using client as bot)
 #setting up Intents
