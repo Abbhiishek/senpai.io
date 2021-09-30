@@ -62,6 +62,29 @@ class Music(commands.Cog):
             await channel.connect()
 
         await self.play_all_songs(ctx.guild)
+    @commands.command()
+    async def pause(self, ctx:commands.Context):
+        '''PAUSE THE CURRENT SONG '''
+        voice = get(self.client.voice_clients, guild=ctx.guild)
+        queue = self.music_queues.get(ctx.guild)
+
+        if self.client_in_same_channel(ctx.message.author, ctx.guild):
+            voice.pause()
+            await ctx.send("Senpai paused the player ! ")
+        else:
+            await ctx.send("You\'re not in a voice channel with me.")
+
+    @commands.command()
+    async def resume(self, ctx:commands.Context):
+        '''RESUME  THE CURRENT SONG '''
+        voice = get(self.client.voice_clients, guild=ctx.guild)
+        queue = self.music_queues.get(ctx.guild)
+
+        if self.client_in_same_channel(ctx.message.author, ctx.guild):
+            voice.resume()
+            await ctx.send("Senpai resumed the player ! ")
+        else:
+            await ctx.send("You\'re not in a voice channel with me.")
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
