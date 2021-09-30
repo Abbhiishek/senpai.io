@@ -78,7 +78,11 @@ async def status(ctx):
                 embed.set_image(url="https://c.tenor.com/RGhPDvXANBQAAAAd/discord.gif")
                 await ctx.send(embed=embed)
 
-    
+@client.command()
+async def clear(ctx, amount ):
+  await ctx.channel.purge(limit=amount+1)
+                
+        
 token = config("TOKEN")
 switchpresence.start()
 client.run(token)
