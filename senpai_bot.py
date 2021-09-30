@@ -24,7 +24,7 @@ intents.members = True
 
 #senpai variables
 senpai_id = 88841403666283316
-client = clients.Bot(command_prefix=clients.when_mentioned_or( '.', 'S.', 's.', 'senpai ','Senpai '), case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix=clients.when_mentioned_or( '.', 'S.', 's.', 'senpai ','Senpai '), case_insensitive=True, intents=intents)
 client.remove_command("help")
 
 print(">>>> The Master Is Logging To The Server... \n >>>Please wait for the connections to stablish...<<<<")
