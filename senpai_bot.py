@@ -36,7 +36,6 @@ def load_cogs():
             client.load_extension(f"cogs.{file[:-3]}")
 
 @client.command()
-@clients.has_permissions(manage_message=True)
 async def clear(ctx, amount ):
   await ctx.channel.purge(limit=amount+1)
 @client.command()
