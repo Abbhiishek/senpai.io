@@ -1,9 +1,9 @@
 import discord
 import youtube_dl
 
-DURATION_CEILING = 20 * 60
+DURATION_CEILING = 20000 * 60
 
-DURATION_CEILING_STRING = '20mins'
+DURATION_CEILING_STRING = '20000mins'
 
 
 class Queue(list):
