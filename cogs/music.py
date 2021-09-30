@@ -3,11 +3,12 @@ import os
 from collections import defaultdict
 
 import discord
+from discord import colour
 import youtube_dl
 from discord.ext import commands 
 from discord.utils import get
 from pathlib import Path
-import bot
+
 from bot.music import Queue, Song, SongRequestError
 
 SONGS_PER_PAGE = 10
@@ -52,7 +53,10 @@ class Music(commands.Cog):
             return
 
         music_queue.append(song)
-        await ctx.send(f'Queued song: {song.title}')
+        embed=discord.Embed(title="Started streaming", description=f"Playing {song.title} In The Vc",  color=discord.Colour.dark_orange(), inline=True)
+        embed.set_image(url=song.thumbnail)
+        embed.add_field(name='Requested By', value=song.requested_by.display_name, inline=True)
+        await ctx.send(embed=embed)
 
         if voice is None or not voice.is_connected():
             await channel.connect()
