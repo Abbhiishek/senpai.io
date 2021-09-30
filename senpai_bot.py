@@ -16,6 +16,7 @@ import asyncio
 from random import choice
 
 
+
 #adding our client (our bot , i am using client as bot)
 #setting up Intents
 
@@ -27,7 +28,7 @@ senpai_id = 88841403666283316
 client = commands.Bot(command_prefix=commands.when_mentioned_or( '.', 'S.', 's.', 'senpai ','Senpai '), case_insensitive=True, intents=intents)
 client.remove_command("help")
 
-print(">>>> The Master Is Logging To The Server... \n >>>Please wait for the connections to stablish...<<<<")
+print(">>>> The Master Is Logging To The Server... \n >>>Please wait for the connections to stablish...////////")
 
 #Loads all the cogs in the cogs folder 
 def load_cogs():
@@ -36,17 +37,12 @@ def load_cogs():
             client.load_extension(f"cogs.{file[:-3]}")
 
 @client.command()
-async def clear(ctx, amount ):
-  await ctx.channel.purge(limit=amount+1)
-@client.command()
-@clients.is_owner()
+@commands.is_owner()
 async def r(ctx):
   for file in os.listdir("./cogs"):
     if file.endswith(".py") and not file.startswith("_"):
       client.reload_extension(f"cogs.{file[:-3]}")
-      await ctx.send(">> Senpai reloaded cogs")
-    else:
-        await ctx.send("SOME ERROR OCCURED !")
+  await ctx.send("```>> Senpai reloaded cogs```")
 
  #creating a task that change the activity status of the bot every 5 seconds so that it show different information evry 5 second. 
 
@@ -68,7 +64,6 @@ async def on_ready():
     print(">> Data loaded.")
                
 #do stuffs
-
 @client.command()
 async def status(ctx):
             
@@ -82,7 +77,6 @@ async def status(ctx):
                 
                 embed.set_image(url="https://c.tenor.com/RGhPDvXANBQAAAAd/discord.gif")
                 await ctx.send(embed=embed)
-
 
     
 token = config("TOKEN")
