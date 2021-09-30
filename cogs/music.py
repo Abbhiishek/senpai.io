@@ -29,7 +29,7 @@ class Music(commands.Cog):
     @commands.command()
     async def play(self, ctx: commands.Context, url: str, *args: str):
         '''Adds a song to the queue either by YouTube URL or YouTube Search.'''
-
+        await ctx.channel.purge(limit=1)
         music_queue = self.music_queues[ctx.guild]
         voice = get(self.client.voice_clients, guild=ctx.guild)
 
@@ -65,6 +65,7 @@ class Music(commands.Cog):
     @commands.command()
     async def pause(self, ctx:commands.Context):
         '''PAUSE THE CURRENT SONG '''
+        await ctx.channel.purge(limit=1)
         voice = get(self.client.voice_clients, guild=ctx.guild)
         queue = self.music_queues.get(ctx.guild)
 
@@ -77,6 +78,7 @@ class Music(commands.Cog):
     @commands.command()
     async def resume(self, ctx:commands.Context):
         '''RESUME  THE CURRENT SONG '''
+        await ctx.channel.purge(limit=1)
         voice = get(self.client.voice_clients, guild=ctx.guild)
         queue = self.music_queues.get(ctx.guild)
 
@@ -90,6 +92,7 @@ class Music(commands.Cog):
     @commands.has_permissions(ban_members=True)
     async def stop(self, ctx: commands.Context):
         '''Admin command that stops playback of music and clears out the music queue.'''
+        await ctx.channel.purge(limit=1)
 
         voice = get(self.client.voice_clients, guild=ctx.guild)
         queue = self.music_queues.get(ctx.guild)
@@ -105,7 +108,7 @@ class Music(commands.Cog):
     @commands.command()
     async def skip(self, ctx: commands.Context):
         '''Puts in your vote to skip the currently played song.'''
-
+        await ctx.channel.purge(limit=1)
         voice = get(self.client.voice_clients, guild=ctx.guild)
         queue = self.music_queues.get(ctx.guild)
 
