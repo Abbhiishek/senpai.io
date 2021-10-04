@@ -89,5 +89,3 @@ switchpresence.start()
 client.run(token)
 #starting the loop for the switch_presence
 #rumming the client in the server
-
-
