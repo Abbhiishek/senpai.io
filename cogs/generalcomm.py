@@ -5,10 +5,13 @@ from discord.colour import Color
 from discord.ext import commands,tasks
 from random import choice
 import os
+import pyrebase
 import random
 import requests
 import asyncio
 
+firebase = pyrebase.initialize_app(json.loads(config("firebaseConfig")))
+db = firebase.database()
 def create(guild, channel):    #stores guild ID and channel ID
     db.child("WELCOME").child(guild).set({"CHANNEL": channel})
     
