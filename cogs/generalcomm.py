@@ -9,13 +9,57 @@ import random
 import requests
 import asyncio
 
+def create(guild, channel):    #stores guild ID and channel ID
+    db.child("WELCOME").child(guild).set({"CHANNEL": channel})
+    
+def remove(guild):
+    db.child("WELCOME").child(guild).remove()
 
+def return_channel(guild):     #returns channel ID
+    channel = db.child("WELCOME").child(guild).child("CHANNEL").get().val()
+    if channel == None:
+        return None
+    else:
+        return channel
+
+    
 class Generalcomm(commands.Cog):
     def __init__(self, commands):
         self.commands = commands
         self.senpai_id = 888414036662833164
      
-
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def wsetup(self, ctx, *, channel: discord.TextChannel = None):
+        create(ctx.guild.id, channel.id)
+        await ctx.send(f">> Welcome messages have been setup to {channel.mention} now.")
+        
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def wdisable(self, ctx):
+        if return_channel(ctx.guild.id) == None:
+            await ctx.reply("Welcome message has not been setup for this server.")
+        else:
+            remove(ctx.guild.id)
+            await ctx.reply("Successfully removed welcome message setup for this server.")
+        
+    
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        channel_id = return_channel(member.guild.id)
+        channel = self.client.get_channel(channel_id)
+        if channel_id == None:
+            return
+        elif channel_id != None:
+            if member.guild.id == 897704562339745852:
+                if member.bot:
+                    return
+                else:
+                    message = f"{member.mention} just joined the server! Everyone welcome our newest member! <a:explosion_heart:877426228775227392>"
+                    await channel.send(message)
+            else:
+                return
+      
     @commands.command()
     async def general(self, ctx):
         async with ctx.channel.typing():
