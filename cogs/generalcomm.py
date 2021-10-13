@@ -6,6 +6,8 @@ from discord.ext import commands,tasks
 from random import choice
 import os
 import pyrebase
+import json
+from decouple import config
 import random
 import requests
 import asyncio
