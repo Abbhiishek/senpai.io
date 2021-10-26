@@ -8,8 +8,9 @@ from discord import utils
 import asyncio
 from discord.user import User
 from random import choice
-
-
+import weeby
+token = config("WEEBY")
+my_weeby = weeby.Weeby('token')
 slap_gifs = [
     "https://c.tenor.com/6HwcYSSpszUAAAAC/hamsteak-hammy.gif",
     "https://c.tenor.com/rJpHDhh3jDEAAAAd/slap-slapping.gif",
@@ -113,6 +114,7 @@ class Action(commands.Cog):
             description="**AVAILABLE ACTIONS**\n`hug   ` `kiss  `, `kill  `, `punch  `, `highfive  ` , `slap  `, `poke  `, `roast `,`smirk ` ",
             color=0x2e69f2
             )
+            await ctx.send(embed=actionemb)
 
 
   
@@ -339,6 +341,16 @@ class Action(commands.Cog):
             description=f"{ctx.author.mention} kissed {mem.mention} <3\n\n*",
             color=0x2e69f2)
         emb.set_image(url=f"{random.choice(kiss_gifs)}")
+        await ctx.send(embed=emb)
+        
+     @commands.command()
+        async def happy(self, ctx):
+        
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention}Is Happy <3\n\n*",
+            color=0x2e69f2)
+        emb.set_image(my_weeby.get_gif().gif(type="happy"))
         await ctx.send(embed=emb)
 
     @commands.command()
