@@ -429,7 +429,7 @@ class Action(commands.Cog):
         if mem == None:
             mem = ctx.author
         emb = discord.Embed(
-            titile=f"{ctx.author.mention} नेई अर्झ किया हां {mem.mention} को ।<3\n\n*",
+            title=f"{ctx.author.mention} नेई अर्झ किया हां {mem.mention} को ।<3\n\n*",
             description=f"{random.choice(syri)}",
             color=0x2e69f2)
         emb.set_author(name="©Manish_swaraj X senpai.io")
