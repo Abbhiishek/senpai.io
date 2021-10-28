@@ -429,7 +429,7 @@ class Action(commands.Cog):
         if mem == None:
             mem = ctx.author
         emb = discord.Embed(
-            title=f"{ctx.author.mention} नेई अर्झ किया हां {mem.mention} को ।<3\n\n*",
+            title=" ",
             description=f"{ctx.author.mention} नेई अर्झ किया हां {mem.mention} को ।<3\n\n*",
             color=0x2e69f2)
         emb.add_field(name=" 😊 " , value=f"{random.choice(syri)}")
