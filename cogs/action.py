@@ -434,6 +434,7 @@ class Action(commands.Cog):
             color=0x2e69f2)
         emb.add_field(name=" 😊 " , value=f"{random.choice(syri)}")
         emb.set_footer(text="©Manish_swaraj X senpai.io")
+        emb.set_image(url="https://media4.giphy.com/media/3mkDnAv0hPJ7wPtKXp/200w.webp?cid=ecf05e47ha9tzyqpsoxe1lsw4c40nca3jg5ip4sxxk4faqv7&rid=200w.webp&ct=g")
         await ctx.send(embed=emb)
 
 
