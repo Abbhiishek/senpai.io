@@ -432,7 +432,7 @@ class Action(commands.Cog):
             title=f"{ctx.author.mention} नेई अर्झ किया हां {mem.mention} को ।<3\n\n*",
             description=f"{ctx.author.mention} नेई अर्झ किया हां {mem.mention} को ।<3\n\n*",
             color=0x2e69f2)
-        emb.add_field(name="  " , value=f"{random.choice(syri)}")
+        emb.add_field(name=" 😊 " , value=f"{random.choice(syri)}")
         emb.set_footer(text="©Manish_swaraj X senpai.io")
         await ctx.send(embed=emb)
 
