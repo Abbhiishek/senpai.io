@@ -302,19 +302,7 @@ class Music(commands.Cog):
         while voice.is_playing():
             await asyncio.sleep(1)
 
-    async def inactivity_disconnect(self, guild: discord.Guild):
-        '''If a song is not played for 5 minutes, automatically disconnects client from server.'''
-
-        voice = get(self.client.voice_clients, guild=guild)
-        queue = self.music_queues.get(guild)
-        last_song = queue.current_song
-
-        while voice.is_playing():
-            await asyncio.sleep(10)
-
-        await asyncio.sleep(300)
-        if queue.current_song == last_song:
-            await voice.disconnect()
+    
 
     def client_in_same_channel(self, author: discord.Member, guild: discord.Guild):
         '''Checks to see if a client is in the same channel as the client.'''
