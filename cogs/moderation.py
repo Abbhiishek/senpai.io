@@ -28,7 +28,7 @@ class MOD(commands.Cog):
     
     # COMMANDS
     @commands.command()
-    @commands.has_permission(ban_member= True)
+    @commands.has_permissions(ban_member= True)
     async def addbanwords(self,ctx,msg):
         file=open(r"./banned_words.txt","rb+")
         if msg in file :
@@ -40,7 +40,7 @@ class MOD(commands.Cog):
             await ctx.send(msg+ "added to the banned words")
 
     @commands.command()
-    @commands.has_permission(ban_member= True)
+    @commands.has_permissions(ban_member= True)
     async def ban(self,ctx , user : discord.user= None, reason= None):
         if user == None or user == ctx.message.author:
             em = discord.Embed(title="Ban", description ='You cannot  BAN  yourself >/',colour=discord.Color.red())
@@ -52,7 +52,7 @@ class MOD(commands.Cog):
         em1 = discord.Embed(title="Ban", description =f'{user} has been banned >/ from {ctx.guild.name} because of : {reason}',colour=discord.Color.red())
         await ctx.send(embed=em1)
     @commands.command()
-    @commands.has_permission(ban_member= True)
+    @commands.has_permissions(ban_member= True)
     async def unban(self,ctx , * , member):
         banned_user = await ctx.guild.bans()
         member_name ,member_disc = member.spilt('#')
@@ -65,14 +65,14 @@ class MOD(commands.Cog):
                 return
             await ctx.send(member+ 'was not found in the server!')
     @commands.command()
-    @commands.has_permission(kick_members=True)
+    @commands.has_permissions(kick_members=True)
     async def mute(self,ctx,member:discord.Member):
         muted_role = ctx.guild.get_role(911098944044531753)
         await member.add_roles(muted_role)
         await ctx.send(member.mention+"Has been `MUTED`")
 
     @commands.command()
-    @commands.has_permission(kick_members=True)
+    @commands.has_permissions(kick_members=True)
     async def Unmute(self,ctx,member:discord.Member):
         muted_role = ctx.guild.get_role(911098944044531753)
         await member.remove_roles(muted_role)
