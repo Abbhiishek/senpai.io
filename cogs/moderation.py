@@ -22,8 +22,9 @@ class MOD(commands.Cog):
         for words in file:
             if words in message.content:
                 await message.delete()
-        await commands.process_commmands()
+        
         await ctx.send("Warning given to "+ ctx.message.author.mention +"for using bad words..\n Please maintain the decoram of the server")
+        await commands.process_commmands()
 
     
     # COMMANDS
