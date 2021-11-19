@@ -16,19 +16,19 @@ class MOD(commands.Cog):
     async def on_ready(self):
         async with self.channel.typing():
             print("mod cogs loaded ........")
-    @commands.Cog.listener(message)
-    async def on_message(self,message,ctx):
+    @commands.Cog.listener()
+    async def on_message(self,msg, * ,ctx):
         file=open(r"./cogs/banned_words.txt","r")
         for words in file:
             if words in message.content:
-                await message.delete()
+                await msg.delete()
         
         await ctx.send("Warning given to "+ ctx.message.author.mention +"for using bad words..\n Please maintain the decoram of the server")
         await commands.process_commmands()
 
     
     # COMMANDS
-    @commands.command(message)
+    @commands.command()
     @commands.has_permissions(ban_members= True)
     async def addbanwords(self,ctx,message):
         file=open(r"./cogs/banned_words.txt","rb+")
