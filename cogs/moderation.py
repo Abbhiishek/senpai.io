@@ -18,7 +18,7 @@ class MOD(commands.Cog):
             print("games cogs loaded ........")
     @commands.Cog.listener()
     async def on_message(self,ctx,msg):
-        file=open(r"./banned_words.txt","r")
+        file=open(r"./cogs/banned_words.txt","r")
         for words in file:
             if words in message.content:
                 await msg.delete()
@@ -30,7 +30,7 @@ class MOD(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members= True)
     async def addbanwords(self,ctx,msg):
-        file=open(r"./banned_words.txt","rb+")
+        file=open(r"./cogs/banned_words.txt","rb+")
         if msg in file :
             await ctx.send('Word already there !')
         else:
