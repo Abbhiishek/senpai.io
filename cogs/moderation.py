@@ -16,13 +16,20 @@ class MOD(commands.Cog):
     async def on_ready(self):
         async with self.channel.typing():
             print("mod cogs loaded ........")
+    @commands.command
+    async def on_message(self,msg):
+        file=open(r"./cogs/banned_words.json","r")
+        for words in file:
+            if words in msg.content:
+                await msg.purge()
+        await commands.process_commands(msg)
 
     
     # COMMANDS
     @commands.command()
     @commands.has_permissions(ban_members= True)
     async def abw(self,ctx,message):
-        file=open(r"./cogs/banned_words.txt","rb+")
+        file=open(r"./cogs/banned_words.json","rb+")
         if message in file :
             await ctx.send('Word already there !')
         else:
