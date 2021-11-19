@@ -20,17 +20,15 @@ class MOD(commands.Cog):
     async def on_message(self,msg, * ,ctx):
         file=open(r"./cogs/banned_words.txt","r")
         for words in file:
-            if words in message.content:
+            if words in msg.content:
                 await msg.delete()
-        
-        await ctx.send("Warning given to "+ ctx.message.author.mention +"for using bad words..\n Please maintain the decoram of the server")
         await commands.process_commmands()
 
     
     # COMMANDS
     @commands.command()
     @commands.has_permissions(ban_members= True)
-    async def addbanwords(self,ctx,message):
+    async def abw(self,ctx,message):
         file=open(r"./cogs/banned_words.txt","rb+")
         if message in file :
             await ctx.send('Word already there !')
