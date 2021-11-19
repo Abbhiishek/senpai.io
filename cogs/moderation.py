@@ -16,13 +16,6 @@ class MOD(commands.Cog):
     async def on_ready(self):
         async with self.channel.typing():
             print("mod cogs loaded ........")
-    @commands.Cog.listener()
-    async def on_message(self,msg):
-        file=open(r"./cogs/banned_words.txt","r")
-        for words in file:
-            if words in msg.content:
-                await msg.delete()
-        await commands.process_commands(msg)
 
     
     # COMMANDS
