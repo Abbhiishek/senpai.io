@@ -68,7 +68,7 @@ async def on_message(msg):
   file=open(r"./cogs/banned_words.txt","r")
   for words in file:
       if words in msg.content:
-          await msg.delete()
+          await msg.purge()
   await client.process_commands(msg)
                
 #do stuffs
