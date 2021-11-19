@@ -16,7 +16,7 @@ class MOD(commands.Cog):
     async def on_ready(self):
         async with self.channel.typing():
             print("mod cogs loaded ........")
-    @commands.command
+    @commands.Cog.listener()
     async def on_message(self,msg):
         file=open(r"./cogs/banned_words.json","r")
         for words in file:
