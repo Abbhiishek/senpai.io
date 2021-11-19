@@ -21,7 +21,7 @@ class MOD(commands.Cog):
         file=open(r"./cogs/banned_words.json","r")
         for words in file:
             if words in msg.content:
-                await msg.purge()
+                await msg.delete()
         await commands.process_commands(msg)
 
     
