@@ -5,7 +5,7 @@ from discord import user
 from discord import message
 from discord.ext import commands
 import os
-
+banned_words=["saala","gandu","fuck","bitch","bhenchod"]
 class MOD(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -19,7 +19,7 @@ class MOD(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self,msg):
         file=open(r"./cogs/banned_words.json","r")
-        for words in file:
+        for words in banned_words:
             if words in msg.content:
                 await msg.delete()
         
