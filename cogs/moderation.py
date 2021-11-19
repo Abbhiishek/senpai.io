@@ -22,7 +22,7 @@ class MOD(commands.Cog):
         for words in file:
             if words in msg.content:
                 await msg.delete()
-        await commands.Cog.process_commands(msg)
+        
 
     
     # COMMANDS
