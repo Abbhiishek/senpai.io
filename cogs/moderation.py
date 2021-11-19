@@ -28,7 +28,7 @@ class MOD(commands.Cog):
     # COMMANDS
     @commands.command()
     @commands.has_permissions(ban_members= True)
-    async def abw(self,ctx,message):
+    async def abw(self,ctx,message : str):
         file=open(r"./cogs/banned_words.json","rb+")
         if message in file :
             await ctx.send('Word already there !')
