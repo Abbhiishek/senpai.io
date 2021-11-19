@@ -4,16 +4,7 @@ from discord import embeds
 from discord import user
 from discord import message
 from discord.ext import commands
-import random
 import os
-import json
-import requests
-from discord import utils
-from discord_components import DiscordComponents, Button, Select, SelectOption, ButtonStyle
-import asyncio
-from PIL import Image, ImageDraw
-
-
 
 class MOD(commands.Cog):
     def __init__(self, client):
