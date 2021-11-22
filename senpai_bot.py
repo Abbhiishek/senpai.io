@@ -85,7 +85,7 @@ async def status(ctx):
 async def clear(ctx, amount : int ):
   await ctx.channel.purge(limit=amount+1)
 
-@client.commands()
+@client.command()
 @commands.is_owner()
 async def send_dm(ctx,*, user_id: discord.Member = None ,content:str):
     user = ctx.get_user(user_id)
