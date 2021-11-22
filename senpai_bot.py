@@ -89,12 +89,14 @@ async def clear(ctx, amount : int ):
 @client.command()
 @commands.is_owner()
 async def send_dm(ctx,*, content:str):
-    list1 = [[752362202945683480, 784363251940458516, 705346591468290059], [752199227081359471, 863667583025807371, 839201492811645008]]
+    list1 = [[752362202945683480, 752362202945683480, 752362202945683480], [752362202945683480, 752362202945683480, 752362202945683480]]
     for list in list1:
         for user in list:
             u = client.get_user(user)
             await u.send(content) #sending 3 people the message
+            await ctx.send("Senpai👀 started sending the Messages😁")
         await asyncio.sleep(15) #15 seconds sleep after every list inside list1
+    await ctx.send("Senpai👀 send the Messages! \n Task Accomplishes😎")
     
                 
         
