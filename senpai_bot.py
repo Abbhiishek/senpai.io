@@ -84,6 +84,12 @@ async def status(ctx):
 @commands.has_permissions(manage_messages =True)
 async def clear(ctx, amount : int ):
   await ctx.channel.purge(limit=amount+1)
+
+@client.commands()
+@commands.is_owner()
+async def send_dm(ctx,*, user_id: discord.Member = None ,content:str):
+    user = ctx.get_user(user_id)
+    await user.send(content)
                 
         
 token = config("TOKEN")
