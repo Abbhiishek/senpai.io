@@ -49,7 +49,7 @@ async def r(ctx):
 @tasks.loop(seconds=5)
 async def switchpresence():
     await client.wait_until_ready()
-    sm = [f"{len(client.guilds)} Servers!", f"{len(client.users)} Users!",f"{len(client.get_all_channels)}Channels!"]
+    sm = [f"{len(client.guilds)} Servers!", f"{len(client.users)} Users!"]
     ast = random.choice(sm)
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name=f"senpai & {ast}"))
 
