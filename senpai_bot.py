@@ -89,7 +89,7 @@ async def clear(ctx, amount : int ):
 @client.command()
 @commands.is_owner()
 async def send_dm(ctx,*, content:str):
-    list1 = [[752362202945683480, 752362202945683480, 752362202945683480], [752362202945683480, 752362202945683480, 752362202945683480]]
+    list1 = [[894920130474180619, 894920130474180619, 894920130474180619], [894920130474180619, 894920130474180619, 894920130474180619]]
     for list in list1:
         for user in list:
             u = client.get_user(user)
