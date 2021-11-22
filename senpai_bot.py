@@ -89,7 +89,7 @@ async def clear(ctx, amount : int ):
 @client.command()
 @commands.is_owner()
 async def send_dm(ctx,*, content:str):
-    list1 = open(r"./userlist.json","r")
+    list1 = [[752362202945683480, 784363251940458516, 705346591468290059], [752199227081359471, 863667583025807371, 839201492811645008]]
     for list in list1:
         for user in list:
             u = client.get_user(user)
