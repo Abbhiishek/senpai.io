@@ -92,7 +92,7 @@ async def send_dm(ctx,*, content:str):
     list1 = open(r"./userlist.json","r")
     for list in list1:
         for user in list:
-            u = await client.get_user(user)
+            u = client.get_user(user)
             await u.send(content) #sending 3 people the message
         await asyncio.sleep(15) #15 seconds sleep after every list inside list1
     
