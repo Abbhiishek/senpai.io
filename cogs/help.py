@@ -89,14 +89,14 @@ class Help(commands.Cog):
         await ctx.send(embed=helpgamesemb)
 
     @commands.command()
-    async def help_actions(self,ctx):
+    async def help_response(self,ctx):
         helpactionsemb=discord.Embed(title="HELP REGARDING ACTION",description=" For Games Help Type--\n senpai actions" ,color=0x2e69f2)
-        await ctx.send(embed=helpactionsemb)
+        await ctx.send(embed=respemb)
     
     @commands.command()
     async def help_general(self,ctx):
         helpgeneralemb=discord.Embed(title="HELP REGARDING GERENAL COMMANDS",description=" For Games Help Type--\n senpai general" ,color=0x2e69f2)
-        await ctx.send(embed=helpgeneralemb)
+        await ctx.send(embed=generalemb)
     @commands.command()
     async def help_music(self,ctx):
         helpmusicemb=discord.Embed(title="HELP REGARDING MUSICS",description=" For Games Help Type--\n senpai music" ,color=0x2e69f2)
