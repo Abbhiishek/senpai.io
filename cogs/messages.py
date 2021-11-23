@@ -1,5 +1,6 @@
 from inspect import currentframe
 import discord
+import time
 from datetime import datetime, time
 from discord import Member, Embed
 from discord.colour import Color
@@ -35,15 +36,16 @@ class message(commands.Cog):
         if msg.content == "what's up":
             await ctx.send("Good to hear from you ! ^_^ ")
     @commands.command()
-    async def on_message(self, ctx , msg):
+    async def on_message(self, ctx , * , msg):
         if msg.content == "what is the time":
-            time = datetime.datetime.now().time()
+            time = datetime.today()
+            isoTime= time.isoformat()
             
-            await ctx.send(f" ⌚ The current time is {datetime.utcnow()} ⏲")
+            await ctx.send(f" ⌚ The current time is {isoTime} ⏲")
     @commands.command()
     async def on_message(self, ctx , msg):
         if msg.content == "what is the day":
-            Time = int(datetime.datetime.today().weekday())
+            Time = datetime.datetime.today().weekday()
             if Time == 0:
                 await ctx.send("Today is Monday Ⓜ")
             if Time == 1:
