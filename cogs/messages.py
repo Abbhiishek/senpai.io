@@ -1,3 +1,4 @@
+from inspect import currentframe
 import discord
 from datetime import datetime, time
 from discord import Member, Embed
@@ -37,24 +38,25 @@ class message(commands.Cog):
     async def on_message(self, ctx , msg):
         if msg.content == "what is the time":
             time = int(datetime.datetime.now().time())
-            await ctx.send(f" ⌚ The current time is {time} ⏲")
+            current_time = time.time.fromisoformat
+            await ctx.send(f" ⌚ The current time is {datetime.datetime.now().time()} ⏲")
     @commands.command()
     async def on_message(self, ctx , msg):
         if msg.content == "what is the day":
-            time = int(datetime.datetime.today().weekday())
-            if time == 0:
+            Time = int(datetime.datetime.today().weekday())
+            if Time == 0:
                 await ctx.send("Today is Monday Ⓜ")
-            if time == 1:
+            if Time == 1:
                 await ctx.send("Today is Tuesday 🦖")
-            if time == 2:
+            if Time == 2:
                 await ctx.send("Today is Wednesday 🧇")
-            if time == 3:
+            if Time == 3:
                 await ctx.send("Today is Thrusday 🏓")
-            if time == 4:
+            if Time == 4:
                 await ctx.send("Today is Friday 🐳")
-            if time == 5:
+            if Time == 5:
                 await ctx.send("Today is Saturday ♐")
-            if time == 6:
+            if Time == 6:
                 await ctx.send("Today is Sunday ☀")
         
 
