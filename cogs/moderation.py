@@ -5,7 +5,7 @@ from discord import user
 from discord import message
 from discord.ext import commands
 import os
-banned_words=["saala","gandu","fuck","bitch","bhenchod"]
+
 class MOD(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -16,12 +16,7 @@ class MOD(commands.Cog):
     async def on_ready(self):
         async with self.channel.typing():
             print("mod cogs loaded ........")
-    @commands.Cog.listener()
-    async def on_message(self,msg):
-        for words in banned_words:
-            if words in msg.content:
-                await msg.delete()
-        await commands.Cog.process_commands(msg)
+    
         
 
     
