@@ -37,9 +37,9 @@ class message(commands.Cog):
     @commands.command()
     async def on_message(self, ctx , msg):
         if msg.content == "what is the time":
-            time = int(datetime.datetime.now().time())
-            current_time = time.time.fromisoformat
-            await ctx.send(f" ⌚ The current time is {datetime.datetime.now().time()} ⏲")
+            time = datetime.datetime.now().time()
+            
+            await ctx.send(f" ⌚ The current time is {datetime.utcnow()} ⏲")
     @commands.command()
     async def on_message(self, ctx , msg):
         if msg.content == "what is the day":
