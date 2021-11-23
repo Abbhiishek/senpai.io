@@ -1,7 +1,7 @@
 from inspect import currentframe
 import discord
 import time
-from datetime import datetime, time
+from datetime import date, time
 from discord import Member, Embed
 from discord.colour import Color
 from discord.ext import commands,tasks
@@ -38,7 +38,7 @@ class message(commands.Cog):
     @commands.command()
     async def on_message(self, ctx , * , msg):
         if msg.content == "what is the time":
-            time = datetime.today()
+            time = date.today()
             isoTime= time.isoformat()
             
             await ctx.send(f" ⌚ The current time is {isoTime} ⏲")
@@ -48,17 +48,17 @@ class message(commands.Cog):
             Time = datetime.datetime.today().weekday()
             if Time == 0:
                 await ctx.send("Today is Monday Ⓜ")
-            if Time == 1:
+            elif Time == 1:
                 await ctx.send("Today is Tuesday 🦖")
-            if Time == 2:
+            elif Time == 2:
                 await ctx.send("Today is Wednesday 🧇")
-            if Time == 3:
+            elif Time == 3:
                 await ctx.send("Today is Thrusday 🏓")
-            if Time == 4:
+            elif Time == 4:
                 await ctx.send("Today is Friday 🐳")
-            if Time == 5:
+            elif Time == 5:
                 await ctx.send("Today is Saturday ♐")
-            if Time == 6:
+            elif Time == 6:
                 await ctx.send("Today is Sunday ☀")
         
 
