@@ -11,41 +11,41 @@ class message(commands.Cog):
         self.commands = commands
         self.senpai_id = 888414036662833164
 
-    @commands.command()
-    async def on_message(self, ctx , msg):
-        if msg.content == "good morning ":
+    @commands.Cog.listener()
+    async def on_message(self,ctx,message):
+        if message.content=="good morning":
             await ctx.send("Good Morning !😀")
         
-    @commands.command()
+    @commands.Cog.listener()
     async def on_message(self, ctx , msg):
         if msg.content == "good night ":
             await ctx.send("Good Night! 😪")
         
-    @commands.command()
+    @commands.Cog.listener()
     async def on_message(self, ctx , msg):
         if msg.content == "good evening ":
             await ctx.send("Good Evening! 🤗")
         
-    @commands.command()
+    @commands.Cog.listener()
     async def on_message(self, ctx , msg):
         if msg.content == "good afternoon ":
             await ctx.send("Good Afternoon 🥱")
         
-    @commands.command()
+    @commands.Cog.listener()
     async def on_message(self, ctx , msg):
         if msg.content == "what's up":
             await ctx.send("Good to hear from you ! ^_^ ")
-    @commands.command()
+    @commands.Cog.listener()
     async def on_message(self, ctx , * , msg):
         if msg.content == "what is the time":
             time = date.today()
             isoTime= time.isoformat()
             
             await ctx.send(f" ⌚ The current time is {isoTime} ⏲")
-    @commands.command()
+    @commands.Cog.listener()
     async def on_message(self, ctx , msg):
         if msg.content == "what is the day":
-            Time = datetime.datetime.today().weekday()
+            Time = date.today().weekday()
             if Time == 0:
                 await ctx.send("Today is Monday Ⓜ")
             elif Time == 1:
@@ -66,4 +66,4 @@ class message(commands.Cog):
 
 def setup(commands):
     commands.add_cog(message(commands))
-    print(">>> gerneral commands load ho gaya !!!!!!!!!")
+    print(">>> messgaes commands load ho gaya !!!!!!!!!")
