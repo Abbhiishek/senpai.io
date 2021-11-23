@@ -18,10 +18,10 @@ class MOD(commands.Cog):
             print("mod cogs loaded ........")
     @commands.Cog.listener()
     async def on_message(self,msg):
-        file=open(r"./cogs/banned_words.json","r")
         for words in banned_words:
             if words in msg.content:
                 await msg.delete()
+        await commands.Cog.process_commands(msg)
         
 
     
