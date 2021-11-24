@@ -29,7 +29,7 @@ class message(commands.Cog):
             await message.reply("Good to hear from you ! ^_^ ")
             await self.client.process_commands(message)
         elif message.content == "what is the date":
-            time = date.today()
+            time = datetime.today()
             isoTime= time.isoformat()
             await message.reply(f" ⌚ Today's Date  is {isoTime} ⏲")
             await self.client.process_commands(message)
