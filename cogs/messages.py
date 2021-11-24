@@ -34,9 +34,10 @@ class message(commands.Cog):
             await message.reply(f" ⌚ Today's Date  is {isoTime} ⏲")
             await self.client.process_commands(message)
         elif message.content == "what is the time":
-            time =datetime.time()
-            isoTime= time.isoformat()
-            await message.reply(f" ⌚ The current time is {isoTime} ⏲")
+            datetime_str = datetime.time()
+            datetime_obj = datetime.strptime(datetime_str, "%d%b%Y%H%M%S")
+            time = datetime_obj.time()
+            await message.reply(f" ⌚ The current time is {time} ⏲")
             await self.client.process_commands(message)
         elif message.content == "what is the day":
             Time = date.today().weekday()
