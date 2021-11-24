@@ -63,13 +63,6 @@ async def on_ready():
     print('>> Senpai is Onwork.')
     print(">> Data loaded.")
 
-banned_words=["saala","gandu","fuck","bitch","bhenchod"]
-@client.event
-async def on_message(self,msg):
-        for words in banned_words:
-            if words in msg.content:
-                await msg.delete()
-        await client.process_commands(msg)
 
 
                
