@@ -11,96 +11,96 @@ class message(commands.Cog):
         self.commands = commands
         self.senpai_id = 888414036662833164
 
-    @commands.Cog.listener("on_message")
-    async def messages(self,ctx,*,msg):
-        if msg.content=="good morning":
-            await ctx.send("Good Morning !😀")
-            await self.client.process_commands(msg)
-        elif msg.content == "good night ":
-            await ctx.send("Good Night! 😪")
-            await self.client.process_commands(msg)
-        elif msg.content == "good evening ":
-            await ctx.send("Good Evening! 🤗")
-            await self.client.process_commands(msg)
-        elif msg.content == "good afternoon ":
-            await ctx.send("Good Afternoon 🥱")
-            await self.client.process_commands(msg)
-        elif msg.content == "what's up":
-            await ctx.send("Good to hear from you ! ^_^ ")
-            await self.client.process_commands(msg)
-        elif msg.content == "what is the time":
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.content=="good morning":
+            await message.reply("Good Morning !😀")
+            await self.client.process_commands(message)
+        elif message.content == "good night ":
+            await message.reply("Good Night! 😪")
+            await self.client.process_commands(message)
+        elif message.content == "good evening ":
+            await message.reply("Good Evening! 🤗")
+            await self.client.process_commands(message)
+        elif message.content == "good afternoon ":
+            await message.reply("Good Afternoon 🥱")
+            await self.client.process_commands(message)
+        elif message.content == "what's up":
+            await message.reply("Good to hear from you ! ^_^ ")
+            await self.client.process_commands(message)
+        elif message.content == "what is the time":
             time = date.today()
             isoTime= time.isoformat()
-            await ctx.send(f" ⌚ The current time is {isoTime} ⏲")
-            await self.client.process_commands(msg)
-        elif msg.content == "what is the day":
+            await message.reply(f" ⌚ The current time is {isoTime} ⏲")
+            await self.client.process_commands(message)
+        elif message.content == "what is the day":
             Time = date.today().weekday()
             if Time == 0:
-                await ctx.send("Today is Monday Ⓜ")
-                await self.client.process_commands(msg)
+                await message.reply("Today is Monday Ⓜ")
+                await self.client.process_commands(message)
             elif Time == 1:
-                await ctx.send("Today is Tuesday 🦖")
-                await self.client.process_commands(msg)
+                await message.reply("Today is Tuesday 🦖")
+                await self.client.process_commands(message)
             elif Time == 2:
-                await ctx.send("Today is Wednesday 🧇")
-                await self.client.process_commands(msg)
+                await message.reply("Today is Wednesday 🧇")
+                await self.client.process_commands(message)
             elif Time == 3:
-                await ctx.send("Today is Thrusday 🏓")
-                await self.client.process_commands(msg)
+                await message.reply("Today is Thrusday 🏓")
+                await self.client.process_commands(message)
             elif Time == 4:
-                await ctx.send("Today is Friday 🐳")
-                await self.client.process_commands(msg)
+                await message.reply("Today is Friday 🐳")
+                await self.client.process_commands(message)
             elif Time == 5:
-                await ctx.send("Today is Saturday ♐")
-                await self.client.process_commands(msg)
+                await message.reply("Today is Saturday ♐")
+                await self.client.process_commands(message)
             elif Time == 6:
-                await ctx.send("Today is Sunday ☀")
-                await self.client.process_commands(msg)
+                await message.reply("Today is Sunday ☀")
+                await self.client.process_commands(message)
         
     # @commands.Cog.listener("on_message")
-    # async def on_message(self, msg):
-    #     if msg.content == "good night ":
-    #         await ctx.send("Good Night! 😪")
+    # async def on_message(self, message):
+    #     if message.content == "good night ":
+    #         await message.reply("Good Night! 😪")
         
     # @commands.Cog.listener("on_message")
-    # async def on_message(self, msg):
-    #     if msg.content == "good evening ":
-    #         await ctx.send("Good Evening! 🤗")
+    # async def on_message(self, message):
+    #     if message.content == "good evening ":
+    #         await message.reply("Good Evening! 🤗")
         
     # @commands.Cog.listener("on_message")
-    # async def on_message(self, msg):
-    #     if msg.content == "good afternoon ":
-    #         await ctx.send("Good Afternoon 🥱")
+    # async def on_message(self, message):
+    #     if message.content == "good afternoon ":
+    #         await message.reply("Good Afternoon 🥱")
         
     # @commands.Cog.listener("on_message")
-    # async def on_message(self, msg):
-    #     if msg.content == "what's up":
-    #         await ctx.send("Good to hear from you ! ^_^ ")
+    # async def on_message(self, message):
+    #     if message.content == "what's up":
+    #         await message.reply("Good to hear from you ! ^_^ ")
     # @commands.Cog.listener("on_message")
-    # async def on_message(self,  msg):
-    #     if msg.content == "what is the time":
+    # async def on_message(self,  message):
+    #     if message.content == "what is the time":
     #         time = date.today()
     #         isoTime= time.isoformat()
             
-    #         await ctx.send(f" ⌚ The current time is {isoTime} ⏲")
+    #         await message.reply(f" ⌚ The current time is {isoTime} ⏲")
     # @commands.Cog.listener("on_message")
-    # async def on_message(self, msg):
-    #     if msg.content == "what is the day":
+    # async def on_message(self, message):
+    #     if message.content == "what is the day":
     #         Time = date.today().weekday()
     #         if Time == 0:
-    #             await ctx.send("Today is Monday Ⓜ")
+    #             await message.reply("Today is Monday Ⓜ")
     #         elif Time == 1:
-    #             await ctx.send("Today is Tuesday 🦖")
+    #             await message.reply("Today is Tuesday 🦖")
     #         elif Time == 2:
-    #             await ctx.send("Today is Wednesday 🧇")
+    #             await message.reply("Today is Wednesday 🧇")
     #         elif Time == 3:
-    #             await ctx.send("Today is Thrusday 🏓")
+    #             await message.reply("Today is Thrusday 🏓")
     #         elif Time == 4:
-    #             await ctx.send("Today is Friday 🐳")
+    #             await message.reply("Today is Friday 🐳")
     #         elif Time == 5:
-    #             await ctx.send("Today is Saturday ♐")
+    #             await message.reply("Today is Saturday ♐")
     #         elif Time == 6:
-    #             await ctx.send("Today is Sunday ☀")
+    #             await message.reply("Today is Sunday ☀")
         
 
 
