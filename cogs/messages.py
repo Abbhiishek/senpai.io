@@ -12,7 +12,7 @@ class message(commands.Cog):
         self.senpai_id = 888414036662833164
 
     @commands.Cog.listener("on_message")
-    async def messages(self,ctx,msg):
+    async def messages(self,ctx,*,msg):
         if msg.content=="good morning":
             await ctx.send("Good Morning !😀")
             await self.client.process_commands(msg)
