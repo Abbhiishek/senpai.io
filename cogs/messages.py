@@ -1,7 +1,7 @@
 from inspect import currentframe
 import discord
 import time
-from datetime import date, time
+from datetime import date, time,datetime
 from discord import Member, Embed
 from discord.colour import Color
 from discord.ext import commands,tasks
@@ -34,7 +34,7 @@ class message(commands.Cog):
             await message.reply(f" ⌚ Today's Date  is {isoTime} ⏲")
             await self.client.process_commands(message)
         elif message.content == "what is the time":
-            time = date.today()
+            time =datetime.time()
             isoTime= time.isoformat()
             await message.reply(f" ⌚ The current time is {isoTime} ⏲")
             await self.client.process_commands(message)
