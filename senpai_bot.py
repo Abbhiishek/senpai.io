@@ -4,7 +4,6 @@ from discord.errors import ClientException
 from discord.ext import commands
 from discord.ext import tasks
 import os
-from decouple import config
 from discord.enums import UserFlags
 from discord.flags import Intents
 import random
@@ -87,22 +86,22 @@ async def clear(ctx, amount : int ):
   await ctx.channel.purge(limit=amount+1)
 
 
-@client.command()
-@commands.is_owner()
-async def send_dm(ctx,*, content:str):
-    list1 = [[894920130474180619, 894920130474180619, 894920130474180619], [894920130474180619, 894920130474180619, 894920130474180619]]
-    for list in list1:
-        for user in list:
-            u = client.get_user(user)
-            await u.send(content) #sending 3 people the message
-            await ctx.send("Senpai👀 started sending the Messages😁")
-        await asyncio.sleep(15) #15 seconds sleep after every list inside list1
-    await ctx.send("Senpai👀 send the Messages! \n Task Accomplishes😎")
+# @client.command()
+# @commands.is_owner()
+# async def send_dm(ctx,*, content:str):
+#     list1 = [[]
+#     for list in list1:
+#         for user in list:
+#             u = client.get_user(user)
+#             await u.send(content) #sending 3 people the message
+#             await ctx.send("Senpai👀 started sending the Messages😁")
+#         await asyncio.sleep(15) #15 seconds sleep after every list inside list1
+#     await ctx.send("Senpai👀 send the Messages! \n Task Accomplishes😎")
     
                 
         
-token = config("TOKEN")
+
 switchpresence.start()
-client.run(token)
+client.run("ODg4NDE0MDM2NjYyODMzMTY0.YUSWDA.dgjaXKFf9Iwa0uNz00M9JSwYIoY")
 #starting the loop for the switch_presence
 #rumming the client in the server

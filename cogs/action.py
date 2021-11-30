@@ -8,98 +8,11 @@ from discord import utils
 import asyncio
 from discord.user import User
 from random import choice
+from decouple import config
 import weeby
 
-my_weeby = weeby.Weeby('token')
-slap_gifs = [
-    "https://c.tenor.com/6HwcYSSpszUAAAAC/hamsteak-hammy.gif",
-    "https://c.tenor.com/rJpHDhh3jDEAAAAd/slap-slapping.gif",
-    "https://c.tenor.com/Ws6Dm1ZW_vMAAAAC/girl-slap.gif",
-    "https://c.tenor.com/EfhPfbG0hnMAAAAC/slap-handa-seishuu.gif",
-    "https://c.tenor.com/cM-pYb791poAAAAC/back-slap-backhand.gif",
-    "https://c.tenor.com/L0U84S9YTrYAAAAC/pikachu-slap.gif",
-    "https://c.tenor.com/OYYTU-ShQTIAAAAd/slapping-wet-slap.gif",
-    "https://c.tenor.com/EzwsHlQgUo0AAAAC/slap-in-the-face-angry.gif",
-]
-
-smirk_gifs = [
-    "https://c.tenor.com/spYJzEXz8BsAAAAC/smirk-ryan-reynolds.gif",
-    "https://c.tenor.com/BEojRq5dfQsAAAAd/smile-evil-smile.gif",
-    "https://c.tenor.com/DsltXyB5fJQAAAAd/smirk-funny.gif",
-    "https://c.tenor.com/KNEnPw-KrekAAAAd/naughty-dog.gif",
-    "https://c.tenor.com/vYS9rGpnqiIAAAAC/smug-anime.gif",
-    "https://c.tenor.com/Z-HudBx1fJIAAAAd/bts-bangtan-boys.gif",
-    "https://c.tenor.com/H_f_Bf7scj4AAAAC/jyugo-nanbaka.gif",
-    "https://c.tenor.com/EqmQKDJghk4AAAAC/anime-pink-lips.gif",
-    "https://c.tenor.com/8utxYD5HDKgAAAAC/sasuke-grin.gif",
-    "https://c.tenor.com/sWgHS98drkgAAAAC/spongebob-evil-smile.gif",
-    ""
-]
-
-highfive_gifs =[
-    "https://c.tenor.com/mpCnVpX0xIYAAAAC/high-five-spongebob.gif",
-    "https://c.tenor.com/eCtm70W3J2QAAAAS/borat-high-five.gif",
-    "https://c.tenor.com/2oPrdhJpUpEAAAAS/kuzco-yzma.gif",
-    "https://c.tenor.com/ZfU8QUZXq30AAAAS/high-five.gif",
-    "https://c.tenor.com/Pfi1xdN7JvYAAAAS/cat-animated.gif",
-    "https://c.tenor.com/q6PnbtGXo5AAAAAS/tos-high-five.gif",
-    "https://c.tenor.com/UMADm-COXgcAAAAS/monday-high-five.gif",
-]
-
-punch_gifs =[
-    "https://c.tenor.com/wvCSg5-wYssAAAAS/nope-stupid.gif",
-    "https://c.tenor.com/_DOU2Mi1TG0AAAAS/dean-winchester-punch.gif",
-    "https://c.tenor.com/29hGOXF71nkAAAAS/grab-and-punch-grab-n-punch.gif",
-    "https://c.tenor.com/--80HfIQWT4AAAAS/punchy-one-punch-man.gif",
-    "https://c.tenor.com/25f3EArLzgcAAAAd/punch-in-the-face-joshua-buatsi.gif",
-    "https://c.tenor.com/rjR2Z67erfkAAAAS/death-saitama.gif",
-    "https://c.tenor.com/1PwavmgiEK0AAAAd/onepunchman-punch.gif",
-]
-
-poke_gifs = [ 
-    "https://c.tenor.com/G3JseGtZ31kAAAAd/h%C3%A1mster-susto.gif",
-    "https://c.tenor.com/QDNTqOInK5MAAAAC/anime-poke.gif",
-    "https://c.tenor.com/ubtPHkuWkGgAAAAC/baymax-big-hero6.gif",
-    "https://c.tenor.com/YbemOLXA_UIAAAAd/octopus-touch.gif"
-]
-
-simp_gifs = [
-    "https://i.imgur.com/RlrlmmP.gif",
-    "https://c.tenor.com/nOARJZENR9UAAAAS/anime-in-love.gif",
-    "https://c.tenor.com/hCqcNUuWCf0AAAAS/blush-anime.gif",
-    "https://c.tenor.com/u1H1QTx8sxIAAAAC/anime-in-love.gif",
-    "https://c.tenor.com/RzmW-BtosV4AAAAS/show-by-rock-cyan-hijirikawa.gif",
-    "https://c.tenor.com/xc7x66o3rPUAAAAS/anime-love-anime.gif"
-]
-roast = [
-    "hahaha",
-    "If your brain was dynamite, there wouldn’t be enough to blow your hat off",
-    " You are more disappointing than an unsalted pretzel."
-    " Light travels faster than sound, which is why you seemed bright until you spoke.",
-    " We were happily married for one month, but unfortunately, we’ve been married for 10 years.",
-    "Your kid is so annoying he makes his Happy Meal cry.",
-    "You have so many gaps in your teeth it looks like your tongue is in jail.",
-    "Your secrets are always safe with me. I never even listen when you tell me them.",
-    "I’ll never forget the first time we met. But I’ll keep trying.",
-    "I forgot the world revolves around you. My apologies! How silly of me.",
-    "I only take you everywhere I go just so I don’t have to kiss you goodbye.",
-    " Hold still. I’m trying to imagine you with a personality.",
-    "Our kid must have gotten his brain from you! I still have mine.",
-    "Your face makes onions cry.",
-]
-hug_gifs=[
-    "https://c.tenor.com/5tkkWFegYvUAAAAd/hug-couple.gif",
-    
-    "https://c.tenor.com/MBWZf-CK98gAAAAj/hug-love.gif",
-]
-kiss_gifs=[
-    "https://tenor.com/view/love-wife-husband-yes-kiss-gif-17770873",
-    "https://c.tenor.com/M0dI1g4vdr0AAAAj/love-wife.gif",
-    "https://c.tenor.com/YAVvwR_va6MAAAAj/kiss-love.gif",
-    "https://c.tenor.com/cZ4AykKErIYAAAAj/hugs-love.gif",
-    "https://c.tenor.com/fU2-2CgMonsAAAAj/kiss-dinner.gif"
-    "https://c.tenor.com/XMsFBHyi2WAAAAAd/love-you-my-princess-kiss-on-forehead.gif"
- ]
+token = config('token')
+my_weeby = weeby.Weeby(token)
 class Action(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -307,8 +220,52 @@ class Action(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def roast(self, ctx, member: discord.Member):
-        await ctx.send(f"{member.mention}\n{random.choice(roast)}")
+    async def roast(self, ctx, mem: discord.Member):
+        if mem == None:
+            mem = ctx.author
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} Roasted {mem.mention} <G\n\n*",
+            color=0x2e69f2)
+        emb.set_image(url = my_weeby.get_gif().gif(type="roast"))
+        await ctx.send(embed=emb)
+    @commands.command()
+    async def wave(self, ctx, mem: discord.Member):
+        if mem == None:
+            mem = ctx.author
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} waved {mem.mention} <G\n\n*",
+            color=0x2e69f2)
+        emb.set_image(url = my_weeby.get_gif().gif(type="wave"))
+        await ctx.send(embed=emb)
+    @commands.command()
+    async def bore(self, ctx):
+        
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} is bored !",
+            color=0x2e69f2)
+        emb.set_image(url = my_weeby.get_gif().gif(type="bored"))
+        await ctx.send(embed=emb)
+    @commands.command()
+    async def angry(self, ctx):
+        
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} is bored !",
+            color=0x2e69f2)
+        emb.set_image(url = my_weeby.get_gif().gif(type="angry"))
+        await ctx.send(embed=emb)
+    @commands.command()
+    async def confused(self, ctx):
+        
+        emb = discord.Embed(
+            titile="",
+            description=f"{ctx.author.mention} is bored !",
+            color=0x2e69f2)
+        emb.set_image(url = my_weeby.get_gif().gif(type="confused"))
+        await ctx.send(embed=emb)
 
     @commands.command()
     async def simp(self, ctx, mem: discord.Member = None):
@@ -318,16 +275,11 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} simps on {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(simp_gifs)}")
+        emb.set_image(url = my_weeby.get_gif().gif(type="simp"))
         await ctx.send(embed=emb)
     @commands.command()
     async def lyr(self, ctx):
-        emb = discord.Embed(
-            titile="",
-            description=my_weeby.get_json_response().lyrics(track="f{ctx}"),
-            color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(simp_gifs)}")
-        await ctx.send(embed=emb)
+        await ctx.send(my_weeby.get_json_response().lyrics(track="f{ctx}"))
 
 
     @commands.command()
@@ -338,7 +290,7 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} hugged {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(hug_gifs)}")
+        emb.set_image(url = my_weeby.get_gif().gif(type="hug"))
         await ctx.send(embed=emb)
     @commands.command()
     async def kiss(self, ctx, mem: discord.Member = None):
@@ -348,7 +300,7 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} kissed {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(kiss_gifs)}")
+        emb.set_image(url=my_weeby.get_gif().gif(type="kiss"))
         await ctx.send(embed=emb)
     @commands.command()
     async def poke(self, ctx, mem: discord.Member = None):
@@ -358,7 +310,7 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} poked {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(poke_gifs)}")
+        emb.set_image(url=my_weeby.get_gif().gif(type="poke"))
         await ctx.send(embed=emb)
 
         
@@ -370,7 +322,7 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} highfive {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(highfive_gifs)}")
+        emb.set_image(url=my_weeby.get_gif().gif(type="highfive"))
         await ctx.send(embed=emb)
 
     @commands.command()
@@ -381,7 +333,7 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} Punched {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(punch_gifs)}")
+        emb.set_image(url=my_weeby.get_gif().gif(type="punch"))
         await ctx.send(embed=emb)
 
 
@@ -393,7 +345,7 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} Slaped {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(slap_gifs)}")
+        emb.set_image(url=my_weeby.get_gif().gif(type="slap"))
         await ctx.send(embed=emb)
 
     @commands.command()
@@ -404,7 +356,7 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} smirked {mem.mention} <3\n\n*",
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(smirk_gifs)}")
+        emb.set_image(url=my_weeby.get_gif().gif(type="smirk"))
         await ctx.send(embed=emb)
 
     @commands.command()
