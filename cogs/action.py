@@ -247,10 +247,9 @@ class Action(commands.Cog):
             titile="",
             description=f"{ctx.author.mention} is bored !",
             color=0x2e69f2)
-<<<<<<< HEAD
+
         emb.set_image(url = my_weeby.get_gif().gif(type="bored"))
-=======
->>>>>>> 3cc6105516cc277cc5eec56663ccee2176de6ca5
+
         await ctx.send(embed=emb)
     @commands.command()
     async def angry(self, ctx):
