@@ -10,27 +10,26 @@ from random import choice
 from decouple import config
 import requests
 
-
-url = "https://joke3.p.rapidapi.com/v1/joke/%7Bid%7D"
-
 headers = {
-    'x-rapidapi-host': "joke3.p.rapidapi.com",
+    'x-rapidapi-host': "yahoo-weather5.p.rapidapi.com",
     'x-rapidapi-key': "52c4165dc4msh25ad16f273bccb8p1c3002jsnb6f45071252d"
     }
 
-response = requests.request("GET", url, headers=headers)
-
-
-class horoscope(commands.Cog):
+class weather(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.senpai_id = 888414036662833164
 
     @commands.command()
-    async def horoscope(self, ctx):
+    async def weather(self, ctx , msg):
+        url = "https://yahoo-weather5.p.rapidapi.com/weather"
+
+        querystring = {"location":f"{msg}","format":"json","u":"c"}
+        response = requests.request("GET", url, headers=headers, params=querystring)
+
         await ctx.send(response.text)
 
 
 def setup(client):
-    client.add_cog(horoscope(client))
-    print(">>> horoscope load ho gaya !!!!!!!!!")
+    client.add_cog(weather(client))
+    print(">>> weather load ho gaya !!!!!!!!!")
