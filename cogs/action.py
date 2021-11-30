@@ -6,11 +6,14 @@ import json
 import requests
 from discord import utils
 import asyncio
+from decouple import config
 from discord.user import User
 from random import choice
 import weeby
-token = config("token")
+
+token = config('token')
 my_weeby = weeby.Weeby(token)
+
 slap_gifs = [
     "https://c.tenor.com/6HwcYSSpszUAAAAC/hamsteak-hammy.gif",
     "https://c.tenor.com/rJpHDhh3jDEAAAAd/slap-slapping.gif",
