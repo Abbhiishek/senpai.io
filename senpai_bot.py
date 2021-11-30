@@ -1,4 +1,5 @@
 #importing databases we need for the projects
+from decouple import Config
 import discord
 from discord.errors import ClientException
 from discord.ext import commands
@@ -100,8 +101,8 @@ async def clear(ctx, amount : int ):
     
                 
         
-
+Token = Config("TOKEN")
 switchpresence.start()
-client.run("ODg4NDE0MDM2NjYyODMzMTY0.YUSWDA.dgjaXKFf9Iwa0uNz00M9JSwYIoY")
+client.run(Token)
 #starting the loop for the switch_presence
 #rumming the client in the server
