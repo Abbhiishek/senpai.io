@@ -326,7 +326,6 @@ class Action(commands.Cog):
             titile="",
             description=my_weeby.get_json_response().lyrics(track="f{ctx}"),
             color=0x2e69f2)
-        emb.set_image(url=f"{random.choice(simp_gifs)}")
         await ctx.send(embed=emb)
 
 
