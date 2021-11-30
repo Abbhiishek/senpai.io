@@ -9,6 +9,7 @@ from discord.enums import UserFlags
 from discord.flags import Intents
 import random
 import json
+from decouple import config
 from datetime import datetime
 from discord.user import ClientUser
 import requests
@@ -101,8 +102,8 @@ async def clear(ctx, amount : int ):
     
                 
         
-Token = Config("TOKEN")
+token = config("TOKEN")
 switchpresence.start()
-client.run(Token)
+client.run(token)
 #starting the loop for the switch_presence
 #rumming the client in the server

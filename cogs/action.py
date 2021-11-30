@@ -6,7 +6,6 @@ import json
 import requests
 from discord import utils
 import asyncio
-from decouple import config
 from discord.user import User
 from random import choice
 from decouple import config
