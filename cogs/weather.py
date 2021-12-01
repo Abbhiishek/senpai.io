@@ -10,15 +10,10 @@ from random import choice
 from decouple import config
 
 url = "https://weatherapi-com.p.rapidapi.com/current.json"
-
-
-
 headers = {
     'x-rapidapi-host': "weatherapi-com.p.rapidapi.com",
     'x-rapidapi-key': "52c4165dc4msh25ad16f273bccb8p1c3002jsnb6f45071252d"
     }
-
-
 class weather(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -29,21 +24,34 @@ class weather(commands.Cog):
         
         querystring = {"q":f"{msg}"}
         response = requests.request("GET", url, headers=headers, params=querystring)
+        location=response.location().name
+        Region=response.location().region
+        Country=response.location().country
+        Tempertaure=response.current().temp_c
+        Condition=response.current().condition().text
+        Winds=response.location().wind_kph
+        Windd=response.location().wind_degree
+        Winddir=response.current().vwind_dir
+        Humidity=response.current().humidity
+        Feelslike=response.current().feelslike_c
+        icon=response.current().condition().icon
+        
         weathere=discord.Embed(
              title="Weather Informations ",
             description=f"Weather information for the {msg}",
             color=discord.Colour.random()
         )
-        weathere.set_thumbnail(url= (response.current.condition.icon))
-        weathere.add_field(name="Location", value=[response.location.name])
-        weathere.add_field(name="Region", value=(response.location.region))
-        weathere.add_field(name="Country", value=(response.location.country))
-        weathere.add_field(name="Tempertaure", value=(f"{response.current.temp_c}॰C"))
-        weathere.add_field(name="Condition", value=(response.current.condition.text))
-        weathere.add_field(name="Wind speed", value=(f"{response.current.wind_kph}Kph"))
-        weathere.add_field(name="Wind Degree", value=(f"{response.current.wind_degree} toward {response.current.vwind_dir}"))
-        weathere.add_field(name="Humidity", value=(response.current.humidity))
-        weathere.add_field(name="Feels ", value=(response.current.feelslike_c))
+        weathere.set_thumbnail(url= icon)
+        weathere.add_field(name="Location", value=f"{location}")
+        weathere.add_field(name="Region", value=f"{Region}")
+        weathere.add_field(name="Country", value=f"{Country}")
+        weathere.add_field(name="Tempertaure", value=(f"{Tempertaure}॰C"))
+        weathere.add_field(name="Condition", value=f"{Condition}")
+        weathere.add_field(name="Wind speed", value=f"{Winds}")
+        weathere.add_field(name="Wind Degree", value=(f"{Windd} toward {Winddir}"))
+        weathere.add_field(name="Humidity", value=f"{Humidity}")
+        weathere.add_field(name="Feels ", value=(f"{Feelslike}॰C"))
+        weathere.add_field(name="Feels ", value=(f"{Feelslike}॰C"))
         
         
 
