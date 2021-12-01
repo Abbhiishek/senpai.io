@@ -1,4 +1,5 @@
 import discord
+from discord import client
 from discord.ext import commands
 import requests
 import requests
@@ -15,10 +16,12 @@ class chatty(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self , msg):
-
-        querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":f"{msg}"}
-        response = requests.request("GET", url, headers=headers, params=querystring)
-        await msg.reply(response.text)
+        if msg.author != client.user:
+            
+            querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":f"{msg}"}
+            response = requests.request("GET", url, headers=headers, params=querystring)
+            response1 = response.cnt()
+            await msg.reply(response1)
 
 
 

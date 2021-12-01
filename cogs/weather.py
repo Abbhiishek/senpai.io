@@ -34,16 +34,16 @@ class weather(commands.Cog):
             description=f"Weather information for the {msg}",
             color=discord.Colour.random()
         )
-        weathere.set_thumbnail(url= response.current.condition.icon)
-        weathere.add_field(name="Location", value=response.location.name)
-        weathere.add_field(name="Region", value=response.location.region)
-        weathere.add_field(name="Country", value=response.location.country)
-        weathere.add_field(name="Tempertaure", value=f"{response.current.temp_c}॰C")
-        weathere.add_field(name="Condition", value=response.current.condition.text)
-        weathere.add_field(name="Wind speed", value=f"{response.current.wind_kph}Kph")
-        weathere.add_field(name="Wind Degree", value=f"{response.current.wind_degree} toward {response.current.vwind_dir}")
-        weathere.add_field(name="Humidity", value=response.current.humidity)
-        weathere.add_field(name="Feels ", value=response.current.feelslike_c)
+        weathere.set_thumbnail(url= (response.current.condition.icon))
+        weathere.add_field(name="Location", value=[response.location.name])
+        weathere.add_field(name="Region", value=(response.location.region))
+        weathere.add_field(name="Country", value=(response.location.country))
+        weathere.add_field(name="Tempertaure", value=(f"{response.current.temp_c}॰C"))
+        weathere.add_field(name="Condition", value=(response.current.condition.text))
+        weathere.add_field(name="Wind speed", value=(f"{response.current.wind_kph}Kph"))
+        weathere.add_field(name="Wind Degree", value=(f"{response.current.wind_degree} toward {response.current.vwind_dir}"))
+        weathere.add_field(name="Humidity", value=(response.current.humidity))
+        weathere.add_field(name="Feels ", value=(response.current.feelslike_c))
         
         
 
