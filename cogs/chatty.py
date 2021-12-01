@@ -20,7 +20,7 @@ class chatty(commands.Cog):
             
             querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":f"{msg}"}
             response = requests.request("GET", url, headers=headers, params=querystring)
-            response1 = response["cnt"]
+            response1 = response[r"cnt"]
             await msg.reply(response1)
 
 
