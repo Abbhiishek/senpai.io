@@ -29,9 +29,9 @@ class jokes(commands.Cog):
         self.client = client
         self.senpai_id = 888414036662833164
 
-    @commands.command()
-    async def jokes(self, ctx):
-        await ctx.send(res["cnt"])
+    # @commands.command()
+    # async def jokes(self, ctx):
+    #     await ctx.send(response.text)
 
 
 def setup(client):
