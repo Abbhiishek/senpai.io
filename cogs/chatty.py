@@ -15,8 +15,7 @@ class chatty(commands.Cog):
         self.senpai_id = 888414036662833164
 
     @commands.Cog.listener()
-    async def on_message(self , msg, ctx):
-        if ctx.channel == ("senpai-commands"):
+    async def on_message(self , msg,):
             if msg.author == client.User:
                 return
             else:
