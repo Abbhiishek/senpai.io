@@ -2,12 +2,6 @@ import discord
 from discord import embeds
 from discord.ext import commands
 import random
-import json
-import requests
-from discord import utils
-import asyncio
-from discord.user import User
-from random import choice
 from decouple import config
 import weeby
 
@@ -220,7 +214,7 @@ class Action(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command()
-    async def roast(self, ctx, mem: discord.Member):
+    async def roast(self, ctx, mem: discord.Member = None):
         if mem == None:
             mem = ctx.author
         emb = discord.Embed(
@@ -230,7 +224,7 @@ class Action(commands.Cog):
         emb.set_image(url = my_weeby.get_gif().gif(type="roast"))
         await ctx.send(embed=emb)
     @commands.command()
-    async def wave(self, ctx, mem: discord.Member):
+    async def wave(self, ctx, mem: discord.Member = None):
         if mem == None:
             mem = ctx.author
         emb = discord.Embed(
@@ -251,20 +245,30 @@ class Action(commands.Cog):
 
         await ctx.send(embed=emb)
     @commands.command()
-    async def angry(self, ctx):
+    async def angry(self, ctx, mem: discord.Member = None):
+        if mem == None:
+            mem = ctx.author
         
-        emb = discord.Embed(
-            titile="",
-            description=f"{ctx.author.mention} is bored !",
-            color=0x2e69f2)
-        emb.set_image(url = my_weeby.get_gif().gif(type="angry"))
-        await ctx.send(embed=emb)
+            emb = discord.Embed(
+                titile="",
+                description=f"{ctx.author.mention} is angry !",
+                color=0x2e69f2)
+            emb.set_image(url = my_weeby.get_gif().gif(type="angry"))
+            await ctx.send(embed=emb)
+        else:
+            emb = discord.Embed(
+                titile="",
+                description=f"{ctx.author.mention} is angry! with {mem.mention}",
+                color=0x2e69f2)
+            emb.set_image(url = my_weeby.get_gif().gif(type="angry"))
+            await ctx.send(embed=emb)
+
     @commands.command()
     async def confused(self, ctx):
         
         emb = discord.Embed(
             titile="",
-            description=f"{ctx.author.mention} is bored !",
+            description=f"{ctx.author.mention} is confused !",
             color=0x2e69f2)
         emb.set_image(url = my_weeby.get_gif().gif(type="confused"))
         await ctx.send(embed=emb)
@@ -273,11 +277,17 @@ class Action(commands.Cog):
     async def simp(self, ctx, mem: discord.Member = None):
         if mem == None:
             mem = ctx.author
-        emb = discord.Embed(
+            emb = discord.Embed(
+                    titile="",
+                    description=f"{ctx.author.mention} simps on {mem.mention} <3",
+                    color=0x2e69f2)
+            emb.set_image(url = my_weeby.get_gif().gif(type="simp")) 
+        else:
+            emb = discord.Embed(
             titile="",
-            description=f"{ctx.author.mention} simps on {mem.mention} <3\n\n*",
+            description=f"{ctx.author.mention} simps <3",
             color=0x2e69f2)
-        emb.set_image(url = my_weeby.get_gif().gif(type="simp"))
+            emb.set_image(url = my_weeby.get_gif().gif(type="simp"))
         await ctx.send(embed=emb)
     @commands.command()
     async def lyr(self, ctx):
@@ -288,19 +298,31 @@ class Action(commands.Cog):
     async def hug(self, ctx, mem: discord.Member = None):
         if mem == None:
             mem = ctx.author
-        emb = discord.Embed(
-            titile="",
-            description=f"{ctx.author.mention} hugged {mem.mention} <3\n\n*",
-            color=0x2e69f2)
-        emb.set_image(url = my_weeby.get_gif().gif(type="hug"))
+            emb = discord.Embed(
+                titile="",
+                description=f"{ctx.author.mention} hugged someone unknown <3",
+                color=0x2e69f2)
+            emb.set_image(url = my_weeby.get_gif().gif(type="hug"))
+        else:
+            emb = discord.Embed(
+                titile="",
+                description=f"{ctx.author.mention} hugged {mem.mention} <3",
+                color=0x2e69f2)
+            emb.set_image(url = my_weeby.get_gif().gif(type="hug"))
         await ctx.send(embed=emb)
     @commands.command()
     async def kiss(self, ctx, mem: discord.Member = None):
         if mem == None:
             mem = ctx.author
-        emb = discord.Embed(
+            emb = discord.Embed(
+                titile="",
+                description=f"{ctx.author.mention} kissed someone in space <3",
+                color=0x2e69f2)
+            emb.set_image(url=my_weeby.get_gif().gif(type="kiss"))
+        else:
+            emb = discord.Embed(
             titile="",
-            description=f"{ctx.author.mention} kissed {mem.mention} <3\n\n*",
+            description=f"{ctx.author.mention} kissed {mem.mention} <3",
             color=0x2e69f2)
         emb.set_image(url=my_weeby.get_gif().gif(type="kiss"))
         await ctx.send(embed=emb)
@@ -388,7 +410,7 @@ class Action(commands.Cog):
             color=0x2e69f2)
         emb.add_field(name=" 😊 " , value=f"{random.choice(syri)}")
         emb.set_footer(text="©Manish_swaraj X senpai.io")
-        emb.set_image(url="https://media4.giphy.com/media/3mkDnAv0hPJ7wPtKXp/200w.webp?cid=ecf05e47ha9tzyqpsoxe1lsw4c40nca3jg5ip4sxxk4faqv7&rid=200w.webp&ct=g")
+        emb.set_image(url=my_weeby.get_gif().gif(type="love"))
         await ctx.send(embed=emb)
 
 

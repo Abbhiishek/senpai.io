@@ -1,24 +1,13 @@
 import discord
-from discord import embeds
 from discord.ext import commands
-import random
-import json
 import requests
-from discord import utils
-from discord.user import User
-from random import choice
-from decouple import config
 import requests
 
-
-url = "https://joke3.p.rapidapi.com/v1/joke/%7Bid%7D"
-
+url = "https://sameer-kumar-aztro-v1.p.rapidapi.com/"
 headers = {
-    'x-rapidapi-host': "joke3.p.rapidapi.com",
+    'x-rapidapi-host': "sameer-kumar-aztro-v1.p.rapidapi.com",
     'x-rapidapi-key': "52c4165dc4msh25ad16f273bccb8p1c3002jsnb6f45071252d"
     }
-
-response = requests.request("GET", url, headers=headers)
 
 
 class horoscope(commands.Cog):
@@ -27,10 +16,42 @@ class horoscope(commands.Cog):
         self.senpai_id = 888414036662833164
 
     @commands.command()
-    async def horoscope(self, ctx):
+    async def horoscope(self, ctx,msg):
+        if msg == None:
+            await ctx.reply("SIGN IS REQUIRED IN FORM OF STRING \n List of possible values of \"sign\":Aries\nTaurus\nGemini\nCancer\nLeo\nVirgo\nLibra\nScorpio\nSagittarius\nCapricorn\nAquarius\nPisces")
+        querystring = {"sign":f"{msg}","day":"today"}
+        response = requests.request("POST", url, headers=headers, params=querystring)
         await ctx.send(response.text)
 
 
 def setup(client):
     client.add_cog(horoscope(client))
     print(">>> horoscope load ho gaya !!!!!!!!!")
+
+# sign
+# STRING
+# aquarius
+# REQUIRED
+# List of possible values of \"sign\":
+
+# Aries
+# Taurus
+# Gemini
+# Cancer
+# Leo
+# Virgo
+# Libra
+# Scorpio
+# Sagittarius
+# Capricorn
+# Aquarius
+# Pisces
+# day
+# STRING
+# today
+# REQUIRED
+# Possible values for \"day\":
+
+# today
+# yesterday
+# tomorrow
