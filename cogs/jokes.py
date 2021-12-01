@@ -21,8 +21,6 @@ headers = {
     }
 
 response = requests.request("GET", url, headers=headers)
-res=response.json()
-
 
 class jokes(commands.Cog):
     def __init__(self, client):
