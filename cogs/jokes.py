@@ -21,6 +21,7 @@ headers = {
     }
 
 response = requests.request("GET", url, headers=headers)
+res=response.json()
 
 
 class jokes(commands.Cog):
@@ -30,7 +31,7 @@ class jokes(commands.Cog):
 
     @commands.command()
     async def jokes(self, ctx):
-        await ctx.send(response.text)
+        await ctx.send(res["cnt"])
 
 
 def setup(client):
