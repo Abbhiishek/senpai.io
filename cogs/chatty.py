@@ -14,15 +14,15 @@ class chatty(commands.Cog):
         self.client = client
         self.senpai_id = 888414036662833164
 
-    @commands.Cog.listener()
-    async def on_message(self , msg):
-            if msg.author.id == self.user.id:
-                return
-            async with msg.channel.typing():
-                querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":f"{msg}"}
-                response = requests.request("GET", url, headers=headers, params=querystring)
-                res=response.json()
-                await msg.reply(res["cnt"])
+    # @commands.Cog.listener()
+    # async def on_message(self , msg):
+    #         if msg.author.id == self.user.id:
+    #             return
+    #         async with msg.channel.typing():
+    #             querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":f"{msg}"}
+    #             response = requests.request("GET", url, headers=headers, params=querystring)
+    #             res=response.json()
+    #             await msg.reply(res["cnt"])
 
 
 

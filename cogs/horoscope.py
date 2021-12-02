@@ -1,4 +1,5 @@
 import discord
+from discord import colour
 from discord.ext import commands
 import requests
 import requests
@@ -21,7 +22,10 @@ class horoscope(commands.Cog):
             await ctx.reply("SIGN IS REQUIRED IN FORM OF STRING \n List of possible values of \"sign\":Aries\nTaurus\nGemini\nCancer\nLeo\nVirgo\nLibra\nScorpio\nSagittarius\nCapricorn\nAquarius\nPisces")
         querystring = {"sign":f"{msg}","day":"today"}
         response = requests.request("POST", url, headers=headers, params=querystring)
-        await ctx.send(response.text)
+        data=response.json()
+        embed=discord.Embed(title="Horoscope", description=f"Todays horoscope for {msg}", colour=discord.colour.random())
+        embed.add_field(name="Sign", value=f"{msg}",inline=True)
+        await ctx.send(embed=embed)
 
 
 def setup(client):

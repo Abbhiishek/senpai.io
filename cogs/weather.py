@@ -25,7 +25,7 @@ class weather(commands.Cog):
         querystring = {"q":f"{msg}"}
         response = requests.request("GET", url, headers=headers, params=querystring)
         response=response.json()
-        location=response.location().name
+        location=response["location" "name"]
         Region=response.location().region
         Country=response.location().country
         Tempertaure=response.current().temp_c
