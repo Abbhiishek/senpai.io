@@ -22,7 +22,7 @@ class horoscope(commands.Cog):
             await ctx.reply("SIGN IS REQUIRED IN FORM OF STRING \n List of possible values of \"sign\":Aries\nTaurus\nGemini\nCancer\nLeo\nVirgo\nLibra\nScorpio\nSagittarius\nCapricorn\nAquarius\nPisces")
         querystring = {"sign":f"{msg}","day":"today"}
         response = requests.request("POST", url, headers=headers, params=querystring).json()
-        date_range=response.['date_range']
+        date_range=response['date_range']
         current_date=response['current_date']
         description=response['description']
         compatibility=response['compatibility']
