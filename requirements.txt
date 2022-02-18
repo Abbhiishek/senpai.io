@@ -14,5 +14,5 @@ pet-pet-gif
 youtube_dl
 pynacl
 ffmpeg
-DiscordUtils
+DiscordUtilsMod
 weeby.py
