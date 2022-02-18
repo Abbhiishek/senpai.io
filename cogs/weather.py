@@ -25,12 +25,12 @@ class weather(commands.Cog):
         querystring = {"q":f"{msg}"}
         response = requests.request("GET", url, headers=headers, params=querystring).json()
         location=response['location'][0]['name']
-        Region=response.['location'][0]['region']
+        Region=response['location'][0]['region']
         Country=response['location'][0]['country']
         Tempertaure=response['current'][0]['temp_c']
         Condition=response['current']['condition'][0]['text']
         Winds=response['current'][0]['wind_kph']
-        Windd=response.['current'][0]['wind_degree']
+        Windd=response['current'][0]['wind_degree']
         Winddir=response['current']['wind_dir']
         Humidity=response['current'][0]['humidity']
         Feelslike=response['current'][0]['feelslike_c']
