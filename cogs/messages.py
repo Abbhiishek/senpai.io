@@ -16,13 +16,13 @@ class message(commands.Cog):
         if message.content=="good morning":
             await message.reply("Good Morning !😀")
             await self.client.process_commands(message)
-        elif message.content == "good night ":
+        elif message.content == "good night":
             await message.reply("Good Night! 😪")
             await self.client.process_commands(message)
-        elif message.content == "good evening ":
+        elif message.content == "good evening":
             await message.reply("Good Evening! 🤗")
             await self.client.process_commands(message)
-        elif message.content == "good afternoon ":
+        elif message.content == "good afternoon":
             await message.reply("Good Afternoon 🥱")
             await self.client.process_commands(message)
         elif message.content == "what's up":
@@ -62,22 +62,22 @@ class message(commands.Cog):
             elif Time == 6:
                 await message.reply("Today is Sunday ☀")
                 await self.client.process_commands(message)
-        
+
     # @commands.Cog.listener("on_message")
     # async def on_message(self, message):
     #     if message.content == "good night ":
     #         await message.reply("Good Night! 😪")
-        
+
     # @commands.Cog.listener("on_message")
     # async def on_message(self, message):
     #     if message.content == "good evening ":
     #         await message.reply("Good Evening! 🤗")
-        
+
     # @commands.Cog.listener("on_message")
     # async def on_message(self, message):
     #     if message.content == "good afternoon ":
     #         await message.reply("Good Afternoon 🥱")
-        
+
     # @commands.Cog.listener("on_message")
     # async def on_message(self, message):
     #     if message.content == "what's up":
@@ -87,7 +87,7 @@ class message(commands.Cog):
     #     if message.content == "what is the time":
     #         time = date.today()
     #         isoTime= time.isoformat()
-            
+
     #         await message.reply(f" ⌚ The current time is {isoTime} ⏲")
     # @commands.Cog.listener("on_message")
     # async def on_message(self, message):
@@ -107,7 +107,7 @@ class message(commands.Cog):
     #             await message.reply("Today is Saturday ♐")
     #         elif Time == 6:
     #             await message.reply("Today is Sunday ☀")
-        
+
 
 
 

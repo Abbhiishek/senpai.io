@@ -21,22 +21,21 @@ class weather(commands.Cog):
 
     @commands.command()
     async def weather(self, ctx , msg):
-        
+
         querystring = {"q":f"{msg}"}
-        response = requests.request("GET", url, headers=headers, params=querystring)
-        response=response.json()
-        location=response["location" "name"]
-        Region=response.location().region
-        Country=response.location().country
-        Tempertaure=response.current().temp_c
-        Condition=response.current().condition().text
-        Winds=response.location().wind_kph
-        Windd=response.location().wind_degree
-        Winddir=response.current().vwind_dir
-        Humidity=response.current().humidity
-        Feelslike=response.current().feelslike_c
-        icon=response.current().condition().icon
-        
+        response = requests.request("GET", url, headers=headers, params=querystring).json()
+        location=response['location'][0]['name']
+        Region=response.['location'][0]['region']
+        Country=response['location'][0]['country']
+        Tempertaure=response['current'][0]['temp_c']
+        Condition=response['current']['condition'][0]['text']
+        Winds=response['current'][0]['wind_kph']
+        Windd=response.['current'][0]['wind_degree']
+        Winddir=response['current']['wind_dir']
+        Humidity=response['current'][0]['humidity']
+        Feelslike=response['current'][0]['feelslike_c']
+        icon=response['current']['condition'][0]['icon']
+
         weathere=discord.Embed(
              title="Weather Informations ",
             description=f"Weather information for the {msg}",
@@ -48,13 +47,13 @@ class weather(commands.Cog):
         weathere.add_field(name="Country", value=f"{Country}")
         weathere.add_field(name="Tempertaure", value=(f"{Tempertaure}॰C"))
         weathere.add_field(name="Condition", value=f"{Condition}")
-        weathere.add_field(name="Wind speed", value=f"{Winds}")
+        weathere.add_field(name="Wind speed in Kmph", value=f"{Winds}")
         weathere.add_field(name="Wind Degree", value=(f"{Windd} toward {Winddir}"))
         weathere.add_field(name="Humidity", value=f"{Humidity}")
         weathere.add_field(name="Feels ", value=(f"{Feelslike}॰C"))
         weathere.add_field(name="Feels ", value=(f"{Feelslike}॰C"))
-        
-        
+
+
 
         await ctx.send(embed=weathere)
 

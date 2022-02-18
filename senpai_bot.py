@@ -31,7 +31,7 @@ client.remove_command("help")
 
 print(">>>> The Master Is Logging To The Server... \n >>>Please wait for the connections to stablish...////////")
 
-#Loads all the cogs in the cogs folder 
+#Loads all the cogs in the cogs folder
 def load_cogs():
     for file in os.listdir("./cogs"):
         if file.endswith(".py"):
@@ -45,7 +45,7 @@ async def r(ctx):
       client.reload_extension(f"cogs.{file[:-3]}")
   await ctx.send("```>> Senpai reloaded cogs```")
 
- #creating a task that change the activity status of the bot every 5 seconds so that it show different information evry 5 second. 
+ #creating a task that change the activity status of the bot every 5 seconds so that it show different information evry 5 second.
 
 @tasks.loop(seconds=5)
 async def switchpresence():
@@ -54,7 +54,7 @@ async def switchpresence():
     ast = random.choice(sm)
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.watching, name=f"senpai & {ast}"))
 
-# loading all the information on the terminal when the bot goes online 
+# loading all the information on the terminal when the bot goes online
 
 @client.event
 async def on_ready():
@@ -66,11 +66,11 @@ async def on_ready():
 
 
 
-               
+
 #do stuffs
 @client.command()
 async def status(ctx):
-            
+
             async with ctx.channel.typing():
                 embed = discord.Embed(title="senpai.io", description="These are the config of senpai.io",timestamp=datetime.utcnow(),
                                   color=discord.Colour.red())
@@ -78,7 +78,7 @@ async def status(ctx):
                 embed.add_field(name="created by", value='<@752362202945683480>',inline=True)
                 embed.add_field(name="Total servers", value=f"{len(client.guilds)} Servers!",inline=True)
                 embed.add_field(name="Total User ", value= f"{len(client.users)} Users!",inline=True)
-                
+
                 embed.set_image(url="https://c.tenor.com/RGhPDvXANBQAAAAd/discord.gif")
                 await ctx.send(embed=embed)
 
@@ -99,11 +99,10 @@ async def clear(ctx, amount : int ):
 #             await ctx.send("Senpai👀 started sending the Messages😁")
 #         await asyncio.sleep(15) #15 seconds sleep after every list inside list1
 #     await ctx.send("Senpai👀 send the Messages! \n Task Accomplishes😎")
-    
-                
-        
-token = config("TOKEN")
+
+
+TOKEN=Config('TOKEN')
 switchpresence.start()
-client.run(token)
+client.run(TOKEN)
 #starting the loop for the switch_presence
 #rumming the client in the server

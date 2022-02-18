@@ -21,11 +21,29 @@ class horoscope(commands.Cog):
         if msg == None:
             await ctx.reply("SIGN IS REQUIRED IN FORM OF STRING \n List of possible values of \"sign\":Aries\nTaurus\nGemini\nCancer\nLeo\nVirgo\nLibra\nScorpio\nSagittarius\nCapricorn\nAquarius\nPisces")
         querystring = {"sign":f"{msg}","day":"today"}
-        response = requests.request("POST", url, headers=headers, params=querystring)
-        data=response.json()
+        response = requests.request("POST", url, headers=headers, params=querystring).json()
+        date_range=response.['date_range']
+        current_date=response['current_date']
+        description=response['description']
+        compatibility=response['compatibility']
+        mood=response['mood']
+        color=response.['color']
+        lucky_number=response['lucky_number']
+        lucky_number=response['lucky_number']
+
         embed=discord.Embed(title="Horoscope", description=f"Todays horoscope for {msg}", colour=discord.colour.random())
         embed.add_field(name="Sign", value=f"{msg}",inline=True)
+        embed.add_field(name="Date Range", value=f"{date_range}")
+        embed.add_field(name="current_date", value=f"{current_date}")
+        embed.add_field(name="😀", value=f"{description}")
+        embed.add_field(name="Compatibility", value=(f"{compatibility}॰C"))
+        embed.add_field(name="Mood", value=f"{mood}")
+        embed.add_field(name="Color", value=f"{color}")
+        embed.add_field(name="lucky_number", value=(f"{lucky_number}"))
+        embed.add_field(name="lucky_time", value=f"{lucky_time}")
+
         await ctx.send(embed=embed)
+        await ctx.send(data)
 
 
 def setup(client):

@@ -5,13 +5,13 @@ import random
 from decouple import config
 import weeby
 
-token = config('token')
+token = Config('token')
 my_weeby = weeby.Weeby(token)
 class Action(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.senpai_id = 888414036662833164
- 
+
     @commands.command()
     async def action(self, ctx):
         async with ctx.channel.typing():
@@ -24,7 +24,7 @@ class Action(commands.Cog):
             await ctx.send(embed=actionemb)
 
 
-  
+
     @commands.command()
     async def dadjoke(self, ctx):
         dadjoke = [
@@ -235,7 +235,7 @@ class Action(commands.Cog):
         await ctx.send(embed=emb)
     @commands.command()
     async def bore(self, ctx):
-        
+
         emb = discord.Embed(
             titile="",
             description=f"{ctx.author.mention} is bored !",
@@ -248,7 +248,7 @@ class Action(commands.Cog):
     async def angry(self, ctx, mem: discord.Member = None):
         if mem == None:
             mem = ctx.author
-        
+
             emb = discord.Embed(
                 titile="",
                 description=f"{ctx.author.mention} is angry !",
@@ -265,7 +265,7 @@ class Action(commands.Cog):
 
     @commands.command()
     async def confused(self, ctx):
-        
+
         emb = discord.Embed(
             titile="",
             description=f"{ctx.author.mention} is confused !",
@@ -281,7 +281,7 @@ class Action(commands.Cog):
                     titile="",
                     description=f"{ctx.author.mention} simps on {mem.mention} <3",
                     color=0x2e69f2)
-            emb.set_image(url = my_weeby.get_gif().gif(type="simp")) 
+            emb.set_image(url = my_weeby.get_gif().gif(type="simp"))
         else:
             emb = discord.Embed(
             titile="",
@@ -337,7 +337,7 @@ class Action(commands.Cog):
         emb.set_image(url=my_weeby.get_gif().gif(type="poke"))
         await ctx.send(embed=emb)
 
-        
+
     @commands.command()
     async def highfive(self, ctx, mem: discord.Member = None):
         if mem == None:
@@ -415,9 +415,9 @@ class Action(commands.Cog):
 
 
 
-    
-    
-    
+
+
+
 
 def setup(client):
     client.add_cog(Action(client))
