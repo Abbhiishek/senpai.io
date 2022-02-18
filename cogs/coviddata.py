@@ -20,10 +20,10 @@ headers = {
     'x-rapidapi-key': "52c4165dc4msh25ad16f273bccb8p1c3002jsnb6f45071252d"
     }
 
-# class coviddata(commands.Cog):
-#     def __init__(self, client):
-#         self.client = client
-#         self.senpai_id = 888414036662833164
+class coviddata(commands.Cog):
+    def __init__(self, client):
+        self.client = client
+        self.senpai_id = 888414036662833164
 #
 #     @commands.command()
 #     async def covidall(self, ctx):
