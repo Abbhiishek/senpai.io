@@ -17,7 +17,7 @@ class chatty(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self ,msg):
         if msg.channel.name == ("🤖-𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜"):
-            if msg.author.id = 888414036662833164:
+            if msg.author.id == "888414036662833164":
                 return
             async with msg.channel.typing():
                 querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":f"{msg}"}
