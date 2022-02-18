@@ -23,6 +23,7 @@ class horoscope(commands.Cog):
         querystring = {"sign":f"{msg}","day":"today"}
         response = requests.request("POST", url, headers=headers, params=querystring).json()
 
+
         date_range=response['date_range']
         current_date=response['current_date']
         description=response['description']
@@ -30,7 +31,7 @@ class horoscope(commands.Cog):
         mood=response['mood']
         color=response['color']
         lucky_number=response['lucky_number']
-        lucky_number=response['lucky_number']
+        lucky_time=response['lucky_number']
 
         embed=discord.Embed(title="Horoscope", description=f"Todays horoscope for {msg}")
         embed.add_field(name="Sign", value=f"{msg}",inline=True)
