@@ -15,8 +15,8 @@ class chatty(commands.Cog):
         self.senpai_id = 888414036662833164
 
     @commands.Cog.listener()
-    async def on_message(self ,ctx ,  msg):
-        if ctx.channel.name == ("🤖-𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜"):
+    async def on_message(self ,msg):
+        if msg.channel.name == ("🤖-𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜"):
             if msg.author.id == self.user.id:
                 return
             async with msg.channel.typing():

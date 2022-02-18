@@ -45,7 +45,7 @@ class horoscope(commands.Cog):
         embed.add_field(name="lucky_time", value=f"{lucky_time}")
 
         await ctx.send(embed=embed)
-        await ctx.send(data)
+    
 
 
 def setup(client):
