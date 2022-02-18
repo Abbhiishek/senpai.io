@@ -17,13 +17,13 @@ class chatty(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self ,msg):
         if msg.channel.name == ("🤖-𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜"):
-            if msg.author.id == self.user.id:
+            if msg.author.id = 888414036662833164:
                 return
             async with msg.channel.typing():
                 querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":f"{msg}"}
                 response = requests.request("GET", url, headers=headers, params=querystring)
                 res=response.json()
-                await msg.reply(res["cnt"])
+                await msg.reply(['res']['cnt'])
 
 
 def setup(client):
