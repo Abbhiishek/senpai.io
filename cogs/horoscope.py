@@ -27,7 +27,7 @@ class horoscope(commands.Cog):
         description=response['description']
         compatibility=response['compatibility']
         mood=response['mood']
-        color=response.['color']
+        color=response['color']
         lucky_number=response['lucky_number']
         lucky_number=response['lucky_number']
 
