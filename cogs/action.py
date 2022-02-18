@@ -5,7 +5,7 @@ import random
 from decouple import config
 import weeby
 
-token = Config('token')
+token = config('token')
 my_weeby = weeby.Weeby(token)
 class Action(commands.Cog):
     def __init__(self, client):
