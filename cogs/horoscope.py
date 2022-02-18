@@ -22,6 +22,7 @@ class horoscope(commands.Cog):
             await ctx.reply("SIGN IS REQUIRED IN FORM OF STRING \n List of possible values of \"sign\":Aries\nTaurus\nGemini\nCancer\nLeo\nVirgo\nLibra\nScorpio\nSagittarius\nCapricorn\nAquarius\nPisces")
         querystring = {"sign":f"{msg}","day":"today"}
         response = requests.request("POST", url, headers=headers, params=querystring).json()
+
         date_range=response['date_range']
         current_date=response['current_date']
         description=response['description']
@@ -31,7 +32,7 @@ class horoscope(commands.Cog):
         lucky_number=response['lucky_number']
         lucky_number=response['lucky_number']
 
-        embed=discord.Embed(title="Horoscope", description=f"Todays horoscope for {msg}", colour=discord.colour.random())
+        embed=discord.Embed(title="Horoscope", description=f"Todays horoscope for {msg}")
         embed.add_field(name="Sign", value=f"{msg}",inline=True)
         embed.add_field(name="Date Range", value=f"{date_range}")
         embed.add_field(name="current_date", value=f"{current_date}")
