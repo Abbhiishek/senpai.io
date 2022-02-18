@@ -101,8 +101,8 @@ async def clear(ctx, amount : int ):
 #     await ctx.send("Senpai👀 send the Messages! \n Task Accomplishes😎")
 
 
-TOKEN=Config('TOKEN')
+token=config('TOKEN')
 switchpresence.start()
-client.run(TOKEN)
+client.run(token)
 #starting the loop for the switch_presence
 #rumming the client in the server
