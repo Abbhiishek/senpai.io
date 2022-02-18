@@ -41,7 +41,7 @@ class weather(commands.Cog):
             description=f"Weather information for the {msg}",
             color=discord.Colour.random()
         )
-        weathere.set_thumbnail(url= icon)
+        weathere.set_thumbnail(url= "https:"+ icon)
         weathere.add_field(name="Location", value=f"{location}")
         weathere.add_field(name="Region", value=f"{Region}")
         weathere.add_field(name="Country", value=f"{Country}")
