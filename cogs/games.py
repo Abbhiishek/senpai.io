@@ -58,48 +58,74 @@ class Games(commands.Cog):
             await ctx.send(embed=GAMES_embed)
 
     @commands.command()
+    A. Commit message:
+    Use secrets module for secure random choice in dare method
+    
+    B. Change summary:
+    Replaced the usage of the `random.choice` function with the more secure `secrets.choice` function to generate a secure random dare selection.
+    
+    C. Compatibility Risk:
+    Low
+    
+    D. Fixed Code:
+    ```python
+    import secrets
+    
     async def dare(self, ctx):
-        dare = [
-            "Show the most embarrassing photo on your phone",
-            "Show the last five people you texted and what the messages said",
-            "Let the rest of the group DM someone from your Instagram account",
-            "Eat a raw piece of garlic",
-            "Do 100 squats",
-            "Keep three ice cubes in your mouth until they melt",
-            "Say something dirty to the person on your left",
-            "Give a foot massage to the person on your right",
-            "Put 10 different available liquids into a cup and drink it",
-            "Yell out the first word that comes to your mind",
-            "Give a lap dance to someone of your choice",
-            "Remove four items of clothing",
-            "Like the first 15 posts on your Facebook newsfeed",
-            "Eat a spoonful of mustard",
-            "Keep your eyes closed until it's your go again",
-            "Send a text to the last person in your phonebook",
-            "Show off your orgasm face",
-            "Seductively eat a banana",
-            "Empty out your wallet/purse and show everyone what's inside",
-            "Do your best sexy crawl",
-            "Pretend to be the person to your right for 10 minutes",
-            "Eat a snack without using your hands",
-            "Say two honest things about everyone else in the group",
-            "Twerk for a minute",
-            "Try and make the group laugh as quickly as possible",
-            "Try to put your whole fist in your mouth",
-            "Tell everyone an embarrassing story about yourself",
-            "Try to lick your elbow",
-            "Post the oldest selfie on your phone on Instagram Stories",
-            "Tell the saddest story you know",
-            "Howl like a wolf for two minutes",
-            "Dance without music for two minutes",
-            "Pole dance with an imaginary pole",
-            "Let someone else tickle you and try not to laugh",
-            "Put as many snacks into your mouth at once as you can",
-        ]
-        async with ctx.channel.typing():
-            await ctx.send(f"Dare: {random.choice(dare)}")
-
+     dare = [
+     "Show the most embarrassing photo on your phone",
+     "Show the last five people you texted and what the messages said",
+     "Let the rest of the group DM someone from your Instagram account",
+     "Eat a raw piece of garlic",
+     "Do 100 squats",
+     "Keep three ice cubes in your mouth until they melt",
+     "Say something dirty to the person on your left",
+     "Give a foot massage to the person on your right",
+     "Put 10 different available liquids into a cup and drink it",
+     "Yell out the first word that comes to your mind",
+     "Give a lap dance to someone of your choice",
+     "Remove four items of clothing",
+     "Like the first 15 posts on your Facebook newsfeed",
+     "Eat a spoonful of mustard",
+     "Keep your eyes closed until it's your go again",
+     "Send a text to the last person in your phonebook",
+     "Show off your orgasm face",
+     "Seductively eat a banana",
+     "Empty out your wallet/purse and show everyone what's inside",
+     "Do your best sexy crawl",
+     "Pretend to be the person to your right for 10 minutes",
+     "Eat a snack without using your hands",
+     "Say two honest things about everyone else in the group",
+     "Twerk for a minute",
+     "Try and make the group laugh as quickly as possible",
+     "Try to put your whole fist in your mouth",
+     "Tell everyone an embarrassing story about yourself",
+     "Try to lick your elbow",
+     "Post the oldest selfie on your phone on Instagram Stories",
+     "Tell the saddest story you know",
+     "Howl like a wolf for two minutes",
+     "Dance without music for two minutes",
+     "Pole dance with an imaginary pole",
+     "Let someone else tickle you and try not to laugh",
+     "Put as many snacks into your mouth at once as you can",
+     ]
+     async with ctx.channel.typing():
+     await ctx.send(f"Dare: {secrets.choice(dare)}")
+    ```
     @commands.command()
+    A. Commit message:
+    Replace insecure random number generation with secure secrets module function
+    
+    B. Change summary:
+    The `random.choice` function used to select a random truth question from a list has been replaced with `secrets.choice` to improve security by using the secrets module for generating cryptographically secure random numbers.
+    
+    C. Compatibility Risk:
+    Low
+    
+    D. Fixed Code:
+    ```python
+    import secrets
+    
     async def truth(self, ctx):
         truth = [
             "When was the last time you lied?",
@@ -138,99 +164,161 @@ class Games(commands.Cog):
             "Have you ever lied to get out of a bad date?",
             "What's the most trouble you've been in?",
         ]
-
+    
         async with ctx.channel.typing():
-            await ctx.send(f"Truth: {random.choice(truth)}")
-
+            await ctx.send(f"Truth: {secrets.choice(truth)}")
+    ```
     
 
     @commands.command()
     async def tictao(self , ctx ):    
-        await ctx.send("this fucking game is not playable now?!?!?!?!?!")    
-
-
-    @commands.command()
-    async def riddle(self, ctx):
-        async with ctx.channel.typing():
-            await ctx.send("this game is under code \n pls try again after one year \n Since Master Abhishek Is Busy")
-
-
-    @commands.command(aliases=['lotto'])
-    async def lottery(self, ctx, *, guesses):
-        #Enter the lottery and see if you win!
-        numbers = []
-        for x in range(3):
-            numbers.append(random.randint(0, 9))
-
-        split = guesses.split(' ')
-        if len(split) != 3:
-            return await ctx.send('Please separate your numbers with a space, and make sure there are 3 numbers between 0 and 9.')
-        string_numbers = [str(i) for i in numbers]
-        if split[0] == string_numbers[0] and split[1] == string_numbers[1] and split[2] == string_numbers[2]:
-            await ctx.send(f'{ctx.author.mention} You won! Congratulations on winning the lottery!')
-        else:
-            await ctx.send(f"{ctx.author.mention} Better luck next time... You were one of the 124/125 who lost the lottery...\nThe numbers were `{', '.join(string_numbers)}`")
-  
-    @commands.command()
-    async def rps(self, ctx):
-        def return_embed(senpai, user):
-            cond = ""
-            if senpai == user:
-                cond = "t"
-            game = {"rock": "scissors", "scissors": "paper", "paper": "rock"}
-            if game[user] == senpai:
-                cond = "w"
-            elif game[user] != senpai and senpai != user:
-                cond = "l"
-            if cond == "t":
-                emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description="**🙂 Oops, It's a draw..\nTry again :)**", color=0x2e69f2)
-                return emb
-            elif cond == "w":
-                emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**😏 You won the game!\nI chose {senpai} and you chose {user}!**", color=0x2e69f2)
-                return emb
-            elif cond == "l":
-                emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**😞 You lost the game, Better luck next time..\nI chose {senpai} and you chose {user}.**", color=0x2e69f2)
-                return emb
-
-
-        emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description="**rock, paper, scissors..\nClick on any one button to play the game!**", color=0x2e69f2)
-        msg=await ctx.send(embed=emb,
-            components=[
-                [
-                Button(style=ButtonStyle.blue, label="Rock", emoji="✊"),
-                Button(style=ButtonStyle.red, label="Paper", emoji="🤚"),
-                Button(style=ButtonStyle.green, label="Scissors", emoji="✌")
-                ],
-            ],
-        )
-        try:
-            def check(resp):
-                return resp.user == ctx.author and resp.channel == ctx.channel
+        A. Commit message:
+        Improved security by using `secrets` module for random choice.
         
-            resp = await self.client.wait_for("button_click", check=check, timeout=60)
-            bot = random.choice(["rock", "paper", "scissors"])
-            player = resp.component.label.lower()
-            embed = return_embed(bot, player)
-            await resp.respond(type=7, embed=embed,
+        B. Change summary:
+        Replaced `random.choice` with `secrets.choice` to ensure secure random selections during the RPS game.
+        
+        C. Compatibility Risk:
+        Low
+        
+        D. Fixed Code:
+        ```python
+        import secrets
+        
+        async def rps(self, ctx):
+            def return_embed(senpai, user):
+                cond = ""
+                if senpai == user:
+                    cond = "t"
+                game = {"rock": "scissors", "scissors": "paper", "paper": "rock"}
+                if game[user] == senpai:
+                    cond = "w"
+                elif game[user] != senpai and senpai != user:
+                    cond = "l"
+                if cond == "t":
+                    emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description="**üôÇ Oops, It's a draw..\nTry again :)**", color=0x2e69f2)
+                    return emb
+                elif cond == "w":
+                    emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**üòè You won the game!\nI chose {senpai} and you chose {user}!**", color=0x2e69f2)
+                    return emb
+                elif cond == "l":
+                    emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description=f"**üòû You lost the game, Better luck next time..\nI chose {senpai} and you chose {user}.**", color=0x2e69f2)
+                    return emb
+        
+        
+            emb = discord.Embed(title=f"{ctx.author.display_name}'s RPS game!", description="**rock, paper, scissors..\nClick on any one button to play the game!**", color=0x2e69f2)
+            msg=await ctx.send(embed=emb,
                 components=[
                     [
-                    Button(style=ButtonStyle.blue, label="Rock", emoji="✊", disabled=True),
-                    Button(style=ButtonStyle.red, label="Paper", emoji="🤚", disabled=True),
-                    Button(style=ButtonStyle.green, label="Scissors", emoji="✌", disabled=True)
+                    Button(style=ButtonStyle.blue, label="Rock", emoji="‚úä"),
+                    Button(style=ButtonStyle.red, label="Paper", emoji="ü§ö"),
+                    Button(style=ButtonStyle.green, label="Scissors", emoji="‚úå")
                     ],
                 ],
-            ) 
-        except asyncio.TimeoutError:
-            await msg.edit(components=[[
-                Button(style=ButtonStyle.blue, label="Rock", emoji="✊", disabled=True),
-                Button(style=ButtonStyle.red, label="Paper", emoji="🤚", disabled=True),
-                Button(style=ButtonStyle.green, label="Scissors", emoji="✌", disabled=True),
-                ],],)
-
-    @commands.command(aliases=['hl'])
-    async def highlow(self, ctx,):
-        def return_embed(num1, num2, guess):
-            cond = ""
+            )
+            try:
+                def check(resp):
+                    return resp.user == ctx.author and resp.channel == ctx.channel
+            
+                resp = await self.client.wait_for("button_click", check=check, timeout=60)
+                bot = secrets.choice(["rock", "paper", "scissors"])
+                player = resp.component.label.lower()
+                embed = return_embed(bot, player)
+                await resp.respond(type=7, embed=embed,
+                    components=[
+                        [
+                        Button(style=ButtonStyle.blue, label="Rock", emoji="‚úä", disabled=True),
+                        A. Commit message:
+                        Use cryptographically secure random numbers in highlow game
+                        
+                        B. Change summary:
+                        Replaced the usage of non-secure `random.randint` with secure `secrets.randbelow` for generating random numbers to ensure cryptographic security and reliability.
+                        
+                        C. Compatibility Risk:
+                        Medium
+                        
+                        D. Fixed Code:
+                        ```python
+                        import secrets
+                        import discord
+                        from discord_components import Button, ButtonStyle
+                        
+                        async def highlow(self, ctx):
+                            def return_embed(num1, num2, guess):
+                                cond = ""
+                                if num1 == num2:
+                                    cond = "t"
+                                elif num1 > num2 and guess == "high":
+                                    cond = "w"
+                                elif num1 < num2 and guess == "low":
+                                    cond = "w"
+                                else:
+                                    cond = "l"
+                                if cond == "t":
+                                    emb = discord.Embed(title=f"{ctx.author.display_name}'s HIGHLOW game!",
+                                                        description=f"**🍀 woah, It's a JACKPOT!!\nThe number was exactly {num2}!**",
+                                                        color=0x2e69f2)
+                                    return emb
+                                elif cond == "w":
+                                    emb = discord.Embed(title=f"{ctx.author.display_name}'s HIGHLOW game!",
+                                                        description=f"**🎉 You won the game!\nThe number was {num1}!**",
+                                                        color=0x2e69f2)
+                                    return emb
+                                elif cond == "l":
+                                    emb = discord.Embed(title=f"{ctx.author.display_name}'s HIGHLOW game!",
+                                                        description=f"**😞 You lost the game, Better luck next time..\nThe number was {num1}.**",
+                                                        color=0x2e69f2)
+                                    return emb
+                        
+                            n1 = secrets.randbelow(100) + 1
+                            n2 = secrets.randbelow(100) + 1
+                            emb = discord.Embed(title=f"{ctx.author.display_name}'s HIGHLOW game!",
+                                                description=f"**Guess whether the number is higher or lower than {n2}.\nYou have 30s to answer!**",
+                                                color=0x2e69f2)
+                            msg = await ctx.send(embed=emb,
+                                                 components=[
+                                                     [
+                                                         Button(style=ButtonStyle.blue, label="HIGH",
+                                                                emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071")),
+                                                         Button(style=ButtonStyle.blue, label="JACKPOT!",
+                                                                emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522")),
+                                                         Button(style=ButtonStyle.blue, label="LOW",
+                                                                emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"))
+                                                     ],
+                                                 ],
+                                                 )
+                            try:
+                                def check(resp):
+                                    return resp.user == ctx.author and resp.channel == ctx.channel
+                        
+                                resp = await self.client.wait_for("button_click", check=check, timeout=30)
+                                player = resp.component.label.lower()
+                                embed = return_embed(n1, n2, player)
+                                await resp.respond(type=7, embed=embed,
+                                                   components=[
+                                                       [
+                                                           Button(style=ButtonStyle.blue, label="HIGH",
+                                                                  emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"),
+                                                                  disabled=True),
+                                                           Button(style=ButtonStyle.blue, label="JACKPOT!",
+                                                                  emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"),
+                                                                  disabled=True),
+                                                           Button(style=ButtonStyle.blue, label="LOW",
+                                                                  emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"),
+                                                                  disabled=True)
+                                                       ],
+                                                   ],
+                                                   )
+                            except asyncio.TimeoutError:
+                                await msg.edit(components=[[
+                                    Button(style=ButtonStyle.blue, label="HIGH",
+                                           emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"), disabled=True),
+                                    Button(style=ButtonStyle.blue, label="JACKPOT!",
+                                           emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"), disabled=True),
+                                    Button(style=ButtonStyle.blue, label="LOW",
+                                           emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"), disabled=True)
+                                ], ],)
+                        ```            cond = ""
             if num1 == num2:
                 cond = "t"
             elif num1 > num2 and guess == "high":
@@ -245,50 +333,64 @@ class Games(commands.Cog):
             elif cond == "w":
                 emb = discord.Embed(title=f"{ctx.author.display_name}'s HIGHLOW game!", description=f"**🙂 You won the game!\nThe number was {num1}!**", color=0x2e69f2)
                 return emb
-            elif cond == "l":
-                emb = discord.Embed(title=f"{ctx.author.display_name}'s HIGHLOW game!", description=f"**😞 You lost the game, Better luck next time..\nThe number was {num1}.**", color=0x2e69f2)
-                return emb
-        n1 = random.randint(1, 100)
-        n2 = random.randint(1, 100)
-        emb = discord.Embed(title=f"{ctx.author.display_name}'s HIGHLOW game!", description=f"**Guess whether the number is higher or lower than {n2}.\nYou have 30s to answer!**", color=0x2e69f2)
-        msg=await ctx.send(embed=emb,
-            components=[
-                [
-                Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071")),
-                Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522")),
-                Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"))
-                ],
-            ],
-        )
-        try:
-            def check(resp):
-                return resp.user == ctx.author and resp.channel == ctx.channel
-        
-            resp = await self.client.wait_for("button_click", check=check, timeout=30)
-            player = resp.component.label.lower()
-            embed = return_embed(n1, n2, player)
-            await resp.respond(type=7, embed=embed,
-                components=[
-                    [
-                    Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"), disabled=True),
-                    Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"), disabled=True),
-                    Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"), disabled=True)
-                    ],
-                ],
-            ) 
-        except asyncio.TimeoutError:
-            await msg.edit(components=[[
-                Button(style=ButtonStyle.blue, label="HIGH", emoji=discord.PartialEmoji(name="KannaAwh", id="758724574010409071"), disabled=True),
-                Button(style=ButtonStyle.blue, label="JACKPOT!", emoji=discord.PartialEmoji(name="RWKannaSmug", id="762995028200128522"), disabled=True),
-                Button(style=ButtonStyle.blue, label="LOW", emoji=discord.PartialEmoji(name="kannah", id="873191866387013654"), disabled=True)
-                ],],)
-
-    @commands.command(aliases=['lr'])
-    async def loveratio(self, ctx, m1: discord.User = None, m2: discord.User = None):
-        if m1 == None:
-            m1 = ctx.author
-            m2 = ctx.author
-        elif m2 == None:
+            A. Commit message:
+            Switching to secure random number generation for love calculation.
+            
+            B. Change summary:
+            The function is updated to utilize the `secrets` module for generating secure random numbers, replacing the previous use of `random.randint()`. This change enhances the security of the random values used in the application's logic.
+            
+            C. Compatibility Risk:
+            Low
+            
+            D. Fixed Code:
+            
+            ```python
+            import secrets
+            
+            async def loveratio(self, ctx, m1: discord.User = None, m2: discord.User = None):
+             if m1 == None:
+             m1 = ctx.author
+             m2 = ctx.author
+             elif m2 == None:
+             m2 = m1
+             m1 = ctx.author
+             asset1 = m1.avatar_url_as(format='png', size=512)
+             asset2 = m2.avatar_url_as(format='png', size=512)
+             await asset1.save('pfp1.png')
+             await asset2.save('pfp2.png')
+             pfp1=Image.open('pfp1.png')
+             pfp2=Image.open('pfp2.png')
+             pfp1=pfp1.resize((400, 400))
+             pfp2=pfp2.resize((400, 400))
+             mask=Image.new('L', (400, 400), 0)
+             mask_draw=ImageDraw.Draw(mask)
+             mask_draw.ellipse((0, 0, 400, 400), fill=255)
+             mask.save('mask.jpg')
+             bg=Image.new('RGBA', (1200, 500), (255, 0, 0, 0))
+             bg.paste(pfp1, (37, 28), mask)
+             bg.paste(pfp2, (752, 27), mask)
+             bg.save('back.png')
+             temp=Image.open('./picture/temp4.png')
+             im = Image.open('back.png').convert('RGBA')
+             final=Image.alpha_composite(im, temp)
+             final.save('final.png')
+             love = secrets.randbelow(102)  # Secure random number between 0 and 101
+             if love >= 0 and love <=15:
+             quote = "Not in this life.."
+             elif love > 15 and love <=25:
+             quote = "Looks impossible..but who knows?"
+             elif love > 25 and love <=50:
+             quote = "Maybe.."
+             elif love > 50 and love <=70:
+             quote = "Quite Possible.."
+             elif love > 70 and love <=90:
+             quote = "Should already be in this relationship!!"
+             elif love > 90 and love <= 101:
+             quote = "Fated partners uwu"
+             file=discord.File('final.png')
+             desc = f"{m1.mention} + {m2.mention} = {love}% of love <:kannawee:877036162122924072>\n**{quote}**"
+             await ctx.send(desc, file=file)   
+            ```        elif m2 == None:
             m2 = m1
             m1 = ctx.author
         asset1 = m1.avatar_url_as(format='png', size=512)
