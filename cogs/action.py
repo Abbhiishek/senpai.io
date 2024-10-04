@@ -209,8 +209,19 @@ class Action(commands.Cog):
 
         async with ctx.channel.typing():
             embed = discord.Embed(title="**JOKE  :  **",
-                                  description=random.choice(dadjoke),
-                                  color=discord.Colour.red())
+                                  A. Commit message:
+                                  Replace use of weak random number generation with secure method from secrets module.
+                                  
+                                  B. Change summary:
+                                  Replaced the use of `random.choice()` with `secrets.choice()` for cryptographic security. This ensures that the selection among the choices is secure and avoids potential exploits related to predictable outcomes in random number generation.
+                                  
+                                  C. Compatibility Risk:
+                                  Medium
+                                  
+                                  D. Fixed Code:
+                                  import secrets
+                                  
+                                  description=secrets.choice(dadjoke),                                  color=discord.Colour.red())
             await ctx.send(embed=embed)
 
     @commands.command()
@@ -408,8 +419,22 @@ class Action(commands.Cog):
             title=" ",
             description=f"{ctx.author.mention} नेई अर्झ किया हां {mem.mention} को ।<3\n\n*",
             color=0x2e69f2)
-        emb.add_field(name=" 😊 " , value=f"{random.choice(syri)}")
-        emb.set_footer(text="©Manish_swaraj X senpai.io")
+        A. Commit message:
+        Replace insecure random number generation with `secrets` module
+        
+        B. Change summary:
+        Changed the random choice mechanism to use the `secrets.choice` function instead of `random.choice` for better security in generating random tokens for the embed messages.
+        
+        C. Compatibility Risk:
+        Low
+        
+        D. Fixed Code:
+        ```
+        import secrets
+        
+        # Assuming 'syri' is pre-defined somewhere in the code
+        emb.add_field(name=" 😊 ", value=f"{secrets.choice(syri)}")
+        ```        emb.set_footer(text="©Manish_swaraj X senpai.io")
         emb.set_image(url=my_weeby.get_gif().gif(type="love"))
         await ctx.send(embed=emb)
 
