@@ -115,14 +115,27 @@ class Generalcomm(commands.Cog):
             await ctx.send(embed=embed)
 
     @commands.command(name='hello',help='This command returns a random welcome message')
-    async def hello(self, ctx ):
+    A. Commit message:
+    Replace the insecure random choice with a secure alternative
+    
+    B. Change summary:
+    Replaced the use of Python's `random.choice`, which relies on the Mersenne Twister pseudo-random number generator, with `secrets.choice` for secure random selection of items from the list.
+    
+    C. Compatibility Risk:
+    Medium
+    
+    D. Fixed Code:
+    ```python
+    import secrets
+    
+    async def hello(self, ctx):
         responses = [
             '***grumble*** Why did you wake me up? \n'
             'Top of the morning to you lad!', 'Hello, how are you?', 'Hi',
             '**Wasssuup!**'
         ]
-        await ctx.send(choice(responses))
-
+        await ctx.send(secrets.choice(responses))
+    ```
     
     @commands.command(name='greet',help='This command greet prople whom you had mention')
     async def greet(self, ctx, member: discord.Member):
